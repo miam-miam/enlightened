@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,10 +25,16 @@ public class GravityComponent : MonoBehaviour
 	/// Are we currently falling?
 	/// </summary>
 	[SerializeField]
-	private bool isFalling = false;
+	internal bool isFalling = false;
 
 	[SerializeField]
 	private bool blockedAbove = false;
+
+	/// <summary>
+	/// Intercept the gravity function in order to provide custom behaviours instead.
+	/// Only gets called when we are falling, if we are moving upwards then this call will be skipped.
+	/// </summary>
+	public event Func<float, float?> interceptGravity;
 
 	/// <summary>
 	/// How fast are we currently falling?
@@ -89,9 +96,20 @@ public class GravityComponent : MonoBehaviour
 		// Allow processing of vertical velocity if our vertical velocity is positive
 		if (!isFalling && velocity <= 0)
 			return;
-		if (blockedAbove)
-			velocity = Mathf.Min(0, velocity);
-		velocity -= gravitationalConstant * Time.fixedDeltaTime;
+		float? interceptedResult;
+		if (velocity <= 0 && (interceptedResult = interceptGravity?.Invoke(velocity)) != null)
+		{
+			velocity = interceptedResult.Value;
+			// Can't be moving up if we are blocked above
+			if (blockedAbove)
+				velocity = Mathf.Min(0, velocity);
+		}
+		else
+		{
+			if (blockedAbove)
+				velocity = Mathf.Min(0, velocity);
+			velocity -= gravitationalConstant * Time.fixedDeltaTime;
+		}
 		transform.position += new Vector3(0, Mathf.Clamp(velocity * Time.fixedDeltaTime, -maxSpeed, maxSpeed));
 	}
 

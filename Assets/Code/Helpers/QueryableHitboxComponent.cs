@@ -80,7 +80,7 @@ public class QueryableHitboxComponent : MonoBehaviour
 	/// </summary>
 	void FixedUpdate()
 	{
-		if (IsColliding)
+		if (IsColliding && !collidedThisFrame)
 		{
 			Debug.DrawLine(transform.position, colPoint, debugColour);
 			if (debugContactInfo != null)
