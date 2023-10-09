@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,11 @@ public class JumpableComponent : MonoBehaviour
 
 	private GravityComponent gravityComponent;
 
+	/// <summary>
+	/// Invoked when the player successfully jumps.
+	/// </summary>
+	public event Action onJumped;
+
 	private void Start()
 	{
 		gravityComponent = GetComponent<GravityComponent>();
@@ -38,6 +44,7 @@ public class JumpableComponent : MonoBehaviour
 		// Perform the jump
 		gravityComponent.velocity = jumpVelocity;
 		jumpKeyPressedAt = 0;
+		onJumped?.Invoke();
 	}
 
 }

@@ -982,7 +982,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.004159987, y: -2.86}
+  m_Offset: {x: -0.002389446, y: -2.86}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -993,7 +993,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9084716, y: 0.48453403}
+  m_Size: {x: 0.9120127, y: 0.4845338}
   m_EdgeRadius: 0
 --- !u!4 &229848300
 Transform:
@@ -2722,7 +2722,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.27325842, y: -0.35336804}
+  m_Offset: {x: 0.28991073, y: -0.29}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2733,7 +2733,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.53915566, y: 0.22723234}
+  m_Size: {x: 0.5724603, y: 0.22723234}
   m_EdgeRadius: 0
 --- !u!4 &680714452 stripped
 Transform:
@@ -5634,6 +5634,7 @@ GameObject:
   - component: {fileID: 1551073046}
   - component: {fileID: 1551073048}
   - component: {fileID: 1551073044}
+  - component: {fileID: 1551073053}
   - component: {fileID: 1551073049}
   - component: {fileID: 1551073050}
   - component: {fileID: 1551073051}
@@ -5837,6 +5838,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paintPrefab: {fileID: 5893167477629331455, guid: 3d405d0373a3b4f41bb0f99963a289d3, type: 3}
   paintHitbox: {fileID: 401551244}
+--- !u!114 &1551073053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1551073042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63d9996579d572c4191b3e5efc1b869c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHitbox: {fileID: 677882962}
+  leftHitbox: {fileID: 1998807661}
+  slideAcceleration: 15
+  slideSpeedMax: 2
+  wallJumpSpeed: 5
+  wallJumpSpeedBoost: 20
+  wallJumpSpeedBoostTime: 0.15
 --- !u!4 &1554909765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8207840669338056708, guid: 2e4cac1bf2d944f45806119b23d10539, type: 3}
@@ -7085,7 +7105,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.27617863, y: -0.35336804}
+  m_Offset: {x: -0.2846233, y: -0.29}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -7096,7 +7116,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5486842, y: 0.22723234}
+  m_Size: {x: 0.5655735, y: 0.22723234}
   m_EdgeRadius: 0
 --- !u!4 &2024641550 stripped
 Transform:
