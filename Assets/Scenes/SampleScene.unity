@@ -5858,6 +5858,7 @@ MonoBehaviour:
   wallJumpSpeed: 5
   wallJumpSpeedBoost: 15
   wallJumpSpeedBoostTime: 0.15
+  wallJumpSafetyTime: 0.2
 --- !u!4 &1554909765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8207840669338056708, guid: 2e4cac1bf2d944f45806119b23d10539, type: 3}
