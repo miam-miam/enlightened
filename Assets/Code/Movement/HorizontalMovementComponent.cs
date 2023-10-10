@@ -25,6 +25,11 @@ public class HorizontalMovementComponent : MonoBehaviour
 	[Tooltip("Our attached rigidbody.")]
 	public Rigidbody2D playerRigidbody;
 
+	[Tooltip("Deceleration due to friction.")]
+	public float frictionAcceleration;
+
+	private GravityComponent gravityComponent;
+
 	/// <summary>
 	/// How fast are we currently falling?
 	/// </summary>
@@ -34,6 +39,7 @@ public class HorizontalMovementComponent : MonoBehaviour
 
 	private void Start()
 	{
+		gravityComponent = GetComponent<GravityComponent>();
 		horizontalCollisionHitbox.onCollisionEnter += closestPoint => {
 			// If the collision point has the same horizontal level as us, then that means that we collided
 			// into a wall, rather than into a floor / ceiling and in this case we should terminate our horizontal velocity.
@@ -69,7 +75,23 @@ public class HorizontalMovementComponent : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		HorizontalVelocity += Time.fixedDeltaTime * Input.GetAxis(horizontalMovementKeyAxis) * accelerationValue;
+		float horizontalAxis = Input.GetAxis(horizontalMovementKeyAxis);
+		HorizontalVelocity += Time.fixedDeltaTime * horizontalAxis * accelerationValue;
+		if ((!gravityComponent?.isFalling) ?? false)
+		{
+			if (HorizontalVelocity < 0 && horizontalAxis >= 0)
+			{
+				// Horizontal velocity is negative
+				// Add on either the friction acceleration or take us to 0.
+				float decellerationSpeed = Mathf.Min(Mathf.Max(Mathf.Sqrt(-HorizontalVelocity), 1) * frictionAcceleration * Time.fixedDeltaTime, -HorizontalVelocity);
+				HorizontalVelocity += decellerationSpeed;
+			}
+			else if (HorizontalVelocity > 0 && horizontalAxis <= 0)
+			{
+				float decellerationSpeed = Mathf.Min(Mathf.Max(Mathf.Sqrt(HorizontalVelocity), 1) * frictionAcceleration * Time.fixedDeltaTime, HorizontalVelocity);
+				HorizontalVelocity -= decellerationSpeed;
+			}
+		}
 		if ((currentCollisionDirection & CollisionDirection.Left) != 0)
 		{
 			HorizontalVelocity = Mathf.Max(0, HorizontalVelocity);
