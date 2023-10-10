@@ -33,6 +33,11 @@ public class WallSlideComponent : MonoBehaviour
     [Tooltip("The time in which after leaving the wall, we will still be able to walljump.")]
     public float wallJumpSafetyTime;
 
+    // Same as left and right collision boxes, but requires the player to actively be trying to slide.
+    private float leftSlideTime;
+
+    private float rightSlideTime;
+
     // Track left and right collisions to add some deadzone for more lenient movement,
     private float leftCollisionTime;
 
@@ -68,12 +73,24 @@ public class WallSlideComponent : MonoBehaviour
 				jumpTime = Time.fixedTime;
 				horizontalMovement.HorizontalVelocity -= wallJumpSpeed;
                 left = true;
+                // Check if we can immediately perform a wall jump boost
+                if (Input.GetAxis("Horizontal") < -0.2f)
+				{
+					jumpTime = 0;
+					horizontalMovement.HorizontalVelocity -= wallJumpSpeedBoost;
+				}
 			}
             else if (leftCollisionTime + wallJumpSafetyTime > Time.fixedTime)
 			{
 				jumpTime = Time.fixedTime;
 				horizontalMovement.HorizontalVelocity += wallJumpSpeed;
                 left = false;
+				// Check if we can immediately perform a wall jump boost
+				if (Input.GetAxis("Horizontal") > 0.2f)
+				{
+					jumpTime = 0;
+					horizontalMovement.HorizontalVelocity += wallJumpSpeedBoost;
+				}
 			}
         };
 	}
@@ -81,10 +98,18 @@ public class WallSlideComponent : MonoBehaviour
 	private void FixedUpdate()
 	{
 		float moveDirection = Input.GetAxis("Horizontal");
-		if (leftHitbox.IsColliding && moveDirection < 0)
+        if (leftHitbox.IsColliding)
+        {
+            if (moveDirection < 0)
+                leftSlideTime = Time.fixedTime;
             leftCollisionTime = Time.fixedTime;
-        if (rightHitbox.IsColliding && moveDirection > 0)
+        }
+        if (rightHitbox.IsColliding)
+        {
+            if (moveDirection > 0)
+                rightSlideTime = Time.fixedTime;
             rightCollisionTime = Time.fixedTime;
+        }
         // If we recently did a wall jump, then let us get a speed boost when switching direction keys.
         if (jumpTime + wallJumpSpeedBoostTime > Time.fixedTime)
         {
