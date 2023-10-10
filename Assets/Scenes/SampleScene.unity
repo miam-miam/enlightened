@@ -5800,6 +5800,7 @@ MonoBehaviour:
   accelerationValue: 20
   horizontalCollisionHitbox: {fileID: 154280615}
   playerRigidbody: {fileID: 1551073043}
+  frictionAcceleration: 35
 --- !u!114 &1551073050
 MonoBehaviour:
   m_ObjectHideFlags: 0
