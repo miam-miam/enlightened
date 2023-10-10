@@ -5854,7 +5854,7 @@ MonoBehaviour:
   rightHitbox: {fileID: 677882962}
   leftHitbox: {fileID: 1998807661}
   slideAcceleration: 15
-  slideSpeedMax: 2
+  slideSpeedMax: 3
   wallJumpSpeed: 5
   wallJumpSpeedBoost: 15
   wallJumpSpeedBoostTime: 0.15
