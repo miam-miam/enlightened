@@ -44,18 +44,18 @@ public class GravityComponent : MonoBehaviour
 	private void Start()
 	{
 		isFalling = !gravityHitbox.IsColliding;
-		gravityHitbox.onCollisionEnter += closestPoint => {
-			if (closestPoint.x <= transform.position.x + 0.03f && closestPoint.x >= transform.position.x - 0.03f)
+		gravityHitbox.onCollisionEnter += collisionContact => {
+			if (collisionContact.normal.y != 0)
 			{
 				isFalling = false;
 				// Teleport to the point of collision to prevent entering the floor
 				// This needs to be a vertical collision, if we embedded in the wall slightly due to moving fast
 				// horizontally, then we don't want to teleport upwards since that would just make wall jumping
 				// impossible.
-				if (closestPoint.y < transform.position.y)
+				if (collisionContact.normal.y > 0)
 				{
 					Debug.Log("<color='blue'>[Gravity]: Collusion point was below the transform, pushing us up.</color>");
-					transform.position = new Vector2(transform.position.x, closestPoint.y - floorPoint.transform.localPosition.y);
+					transform.position = new Vector2(transform.position.x, collisionContact.point.y - floorPoint.transform.localPosition.y);
 				}
 				else
 				{
@@ -67,23 +67,23 @@ public class GravityComponent : MonoBehaviour
 				Debug.Log("<color='blue'>[Gravity]: Collision ignored due to not being on the vertical axis.</color>");
 			}
 		};
-		gravityHitbox.onCollisionExit += closestPoint => {
+		gravityHitbox.onCollisionExit += collisionContact => {
 			isFalling = true;
 			velocity = Mathf.Max(0, velocity);
 			Debug.Log("<color='blue'>[Gravity]: Collision ended.</color>");
 		};
-		headHitbox.onCollisionEnter += closestPoint => {
-			if (closestPoint.x <= transform.position.x + 0.03f && closestPoint.x >= transform.position.x - 0.03f)
+		headHitbox.onCollisionEnter += collisionContact => {
+			if (collisionContact.normal.y != 0)
 			{
-				if (closestPoint.y >= transform.position.y)
+				if (collisionContact.normal.y < 0)
 				{
 					velocity = Mathf.Min(0, velocity);
 					blockedAbove = true;
-					transform.position = new Vector2(transform.position.x, closestPoint.y - transform.lossyScale.y * 0.5f);
+					transform.position = new Vector2(transform.position.x, collisionContact.point.y - transform.lossyScale.y * 0.5f);
 				}
 			}
 		};
-		headHitbox.onCollisionExit += closestPoint => {
+		headHitbox.onCollisionExit += collisionContact => {
 			blockedAbove = false;
 		};
 	}

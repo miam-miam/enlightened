@@ -1,3 +1,4 @@
+using Assets.Code.Helpers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,15 +23,19 @@ using UnityEngine;
 public class QueryableHitboxComponent : MonoBehaviour
 {
 
-	private class ContactInformation
+	public class ContactInformation
 	{
 		public Collider2D collider;
 		public Vector2 point;
-		public ContactInformation(Collider2D collider, Vector2 point)
+		public Vector2 normal;
+
+		public ContactInformation(Collider2D collider, Vector2 point, Vector2 normal)
 		{
 			this.collider = collider;
 			this.point = point;
+			this.normal = normal;
 		}
+
 	}
 
 	private int _colCount = 0;
@@ -41,12 +46,12 @@ public class QueryableHitboxComponent : MonoBehaviour
 	/// Called when this collider begins colliding with something.
 	/// Parameter passed is the position of the collision point closest to our transform.position point.
 	/// </summary>
-	public event Action<Vector2> onCollisionEnter;
+	public event Action<ContactInformation> onCollisionEnter;
 
 	/// <summary>
 	/// Called when this collider ends colliding with something.
 	/// </summary>
-	public event Action<Vector2> onCollisionExit;
+	public event Action<ContactInformation> onCollisionExit;
 
 	private bool collidedThisFrame = false;
 	private int colliderCount = 0;
@@ -96,17 +101,17 @@ public class QueryableHitboxComponent : MonoBehaviour
 		if (colliderCount == 0)
 			return;
 		// Find the best collider
-		Vector2 bestPosition = collidersTouchedThisFrame[0].collider.ClosestPoint(transform.position);
-		float bestDistance = Vector2.Distance(transform.position, bestPosition);
+		ContactInformation bestContact = collidersTouchedThisFrame[0];
+		float bestDistance = Vector2.Distance(transform.position, bestContact.point);
 		bool isDef = true;
 		for (int i = 1; i < colliderCount; i++)
 		{
-			Vector2 nextPosition = collidersTouchedThisFrame[i].collider.ClosestPoint(transform.position);
-			float nextDistance = Vector2.Distance(transform.position, nextPosition);
+			ContactInformation nextContact = collidersTouchedThisFrame[i];
+			float nextDistance = Vector2.Distance(transform.position, nextContact.point);
 			if (nextDistance >= bestDistance || !selfCollider.IsTouching(collidersTouchedThisFrame[i].collider))
 				continue;
 			bestDistance = nextDistance;
-			bestPosition = nextPosition;
+			bestContact = nextContact;
 			isDef = false;
 		}
 		// Refresh
@@ -117,9 +122,9 @@ public class QueryableHitboxComponent : MonoBehaviour
 		if (isDef && !selfCollider.IsTouching(collidersTouchedThisFrame[0].collider))
 			return;
 		debugContactInfo = collidersTouchedThisFrame.Take(colliderCount).ToArray();
-		colPoint = bestPosition;
+		colPoint = bestContact.point;
 		// Collide with the thing that we touched the closest
-		onCollisionEnter?.Invoke(bestPosition);
+		onCollisionEnter?.Invoke(bestContact);
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
@@ -128,7 +133,7 @@ public class QueryableHitboxComponent : MonoBehaviour
 		if (!IsColliding)
 			collidedThisFrame = true;
 		if (collidedThisFrame)
-			collidersTouchedThisFrame.ExpandingAdd(colliderCount++, new ContactInformation(collision, collision.ClosestPoint(transform.position)));
+			collidersTouchedThisFrame.ExpandingAdd(colliderCount++, CalculateContactInformation(collision));
 		IsColliding = _colCount > 0;
 	}
 
@@ -140,7 +145,7 @@ public class QueryableHitboxComponent : MonoBehaviour
 		// we can just wait on that.
 		if (!IsColliding && !collidedThisFrame)
 		{
-			onCollisionExit?.Invoke(collision.ClosestPoint(transform.position));
+			onCollisionExit?.Invoke(CalculateContactInformation(collision));
 		}
 	}
 
@@ -151,7 +156,7 @@ public class QueryableHitboxComponent : MonoBehaviour
 			collidedThisFrame = true;
 		if (collidedThisFrame)
 		{
-			collidersTouchedThisFrame.ExpandingAdd(colliderCount++, new ContactInformation(collision.collider, collision.collider.ClosestPoint(transform.position)));
+			collidersTouchedThisFrame.ExpandingAdd(colliderCount++, CalculateContactInformation(collision.collider));
 		}
 		IsColliding = _colCount > 0;
 	}
@@ -164,8 +169,64 @@ public class QueryableHitboxComponent : MonoBehaviour
 		// we can just wait on that.
 		if (!IsColliding && !collidedThisFrame)
 		{
-			onCollisionExit?.Invoke(collision.collider.ClosestPoint(transform.position));
+			onCollisionExit?.Invoke(CalculateContactInformation(collision.collider));
 		}
+	}
+
+	private void OnCollisionStay2D(Collision2D collision)
+	{
+		// Draw debug information
+		_ = CalculateContactInformation(collision.collider);
+	}
+
+	private ContactInformation CalculateContactInformation(Collider2D collider)
+	{
+		Vector2 colPoint = collider.ClosestPoint(transform.position);
+		PhysicsShapeGroup2D result = new PhysicsShapeGroup2D();
+		collider.GetShapes(result);
+		// We don't support circles
+		if (result.vertexCount == 0)
+			throw new NotImplementedException("Calculate contact information doesn't support circle colliders.");
+		List<Vector2> vertices = new List<Vector2>();
+		Vector2 closestPoint = Vector2.zero;
+		Vector2 closestNormal = Vector2.down;
+		float closestDistance = Mathf.Infinity;
+		// Find the closest point on the hitbox to our current player position, and
+		// calculate the normal which goes closest towards the center of the player hitbox.
+		for (int i = 0; i < result.shapeCount; i++)
+		{
+			vertices.Clear();
+			result.GetShapeVertices(i, vertices);
+			for (int j = 0; j < vertices.Count; j++)
+			{
+				Vector2 p1 = vertices[j];
+				Vector2 p2 = vertices[(j + 1) % vertices.Count];
+				Vector2 closestPointOnLine = ((Vector2)transform.position).ClosestPointOnLine(p1, p2);
+				float distanceFromSource = Vector2.Distance(closestPointOnLine, transform.position);
+				// If the point is further away than our current point ignore.
+				if (closestDistance < distanceFromSource)
+					continue;
+				// If 2 points are equally far apart from the player, resolve the dispute by picking
+				// the one with the normal that points more towards the player's center than the other.
+				// This will prevent corner collisions from picking the wrong normal side since on a
+				// top left corner, both up and left are valid normals since the closest point is a vertex.
+				Vector2 currentNormal = (p2 - p1).CalculatePerpendicularLine(transform.position);
+				if (closestDistance == distanceFromSource)
+				{
+					float bestAngle = Vector2.Angle(closestNormal, (Vector2)transform.position - closestPoint);
+					float newAngle = Vector2.Angle(currentNormal, (Vector2)transform.position - closestPoint);
+					//Debug.Log($"Best:{bestAngle} vs New:{newAngle}");
+					if (bestAngle < newAngle)
+						continue;
+				}
+				closestDistance = distanceFromSource;
+				closestPoint = closestPointOnLine;
+				closestNormal = currentNormal;
+			}
+		}
+		// Determine the normal
+		Debug.DrawLine(closestPoint, closestPoint + closestNormal, debugColour);
+		return new ContactInformation(collider, closestPoint, closestNormal);
 	}
 
 }
