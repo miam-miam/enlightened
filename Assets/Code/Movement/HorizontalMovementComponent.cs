@@ -40,22 +40,22 @@ public class HorizontalMovementComponent : MonoBehaviour
 	private void Start()
 	{
 		gravityComponent = GetComponent<GravityComponent>();
-		horizontalCollisionHitbox.onCollisionEnter += closestPoint => {
+		horizontalCollisionHitbox.onCollisionEnter += collisionContact => {
 			// If the collision point has the same horizontal level as us, then that means that we collided
 			// into a wall, rather than into a floor / ceiling and in this case we should terminate our horizontal velocity.
-			if (closestPoint.y <= transform.position.y + 0.03f && closestPoint.y >= transform.position.y - 0.03f)
+			if (collisionContact.normal.x != 0)
 			{
 				// Left side colision
-				if (closestPoint.x < transform.position.x)
+				if (collisionContact.normal.x > 0)
 				{
-					transform.position = new Vector2(closestPoint.x + (transform.localScale.x * 0.5f) + float.Epsilon, transform.position.y);
+					transform.position = new Vector2(collisionContact.point.x + (transform.localScale.x * 0.5f) + float.Epsilon, transform.position.y);
 					currentCollisionDirection |= CollisionDirection.Left;
 					Debug.Log("<color='green'>[Horizontal]: Colliding with something to our left, pushing us to the right and disabling left movement.</color>");
 				}
 				// Right side collision
 				else
 				{
-					transform.position = new Vector2(closestPoint.x - (transform.localScale.x * 0.5f) - float.Epsilon, transform.position.y);
+					transform.position = new Vector2(collisionContact.point.x - (transform.localScale.x * 0.5f) - float.Epsilon, transform.position.y);
 					currentCollisionDirection |= CollisionDirection.Right;
 					Debug.Log("<color='green'>[Horizontal]: Colliding with something to our right, pushing us to the left and disabling right movement.</color>");
 				}
@@ -66,7 +66,7 @@ public class HorizontalMovementComponent : MonoBehaviour
 				Debug.Log("<color='green'>[Horizontal]: Collision ignored due to not being on the horizontal axis.</color>");
 			}
 		};
-		horizontalCollisionHitbox.onCollisionExit += closestPoint =>
+		horizontalCollisionHitbox.onCollisionExit += collisionContact =>
 		{
 			currentCollisionDirection = CollisionDirection.None;
 			Debug.Log("<color='green'>[Horizontal]: Horizontal collision movement freed.</color>");
