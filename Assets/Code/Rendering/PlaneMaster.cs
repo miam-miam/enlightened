@@ -24,6 +24,12 @@ public class PlaneMaster : ScriptableObject
     [Tooltip("How should other planes be drawn on top of this plane?")]
     public PlaneRenderRelay[] renderRelays;
 
+    [Tooltip("The colour matrix of this plane.")]
+    public Matrix4x4 colourMatrix = Matrix4x4.identity;
+
+    [Tooltip("The constant part of the colouring for this colour matrix.")]
+    public Color colourConstantPart = new Color(0, 0, 0, 0);
+
 	/// <summary>
 	/// Z axis that we are assigned to
 	/// </summary>
@@ -99,7 +105,12 @@ public class PlaneMaster : ScriptableObject
 			renderRelay.incomingPlane.InitialiseRendering(parent);
 			next.initializationMaterial.SetTexture("_SourceTexture", above);
 			next.initializationMaterial.SetTexture("_TargetTexture", renderRelay.incomingPlane.OutputRenderTexture);
-            next.material = next.initializationMaterial;
+            next.initializationMaterial.SetMatrix("_ColourMatrix", colourMatrix);
+            next.initializationMaterial.SetVector("_ColourMatrixConstant", colourConstantPart);
+
+            next.filterMode = FilterMode.Point;
+
+			next.material = next.initializationMaterial;
             next.initializationSource = CustomRenderTextureInitializationSource.Material;
 			next.initializationMode = CustomRenderTextureUpdateMode.Realtime;
 			renderRelay.assignedRenderTexture = next;
