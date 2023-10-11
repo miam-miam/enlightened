@@ -40,8 +40,11 @@ public class QueryableHitboxComponent : MonoBehaviour
 
 	private int _colCount = 0;
 
-    public bool IsColliding { get; private set; } = false;
-
+	public bool IsColliding {
+		// Support for quick query
+		get => isColliding || collidedThisFrame;
+		private set => isColliding = value;
+	}
 	/// <summary>
 	/// Called when this collider begins colliding with something.
 	/// Parameter passed is the position of the collision point closest to our transform.position point.
@@ -65,6 +68,7 @@ public class QueryableHitboxComponent : MonoBehaviour
 
 	[Tooltip("What colour do we want this hitbox to be?")]
 	public Color debugColour = Color.red;
+	private bool isColliding = false;
 
 	private void Start()
 	{
@@ -130,20 +134,20 @@ public class QueryableHitboxComponent : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		_colCount++;
-		if (!IsColliding)
+		if (!isColliding)
 			collidedThisFrame = true;
 		if (collidedThisFrame)
 			collidersTouchedThisFrame.ExpandingAdd(colliderCount++, CalculateContactInformation(collision));
-		IsColliding = _colCount > 0;
+		isColliding = _colCount > 0;
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
 		_colCount--;
-		IsColliding = _colCount > 0;
+		isColliding = _colCount > 0;
 		// If we collided this frame, then we haven't actually invoked collision enter yet so
 		// we can just wait on that.
-		if (!IsColliding && !collidedThisFrame)
+		if (!isColliding && !collidedThisFrame)
 		{
 			onCollisionExit?.Invoke(CalculateContactInformation(collision));
 		}
@@ -152,22 +156,22 @@ public class QueryableHitboxComponent : MonoBehaviour
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		_colCount++;
-		if (!IsColliding)
+		if (!isColliding)
 			collidedThisFrame = true;
 		if (collidedThisFrame)
 		{
 			collidersTouchedThisFrame.ExpandingAdd(colliderCount++, CalculateContactInformation(collision.collider));
 		}
-		IsColliding = _colCount > 0;
+		isColliding = _colCount > 0;
 	}
 
 	private void OnCollisionExit2D(Collision2D collision)
 	{
 		_colCount--;
-		IsColliding = _colCount > 0;
+		isColliding = _colCount > 0;
 		// If we collided this frame, then we haven't actually invoked collision enter yet so
 		// we can just wait on that.
-		if (!IsColliding && !collidedThisFrame)
+		if (!isColliding && !collidedThisFrame)
 		{
 			onCollisionExit?.Invoke(CalculateContactInformation(collision.collider));
 		}
