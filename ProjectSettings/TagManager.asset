@@ -41,12 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: LightMask
-    uniqueID: 3247444999
-    locked: 0
   - name: PaintMask
     uniqueID: 3974192841
     locked: 0
   - name: Player
     uniqueID: 2098335285
+    locked: 0
+  - name: LightMask
+    uniqueID: 3247444999
     locked: 0

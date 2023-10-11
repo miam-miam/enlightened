@@ -55,7 +55,7 @@ public class GravityComponent : MonoBehaviour
 				if (collisionContact.normal.y > 0)
 				{
 					Debug.Log("<color='blue'>[Gravity]: Collusion point was below the transform, pushing us up.</color>");
-					transform.position = new Vector2(transform.position.x, collisionContact.point.y - floorPoint.transform.localPosition.y);
+					transform.position = new Vector3(transform.position.x, collisionContact.point.y - floorPoint.transform.localPosition.y, transform.position.z);
 				}
 				else
 				{
@@ -79,7 +79,7 @@ public class GravityComponent : MonoBehaviour
 				{
 					velocity = Mathf.Min(0, velocity);
 					blockedAbove = true;
-					transform.position = new Vector2(transform.position.x, collisionContact.point.y - transform.lossyScale.y * 0.5f);
+					transform.position = new Vector3(transform.position.x, collisionContact.point.y - transform.lossyScale.y * 0.5f, transform.position.z);
 				}
 			}
 		};
