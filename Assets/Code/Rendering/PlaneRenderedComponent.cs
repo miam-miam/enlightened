@@ -16,8 +16,15 @@ public class PlaneRenderedComponent : MonoBehaviour
             PlaneRenderingSourceComponent.staged.Add(this);
 			return;
         }
-        // Everything must be sorted by sorting groups and not z.
-        transform.position = new Vector3(transform.position.x, transform.position.y, plane.AssignedZ);
-    }
+		// Everything must be sorted by sorting groups and not z.
+		UpdatePosition();
+		foreach (var x in GetComponentsInChildren<PlaneRenderedComponent>())
+			x.UpdatePosition();
+	}
+
+    public void UpdatePosition()
+	{
+		transform.position = new Vector3(transform.position.x, transform.position.y, plane.AssignedZ);
+	}
 
 }
