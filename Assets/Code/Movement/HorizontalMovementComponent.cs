@@ -48,14 +48,14 @@ public class HorizontalMovementComponent : MonoBehaviour
 				// Left side colision
 				if (collisionContact.normal.x > 0)
 				{
-					transform.position = new Vector2(collisionContact.point.x + (transform.localScale.x * 0.5f) + float.Epsilon, transform.position.y);
+					transform.position = new Vector3(collisionContact.point.x + (transform.localScale.x * 0.5f) + float.Epsilon, transform.position.y, transform.position.z);
 					currentCollisionDirection |= CollisionDirection.Left;
 					Debug.Log("<color='green'>[Horizontal]: Colliding with something to our left, pushing us to the right and disabling left movement.</color>");
 				}
 				// Right side collision
 				else
 				{
-					transform.position = new Vector2(collisionContact.point.x - (transform.localScale.x * 0.5f) - float.Epsilon, transform.position.y);
+					transform.position = new Vector3(collisionContact.point.x - (transform.localScale.x * 0.5f) - float.Epsilon, transform.position.y, transform.position.z);
 					currentCollisionDirection |= CollisionDirection.Right;
 					Debug.Log("<color='green'>[Horizontal]: Colliding with something to our right, pushing us to the left and disabling right movement.</color>");
 				}

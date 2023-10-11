@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0a0bcfc74b85441ade088e5da2a994, type: 3}
+  m_Name: PlaneMasters
+  m_EditorClassIdentifier: 
+  defaultPlane: {fileID: 11400000, guid: d21a5a6cca1397c4cb63db03cc5a26db, type: 2}
+  planes:
+  - {fileID: 11400000, guid: d18dd25eb4cc09e42908440fdd864558, type: 2}
+  - {fileID: 11400000, guid: d21a5a6cca1397c4cb63db03cc5a26db, type: 2}
+  - {fileID: 11400000, guid: a32aaac95395ad945a3167314db87584, type: 2}
+  - {fileID: 11400000, guid: 9311d80215c8d0a4c9466653174d35ca, type: 2}
+  - {fileID: 11400000, guid: a5c6d39acc49af2489c5f5911446716a, type: 2}
+  multiplicativeMaterial: {fileID: -876546973899608171, guid: 3d414488ae420ad4f8354f4102731d0e, type: 3}
+  defaultMaterial: {fileID: -876546973899608171, guid: bc782c549bc5b3b4981df89ef6954958, type: 3}
+  additiveMaterial: {fileID: -876546973899608171, guid: 3fe532f46e5cba141a60e9965cf2eb9a, type: 3}
+  alphaMaskMaterial: {fileID: -876546973899608171, guid: 595ee8ae92c29a34dbf264260774b501, type: 3}
