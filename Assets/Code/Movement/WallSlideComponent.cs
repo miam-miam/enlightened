@@ -68,7 +68,7 @@ public class WallSlideComponent : MonoBehaviour
             // We can only walljump if we are actually falling
             if (!gravityComponent.isFalling)
                 return;
-            if (rightCollisionTime + wallJumpSafetyTime > Time.fixedTime)
+            if (rightCollisionTime + wallJumpSafetyTime > Time.fixedTime || rightHitbox.IsColliding)
 			{
 				jumpTime = Time.fixedTime;
 				horizontalMovement.HorizontalVelocity -= wallJumpSpeed;
@@ -80,7 +80,7 @@ public class WallSlideComponent : MonoBehaviour
 					horizontalMovement.HorizontalVelocity -= wallJumpSpeedBoost;
 				}
 			}
-            else if (leftCollisionTime + wallJumpSafetyTime > Time.fixedTime)
+            else if (leftCollisionTime + wallJumpSafetyTime > Time.fixedTime || leftHitbox.IsColliding)
 			{
 				jumpTime = Time.fixedTime;
 				horizontalMovement.HorizontalVelocity += wallJumpSpeed;
