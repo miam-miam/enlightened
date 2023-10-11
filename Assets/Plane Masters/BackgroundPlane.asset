@@ -21,3 +21,21 @@ MonoBehaviour:
     drawMode: 0
   - incomingPlane: {fileID: 11400000, guid: a32aaac95395ad945a3167314db87584, type: 2}
     drawMode: 2
+  colourMatrix:
+    e00: 0.23137255
+    e01: 0.22352941
+    e02: 0.2078431
+    e03: 0
+    e10: 0.3215686
+    e11: 0.3137255
+    e12: 0.2862745
+    e13: 0
+    e20: 0.3882353
+    e21: 0.38039216
+    e22: 0.3411765
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+  colourConstantPart: {r: 0, g: 0, b: 0, a: 0}
