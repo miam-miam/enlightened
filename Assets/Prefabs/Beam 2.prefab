@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4570480103472644698}
   - component: {fileID: 5201347068522633419}
   m_Layer: 7
-  m_Name: Beam
+  m_Name: Beam 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 409bf749a64cbbf4dbdab6da94d47992, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -1289781760, guid: 66e366be551964d439bfc1dc73755207, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,4 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a66d5a49353f846b12b510dd944628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plane: {fileID: 11400000, guid: d21a5a6cca1397c4cb63db03cc5a26db, type: 2}
+  plane: {fileID: 11400000, guid: d18dd25eb4cc09e42908440fdd864558, type: 2}
