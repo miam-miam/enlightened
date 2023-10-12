@@ -13,7 +13,7 @@ public class PaintSourceComponent : MonoBehaviour
 
 	private void Start()
 	{
-		paintHitbox.onCollisionEnter += collisionContact =>
+		paintHitbox.onNewCollisionEnter += collisionContact =>
 		{
 			Instantiate(paintPrefab, collisionContact.point, Quaternion.identity);
 		};

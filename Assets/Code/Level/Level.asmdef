@@ -1,9 +1,8 @@
 {
-    "name": "Movement",
+    "name": "Level",
     "rootNamespace": "",
     "references": [
-        "GUID:6840c5a1b68c5d449836c471000da753",
-        "GUID:1403122cb208846419a8ed937a830a47"
+        "GUID:6840c5a1b68c5d449836c471000da753"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
