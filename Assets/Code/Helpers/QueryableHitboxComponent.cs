@@ -52,12 +52,19 @@ public class QueryableHitboxComponent : MonoBehaviour
 	public event Action<ContactInformation> onCollisionEnter;
 
 	/// <summary>
+	/// Called when the collider begins colliding with a new hitbox.
+	/// </summary>
+	public event Action<ContactInformation> onNewCollisionEnter;
+
+	/// <summary>
 	/// Called when this collider ends colliding with something.
 	/// </summary>
 	public event Action<ContactInformation> onCollisionExit;
 
 	private bool collidedThisFrame = false;
 	private int colliderCount = 0;
+
+	// A really stupid way of doing dynamic arrays
 	private List<ContactInformation> collidersTouchedThisFrame = new List<ContactInformation>(16);
 
 	private ContactInformation[] debugContactInfo;
@@ -65,6 +72,8 @@ public class QueryableHitboxComponent : MonoBehaviour
 	private Collider2D selfCollider;
 
 	private Vector2 colPoint;
+
+	public bool skipFrame = false;
 
 	[Tooltip("What colour do we want this hitbox to be?")]
 	public Color debugColour = Color.red;
@@ -102,6 +111,11 @@ public class QueryableHitboxComponent : MonoBehaviour
 				}
 			}
 		}
+		if (skipFrame)
+		{
+			skipFrame = false;
+			return;
+		}
 		if (colliderCount == 0)
 			return;
 		// Find the best collider
@@ -118,6 +132,7 @@ public class QueryableHitboxComponent : MonoBehaviour
 			bestContact = nextContact;
 			isDef = false;
 		}
+		//Debug.Log($"<color='orange'>{gameObject.name}: Finding best collision out of {colliderCount} hitboxes.</color>");
 		// Refresh
 		// Note that this maintains memory references, but it won't leak since it will override them when needed.
 		collidedThisFrame = false;
@@ -133,12 +148,17 @@ public class QueryableHitboxComponent : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		onNewCollisionEnter?.Invoke(CalculateContactInformation(collision));
+		// Check if we are still colliding
+		if (!collision.IsTouching(selfCollider))
+			return;
 		_colCount++;
 		if (!isColliding)
 			collidedThisFrame = true;
 		if (collidedThisFrame)
 			collidersTouchedThisFrame.ExpandingAdd(colliderCount++, CalculateContactInformation(collision));
 		isColliding = _colCount > 0;
+		//Debug.Log($"<color='orange'>{gameObject.name}: Collision entered with {collision.name}</color>");
 	}
 
 	private void OnTriggerExit2D(Collider2D collision)
@@ -155,6 +175,10 @@ public class QueryableHitboxComponent : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
+		onNewCollisionEnter?.Invoke(CalculateContactInformation(collision.collider));
+		// Check if we are still colliding
+		if (!collision.collider.IsTouching(selfCollider))
+			return;
 		_colCount++;
 		if (!isColliding)
 			collidedThisFrame = true;
@@ -163,6 +187,7 @@ public class QueryableHitboxComponent : MonoBehaviour
 			collidersTouchedThisFrame.ExpandingAdd(colliderCount++, CalculateContactInformation(collision.collider));
 		}
 		isColliding = _colCount > 0;
+		//Debug.Log($"<color='orange'>{gameObject.name}: Collision entered with {collision.collider.name}</color>");
 	}
 
 	private void OnCollisionExit2D(Collision2D collision)
@@ -231,6 +256,20 @@ public class QueryableHitboxComponent : MonoBehaviour
 		// Determine the normal
 		Debug.DrawLine(closestPoint, closestPoint + closestNormal, debugColour);
 		return new ContactInformation(collider, closestPoint, closestNormal);
+	}
+
+	/// <summary>
+	/// Reset the hitbox event dispatcher manager.
+	/// This informs the hitbox manager to skip the next frame, so that unity can run
+	/// the next fixed update and recalculate the state of the colliders. If we don't do this
+	/// then we will trip hitboxes that we have already moved away from.
+	/// </summary>
+	public void ResetHitboxDispatcher()
+	{
+		collidedThisFrame = false;
+		colliderCount = 0;
+		skipFrame = true;
+		//Debug.Log($"<color='orange'>{gameObject.name}: Player was teleported, clearing queued hitboxes</color>");
 	}
 
 }
