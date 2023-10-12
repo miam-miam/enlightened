@@ -17,6 +17,9 @@ namespace Assets.Code.Rendering
 		[Tooltip("How the plane should be drawn on top of the target plane.")]
 		public PlaneDrawMode drawMode;
 
+		[Tooltip("Should we use a custom material to draw this layer? Ignores the plane draw mode if set.")]
+		public Material overrideMaterial = null;
+
 		internal CustomRenderTexture assignedRenderTexture;
 
 	}

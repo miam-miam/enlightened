@@ -72,7 +72,7 @@ public class PlaneMaster : ScriptableObject
         if (renderingInitialised)
             return;
 		renderingInitialised = true;
-		_input = new CustomRenderTexture(Screen.width, Screen.height, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
+		_input = new CustomRenderTexture(ResolutionController.Width, ResolutionController.Height, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
 		_input.Create();
         Debug.Log($"Created input render texture for the {planeName} plane.");
         if (renderRelays == null || renderRelays.Length == 0)
@@ -84,24 +84,31 @@ public class PlaneMaster : ScriptableObject
         CustomRenderTexture next = _input;
         foreach (PlaneRenderRelay renderRelay in renderRelays.OrderBy(x => x.incomingPlane.planeLayer))
         {
-            next = new CustomRenderTexture(Screen.width, Screen.height, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
+            next = new CustomRenderTexture(ResolutionController.Width, ResolutionController.Height, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
 			next.Create();
 
-			switch (renderRelay.drawMode)
+            if (renderRelay.overrideMaterial != null)
             {
-				case PlaneDrawMode.ADDITIVE:
-					next.initializationMaterial = new Material(parent.additiveMaterial);
-					break;
-				case PlaneDrawMode.MULTIPLICATIVE:
-					next.initializationMaterial = new Material(parent.multiplicativeMaterial);
-					break;
-                case PlaneDrawMode.ALPHA_MASK:
-					next.initializationMaterial = new Material(parent.alphaMaskMaterial);
-					break;
-				default:
-					next.initializationMaterial = new Material(parent.defaultMaterial);
-					break;
-			}
+                next.initializationMaterial = new Material(renderRelay.overrideMaterial);
+            }
+            else
+            {
+                switch (renderRelay.drawMode)
+                {
+                    case PlaneDrawMode.ADDITIVE:
+                        next.initializationMaterial = new Material(parent.additiveMaterial);
+                        break;
+                    case PlaneDrawMode.MULTIPLICATIVE:
+                        next.initializationMaterial = new Material(parent.multiplicativeMaterial);
+                        break;
+                    case PlaneDrawMode.ALPHA_MASK:
+                        next.initializationMaterial = new Material(parent.alphaMaskMaterial);
+                        break;
+                    default:
+                        next.initializationMaterial = new Material(parent.defaultMaterial);
+                        break;
+                }
+            }
 			renderRelay.incomingPlane.InitialiseRendering(parent);
 			next.initializationMaterial.SetTexture("_SourceTexture", above);
 			next.initializationMaterial.SetTexture("_TargetTexture", renderRelay.incomingPlane.OutputRenderTexture);
