@@ -76,7 +76,12 @@ public class HorizontalMovementComponent : MonoBehaviour
 	private void FixedUpdate()
 	{
 		float horizontalAxis = Input.GetAxis(horizontalMovementKeyAxis);
-		HorizontalVelocity += Time.fixedDeltaTime * horizontalAxis * accelerationValue;
+		float movementMultiplier = 1;
+		if (Mathf.Sign(horizontalAxis) != Mathf.Sign(HorizontalVelocity))
+		{
+			movementMultiplier = Mathf.Max(Mathf.Abs(HorizontalVelocity), 1);
+		}
+		HorizontalVelocity += Time.fixedDeltaTime * horizontalAxis * accelerationValue * movementMultiplier;
 		if ((!gravityComponent?.isFalling) ?? false)
 		{
 			if (HorizontalVelocity < 0 && horizontalAxis >= 0)
