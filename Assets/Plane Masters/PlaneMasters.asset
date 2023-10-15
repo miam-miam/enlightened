@@ -19,7 +19,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a32aaac95395ad945a3167314db87584, type: 2}
   - {fileID: 11400000, guid: 9311d80215c8d0a4c9466653174d35ca, type: 2}
   - {fileID: 11400000, guid: a5c6d39acc49af2489c5f5911446716a, type: 2}
+  - {fileID: 11400000, guid: 950b80698e873b94d88fb9924cea5b23, type: 2}
+  - {fileID: 11400000, guid: 166b2a8113813fb46b5fa22054c43869, type: 2}
+  - {fileID: 11400000, guid: f370d82efe000564c885a52b048afbb4, type: 2}
+  - {fileID: 11400000, guid: 344ba7351208fe44183b9f92b04eb34d, type: 2}
+  - {fileID: 11400000, guid: 7f289a9a2df34ff4e9c3f797d2e77176, type: 2}
+  - {fileID: 11400000, guid: 7c67cf542829e3b4fb7ec5648bd1d188, type: 2}
   multiplicativeMaterial: {fileID: -876546973899608171, guid: 3d414488ae420ad4f8354f4102731d0e, type: 3}
   defaultMaterial: {fileID: -876546973899608171, guid: bc782c549bc5b3b4981df89ef6954958, type: 3}
   additiveMaterial: {fileID: -876546973899608171, guid: 3fe532f46e5cba141a60e9965cf2eb9a, type: 3}
   alphaMaskMaterial: {fileID: -876546973899608171, guid: 595ee8ae92c29a34dbf264260774b501, type: 3}
+  clearAlphaMaterial: {fileID: -876546973899608171, guid: 332a8fdc24de72340b390c7f490c96b0, type: 3}

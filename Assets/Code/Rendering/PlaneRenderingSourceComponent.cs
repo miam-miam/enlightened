@@ -43,7 +43,9 @@ public class PlaneRenderingSourceComponent : MonoBehaviour
 			camera.nearClipPlane = current;
             camera.farClipPlane = current + 1;
             camera.targetTexture = planeMaster.InputRenderTexture;
+			camera.clearFlags = CameraClearFlags.Color;
 			camera.backgroundColor = planeMaster.backdrop;
+			//camera.backgroundColor = planeMaster.backdrop.a < 0.5f ? PlaneMaster.transparenntColor : planeMaster.backdrop;
 			planeMaster.AssignedZ = current;
             current++;
             // Create a new thing to draw to if needed
