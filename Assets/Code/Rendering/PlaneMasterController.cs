@@ -29,5 +29,8 @@ namespace Assets.Code.Rendering
 		[Tooltip("Mateiral to render 2 render textures using an alpha mask technique.")]
 		public Material alphaMaskMaterial;
 
+		[Tooltip("The material that clears the alpha colour we supplied.")]
+		public Material clearAlphaMaterial;
+
 	}
 }

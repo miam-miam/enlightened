@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4d97ad871230114e9597a339d39d63f, type: 3}
+  m_Name: BrickTileset
+  m_EditorClassIdentifier: 
+  tilesetEntries:
+  - sprite: {fileID: 0}
+    weight: 20
+  - sprite: {fileID: -1613049128, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: -1308823878, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: 527304746, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: 1451429370, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: 2147032605, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: 1120318271, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: -175616405, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: 1977073426, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: -1518856910, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: -1820350261, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: 277192818, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: -1022050779, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: -1171598409, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: -94448744, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: 1272030616, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
+  - sprite: {fileID: 782661198, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
+    weight: 1
