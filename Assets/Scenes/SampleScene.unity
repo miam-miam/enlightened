@@ -12630,7 +12630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a66d5a49353f846b12b510dd944628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plane: {fileID: 11400000, guid: a32aaac95395ad945a3167314db87584, type: 2}
+  plane: {fileID: 11400000, guid: 861bb6ab4cb5d1d4099dab48fc98d10a, type: 2}
 --- !u!212 &369084134
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18611,7 +18611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a66d5a49353f846b12b510dd944628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plane: {fileID: 11400000, guid: a32aaac95395ad945a3167314db87584, type: 2}
+  plane: {fileID: 11400000, guid: 861bb6ab4cb5d1d4099dab48fc98d10a, type: 2}
 --- !u!212 &518614698
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -88271,6 +88271,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 532983702316363566, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.51
+      objectReference: {fileID: 0}
     - target: {fileID: 1042356348826541699, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
       propertyPath: m_Name
       value: Player
