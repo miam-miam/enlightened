@@ -37451,11 +37451,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e6f7cf56ff572874bbfd16b0a5e434ec, type: 3}
---- !u!198 &1988511629 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2918126699842681306, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
-  m_PrefabInstance: {fileID: 8298545417320826140}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1989254176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8207840669338056708, guid: 2e4cac1bf2d944f45806119b23d10539, type: 3}
@@ -39363,21 +39358,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 946777472632394345, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
-      propertyPath: rightPaintEmitter
-      value: 
-      objectReference: {fileID: 1988511629}
     - target: {fileID: 1042356348826541699, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4359155526668338221, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4359155526668338221, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4359155526668338221, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
       propertyPath: m_LocalPosition.x
@@ -39419,10 +39402,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5758481295969033824, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
-      propertyPath: TriggerModule.primitives.Array.data[0]
-      value: 
-      objectReference: {fileID: 1095637076}
     - target: {fileID: 8575755374705421889, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
       propertyPath: m_IsActive
       value: 1

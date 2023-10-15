@@ -33,10 +33,16 @@ public class WallSlideComponent : MonoBehaviour
     [Tooltip("The time in which after leaving the wall, we will still be able to walljump.")]
     public float wallJumpSafetyTime;
 
+    public ParticleSystem rightWallSlideParticles;
+
+    public ParticleSystem leftWallSlideParticles;
+
     // Same as left and right collision boxes, but requires the player to actively be trying to slide.
     private float leftSlideTime;
 
     private float rightSlideTime;
+    
+    private GravityComponent gravityComponent;
 
     // Track left and right collisions to add some deadzone for more lenient movement,
     private float leftCollisionTime;
@@ -52,15 +58,34 @@ public class WallSlideComponent : MonoBehaviour
 
     private HorizontalMovementComponent horizontalMovement;
 
+    private void SetWallSlideParticles(float velocity)
+    {
+	    if (velocity <= -slideSpeedMax)
+	    {
+		    if (rightHitbox.IsColliding)
+		    {
+			    if (!rightWallSlideParticles.isPlaying) rightWallSlideParticles.Play();
+			    leftWallSlideParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+		    }
+		    else
+		    {
+			    if (!leftWallSlideParticles.isPlaying) leftWallSlideParticles.Play();
+			    rightWallSlideParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+		    }
+	    }
+    }
+
 	private void Start()
 	{
-        GravityComponent gravityComponent = GetComponent<GravityComponent>();
-		gravityComponent.interceptGravity += velocity =>
+        gravityComponent = GetComponent<GravityComponent>();
+        gravityComponent.interceptGravity += velocity =>
         {
             float moveDirection = Input.GetAxis("Horizontal");
             if (!(rightHitbox.IsColliding && moveDirection > 0) && !(leftHitbox.IsColliding && moveDirection < 0))
                 return null;
-            return Mathf.Max(velocity - slideAcceleration * Time.fixedDeltaTime, -slideSpeedMax);
+            float newVelocity = velocity - slideAcceleration * Time.fixedDeltaTime;
+            SetWallSlideParticles(newVelocity);
+            return Mathf.Max(newVelocity, -slideSpeedMax);
         };
         horizontalMovement = GetComponent<HorizontalMovementComponent>();
 		GetComponent<JumpableComponent>().onJumped += () =>
@@ -124,6 +149,14 @@ public class WallSlideComponent : MonoBehaviour
 				horizontalMovement.HorizontalVelocity += wallJumpSpeedBoost;
 			}
 		}
+
+        if (gravityComponent.velocity > -slideSpeedMax || 
+            !gravityComponent.isFalling || 
+            !(rightHitbox.IsColliding && moveDirection > 0) && !(leftHitbox.IsColliding && moveDirection < 0))
+        {
+	        leftWallSlideParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+	        rightWallSlideParticles.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        }
 	}
 
 }

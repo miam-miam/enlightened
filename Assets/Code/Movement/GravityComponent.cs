@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GravityComponent : MonoBehaviour
 {
@@ -24,8 +25,8 @@ public class GravityComponent : MonoBehaviour
 	/// <summary>
 	/// Are we currently falling?
 	/// </summary>
-	[SerializeField]
-	internal bool isFalling = false;
+	public bool isFalling { get; private set; } = false;
+
 
 	[SerializeField]
 	private bool blockedAbove = false;
