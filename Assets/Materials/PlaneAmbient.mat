@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlaneLighting_Depth4
-  m_Shader: {fileID: -6465566751694194690, guid: 48915549a4e7cb545b399babfd1204ad, type: 3}
+  m_Name: PlaneAmbient
+  m_Shader: {fileID: -6465566751694194690, guid: a92be4aef1d887b4992bb3f9b586712a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -39,10 +39,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Palette:
-        m_Texture: {fileID: 2800000, guid: 94792fc9cfe89dd42b8eed9de07b8f72, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _SourceTexture:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -65,22 +61,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CellCount: 100
-    - _Depth: 4
-    - _DepthMultiplier: 80
     - _EnableExternalAlpha: 0
-    - _MaxDepth: 10
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ToggleSmoothLighting: 1
     m_Colors:
-    - _BackgroundColour: {r: 0.46226418, g: 0.44531226, b: 0.34669814, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColourMatrixConstant: {r: 0, g: 0, b: 0, a: 0}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &864540911473139334
+--- !u!114 &5565001488445909834
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
