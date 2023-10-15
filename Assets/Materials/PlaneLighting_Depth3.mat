@@ -67,10 +67,12 @@ Material:
     m_Floats:
     - _CellCount: 100
     - _Depth: 3
+    - _DepthMultiplier: 80
     - _EnableExternalAlpha: 0
     - _MaxDepth: 10
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ToggleSmoothLighting: 1
     m_Colors:
     - _BackgroundColour: {r: 0.46226418, g: 0.44531226, b: 0.34669814, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

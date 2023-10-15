@@ -10,16 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c024d78fccb9c00478b60dba98aa6916, type: 3}
-  m_Name: LightingPlane
+  m_Name: AmbientLightPlane
   m_EditorClassIdentifier: 
-  planeName: Lighting
-  planeLayer: 100
-  backdrop: {r: 0, g: 0, b: 0, a: 0}
+  planeName: AmbientLight
+  planeLayer: 150
+  backdrop: {r: 0, g: 0, b: 0, a: 1}
   drawToScreen: 0
-  renderRelays:
-  - incomingPlane: {fileID: 11400000, guid: 861bb6ab4cb5d1d4099dab48fc98d10a, type: 2}
-    drawMode: 0
-    overrideMaterial: {fileID: 2100000, guid: 420e4f230db7fe945958244074a9a4ee, type: 2}
+  renderRelays: []
   colourMatrix:
     e00: 1
     e01: 0
