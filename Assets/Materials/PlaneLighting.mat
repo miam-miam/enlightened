@@ -66,10 +66,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _CellCount: 100
+    - _Depth: 0
     - _EnableExternalAlpha: 0
+    - _MaxDepth: 5
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
+    - _BackgroundColour: {r: 0.5372549, g: 0.52156866, b: 0.43529412, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColourMatrixConstant: {r: 0, g: 0, b: 0, a: 0}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

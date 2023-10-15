@@ -98,6 +98,9 @@
     },
     "m_ActiveTargets": [
         {
+            "m_Id": "f5fa2939839b406384bdc5be0c47d8a8"
+        },
+        {
             "m_Id": "56765906388149e8a71d766816377cc2"
         }
     ]
@@ -170,6 +173,12 @@
     },
     "isMainColor": false,
     "m_ColorMode": 0
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.Rendering.CustomRenderTexture.ShaderGraph.CustomTextureSubTarget",
+    "m_ObjectId": "2a58c9e6869e4bc4a045b2b334355dbb"
 }
 
 {
@@ -533,6 +542,16 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "SurfaceDescription.Alpha"
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.Rendering.CustomRenderTexture.ShaderGraph.CustomRenderTextureTarget",
+    "m_ObjectId": "f5fa2939839b406384bdc5be0c47d8a8",
+    "m_ActiveSubTarget": {
+        "m_Id": "2a58c9e6869e4bc4a045b2b334355dbb"
+    },
+    "m_CustomEditorGUI": ""
 }
 
 {
