@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(TransformEventDispatcherComponent))]
+[RequireComponent(typeof(SpriteRenderer))]
 public class DeathComponent : MonoBehaviour
 {
 
 	[Tooltip("The hitbox to query to see if we are hitting something that should kill us.")]
 	public QueryableHitboxComponent deathHitbox;
 
-    /// <summary>
-    /// The spawn point of the player
-    /// </summary>
-    public Vector3 currentSpawnPoint;
+	private SpriteRenderer spriteRenderer;
+
+	/// <summary>
+	/// The spawn point of the player
+	/// </summary>
+	public Vector3 currentSpawnPoint;
 
 	/// <summary>
 	/// Invoked when the player dies.
@@ -22,6 +25,7 @@ public class DeathComponent : MonoBehaviour
 
 	private void Start()
 	{
+		spriteRenderer = GetComponent<SpriteRenderer>();
 		currentSpawnPoint = transform.position;
 		deathHitbox.onNewCollisionEnter += collidedThing =>
 		{
@@ -36,6 +40,17 @@ public class DeathComponent : MonoBehaviour
 	{
 		onDeath?.Invoke(transform.position);
 		Debug.Log("<color='red'>The player has died, resetting their position!</color>");
+		GetComponent<TransformEventDispatcherComponent>().DispatchTransformResetEvent();
+		transform.position = new Vector3(currentSpawnPoint.x, currentSpawnPoint.y, transform.position.z);
+		StartCoroutine(DeathAnimation());
+	}
+
+	public IEnumerator DeathAnimation()
+	{
+		FadeToBlack.FadeOut(0.15f, 0.3f);
+		spriteRenderer.enabled = false;
+		yield return new WaitForSeconds(0.15f);
+		spriteRenderer.enabled = true;
 		GetComponent<TransformEventDispatcherComponent>().DispatchTransformResetEvent();
 		transform.position = new Vector3(currentSpawnPoint.x, currentSpawnPoint.y, transform.position.z);
 	}
