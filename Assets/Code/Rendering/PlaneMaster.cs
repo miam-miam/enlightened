@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [CreateAssetMenu(fileName = "PlaneMaster", menuName = "Plane Master", order = 1)]
 public class PlaneMaster : ScriptableObject
@@ -74,7 +75,17 @@ public class PlaneMaster : ScriptableObject
 		renderingInitialised = true;
 		_input = new CustomRenderTexture(ResolutionController.Width, ResolutionController.Height, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
 		_input.Create();
-        Debug.Log($"Created input render texture for the {planeName} plane.");
+		// We need this to prevent the artifacts
+		/*
+		RenderPipelineManager.beginContextRendering += (_, _) =>
+		{
+			var temp = RenderTexture.active;
+			RenderTexture.active = _input;
+			GL.Clear(true, true, backdrop);
+			RenderTexture.active = temp;
+		};
+        */
+		Debug.Log($"Created input render texture for the {planeName} plane.");
         if (renderRelays == null || renderRelays.Length == 0)
         {
             _output = _input;
@@ -87,7 +98,18 @@ public class PlaneMaster : ScriptableObject
             next = new CustomRenderTexture(ResolutionController.Width, ResolutionController.Height, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
 			next.Create();
 
-            if (renderRelay.overrideMaterial != null)
+			// We need this to prevent the artifacts
+            /*
+			RenderPipelineManager.beginContextRendering += (_, _) =>
+			{
+				var temp = RenderTexture.active;
+				RenderTexture.active = next;
+				GL.Clear(true, true, renderRelay.incomingPlane.backdrop);
+				RenderTexture.active = temp;
+			};
+            */
+
+			if (renderRelay.overrideMaterial != null)
             {
                 next.initializationMaterial = new Material(renderRelay.overrideMaterial);
             }
