@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilesetEntries:
   - sprite: {fileID: 0}
-    weight: 20
+    weight: 8
   - sprite: {fileID: -1613049128, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}
     weight: 1
   - sprite: {fileID: -1308823878, guid: 1b9d14e0f81c3cf41ba610d639337eb4, type: 3}

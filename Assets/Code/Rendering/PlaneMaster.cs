@@ -74,17 +74,9 @@ public class PlaneMaster : ScriptableObject
             return;
 		renderingInitialised = true;
 		_input = new CustomRenderTexture(ResolutionController.Width, ResolutionController.Height, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
-		_input.Create();
+        _input.filterMode = FilterMode.Point;
+        _input.Create();
 		// We need this to prevent the artifacts
-		/*
-		RenderPipelineManager.beginContextRendering += (_, _) =>
-		{
-			var temp = RenderTexture.active;
-			RenderTexture.active = _input;
-			GL.Clear(true, true, backdrop);
-			RenderTexture.active = temp;
-		};
-        */
 		Debug.Log($"Created input render texture for the {planeName} plane.");
         if (renderRelays == null || renderRelays.Length == 0)
         {
@@ -99,16 +91,6 @@ public class PlaneMaster : ScriptableObject
 			next.Create();
 
 			// We need this to prevent the artifacts
-            /*
-			RenderPipelineManager.beginContextRendering += (_, _) =>
-			{
-				var temp = RenderTexture.active;
-				RenderTexture.active = next;
-				GL.Clear(true, true, renderRelay.incomingPlane.backdrop);
-				RenderTexture.active = temp;
-			};
-            */
-
 			if (renderRelay.overrideMaterial != null)
             {
                 next.initializationMaterial = new Material(renderRelay.overrideMaterial);
@@ -136,6 +118,13 @@ public class PlaneMaster : ScriptableObject
 			next.initializationMaterial.SetTexture("_TargetTexture", renderRelay.incomingPlane.OutputRenderTexture);
             next.initializationMaterial.SetMatrix("_ColourMatrix", colourMatrix);
             next.initializationMaterial.SetVector("_ColourMatrixConstant", colourConstantPart);
+
+            if (renderRelay.dontClear)
+            {
+                next.doubleBuffered = true;
+                next.updateMode = CustomRenderTextureUpdateMode.Realtime;
+                next.updatePeriod = 0;
+            }
 
             next.filterMode = FilterMode.Point;
 

@@ -18,7 +18,9 @@ MonoBehaviour:
   drawToScreen: 1
   renderRelays:
   - incomingPlane: {fileID: 11400000, guid: d21a5a6cca1397c4cb63db03cc5a26db, type: 2}
-    drawMode: 3
+    drawMode: 0
+    overrideMaterial: {fileID: 2100000, guid: b82665d2aab6aa449a1ef5a172c1e7b4, type: 2}
+    dontClear: 1
   colourMatrix:
     e00: 1
     e01: 0
