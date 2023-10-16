@@ -11,12 +11,17 @@ public class DeathComponent : MonoBehaviour
 	[Tooltip("The hitbox to query to see if we are hitting something that should kill us.")]
 	public QueryableHitboxComponent deathHitbox;
 
-	private SpriteRenderer spriteRenderer;
+	public GameObject deathParticlesPrefab;
 
-	/// <summary>
-	/// The spawn point of the player
-	/// </summary>
-	public Vector3 currentSpawnPoint;
+	[Tooltip("The gravity component of the player, used to set velocity to 0")]
+	public GravityComponent gravityComponent;
+	
+
+    /// <summary>
+    /// The spawn point of the player
+    /// </summary>
+    public Vector3 currentSpawnPoint;
+	private SpriteRenderer spriteRenderer;
 
 	/// <summary>
 	/// Invoked when the player dies.
@@ -41,7 +46,9 @@ public class DeathComponent : MonoBehaviour
 		onDeath?.Invoke(transform.position);
 		Debug.Log("<color='red'>The player has died, resetting their position!</color>");
 		GetComponent<TransformEventDispatcherComponent>().DispatchTransformResetEvent();
+		Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
 		transform.position = new Vector3(currentSpawnPoint.x, currentSpawnPoint.y, transform.position.z);
+		gravityComponent.velocity = 0;
 		StartCoroutine(DeathAnimation());
 	}
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GravityComponent : MonoBehaviour
 {
@@ -24,8 +25,8 @@ public class GravityComponent : MonoBehaviour
 	/// <summary>
 	/// Are we currently falling?
 	/// </summary>
-	[SerializeField]
-	internal bool isFalling = false;
+	public bool isFalling { get; private set; } = false;
+
 
 	[SerializeField]
 	private bool blockedAbove = false;
@@ -35,6 +36,11 @@ public class GravityComponent : MonoBehaviour
 	/// Only gets called when we are falling, if we are moving upwards then this call will be skipped.
 	/// </summary>
 	public event Func<float, float?> interceptGravity;
+
+	[Tooltip("The speed you need for the fall particles to be instantiated.")]
+	public float fallParticleSpeed;
+
+	public GameObject fallParticlesPrefab;
 
 	/// <summary>
 	/// How fast are we currently falling?
@@ -47,6 +53,10 @@ public class GravityComponent : MonoBehaviour
 		gravityHitbox.onCollisionEnter += collisionContact => {
 			if (collisionContact.normal.y != 0)
 			{
+				if (isFalling && velocity <= -fallParticleSpeed)
+				{
+					Instantiate(fallParticlesPrefab, transform.position, Quaternion.identity);
+				}
 				isFalling = false;
 				// Teleport to the point of collision to prevent entering the floor
 				// This needs to be a vertical collision, if we embedded in the wall slightly due to moving fast

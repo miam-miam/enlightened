@@ -82,7 +82,7 @@ public class HorizontalMovementComponent : MonoBehaviour
 			movementMultiplier = Mathf.Max(Mathf.Abs(HorizontalVelocity), 1);
 		}
 		HorizontalVelocity += Time.fixedDeltaTime * horizontalAxis * accelerationValue * movementMultiplier;
-		if ((!gravityComponent?.isFalling) ?? false)
+		if (!gravityComponent.isFalling)
 		{
 			if (HorizontalVelocity < 0 && horizontalAxis >= 0)
 			{
