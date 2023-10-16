@@ -27,7 +27,6 @@ public class TransformEventDispatcherComponent : MonoBehaviour
     public void DispatchTransformResetEvent()
     {
         dispatchTransformResetEvent?.Invoke();
-
 	}
 
 }
