@@ -210,7 +210,14 @@ public class QueryableHitboxComponent : MonoBehaviour
 
 	private ContactInformation CalculateContactInformation(Collider2D collider)
 	{
-		Vector2 colPoint = collider.ClosestPoint(transform.position);
+		var info = CalculateContactInformation(collider, transform.position);
+		Debug.DrawLine(info.point, info.point + info.normal, debugColour);
+		return info;
+	}
+	
+	public static ContactInformation CalculateContactInformation(Collider2D collider, Vector2 position)
+	{
+		Vector2 colPoint = collider.ClosestPoint(position);
 		PhysicsShapeGroup2D result = new PhysicsShapeGroup2D();
 		collider.GetShapes(result);
 		// We don't support circles
@@ -230,8 +237,8 @@ public class QueryableHitboxComponent : MonoBehaviour
 			{
 				Vector2 p1 = vertices[j];
 				Vector2 p2 = vertices[(j + 1) % vertices.Count];
-				Vector2 closestPointOnLine = ((Vector2)transform.position).ClosestPointOnLine(p1, p2);
-				float distanceFromSource = Vector2.Distance(closestPointOnLine, transform.position);
+				Vector2 closestPointOnLine = (position).ClosestPointOnLine(p1, p2);
+				float distanceFromSource = Vector2.Distance(closestPointOnLine, position);
 				// If the point is further away than our current point ignore.
 				if (closestDistance < distanceFromSource)
 					continue;
@@ -239,11 +246,11 @@ public class QueryableHitboxComponent : MonoBehaviour
 				// the one with the normal that points more towards the player's center than the other.
 				// This will prevent corner collisions from picking the wrong normal side since on a
 				// top left corner, both up and left are valid normals since the closest point is a vertex.
-				Vector2 currentNormal = (p2 - p1).CalculatePerpendicularLine(transform.position);
+				Vector2 currentNormal = (p2 - p1).CalculatePerpendicularLine(position);
 				if (closestDistance == distanceFromSource)
 				{
-					float bestAngle = Vector2.Angle(closestNormal, (Vector2)transform.position - closestPoint);
-					float newAngle = Vector2.Angle(currentNormal, (Vector2)transform.position - closestPoint);
+					float bestAngle = Vector2.Angle(closestNormal, position - closestPoint);
+					float newAngle = Vector2.Angle(currentNormal, position - closestPoint);
 					//Debug.Log($"Best:{bestAngle} vs New:{newAngle}");
 					if (bestAngle < newAngle)
 						continue;
@@ -254,7 +261,6 @@ public class QueryableHitboxComponent : MonoBehaviour
 			}
 		}
 		// Determine the normal
-		Debug.DrawLine(closestPoint, closestPoint + closestNormal, debugColour);
 		return new ContactInformation(collider, closestPoint, closestNormal);
 	}
 
