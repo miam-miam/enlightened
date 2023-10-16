@@ -332,6 +332,8 @@ MonoBehaviour:
   playerRigidbody: {fileID: 2225496441936467365}
   floorPoint: {fileID: 4198148115781694743}
   blockedAbove: 0
+  fallParticleSpeed: 20
+  fallParticlesPrefab: {fileID: 2859128182762336543, guid: d38f272d62fbd5859b0bda12e5bbda4e, type: 3}
 --- !u!114 &607817902652514067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,6 +450,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathHitbox: {fileID: 158330336569513973}
+  deathParticlesPrefab: {fileID: 2360325960087269591, guid: 83ed5214cbddbca10a0602322aa80d0c, type: 3}
+  gravityComponent: {fileID: 0}
   currentSpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &4927582685766418932
 MonoBehaviour:
@@ -21182,7 +21186,7 @@ Transform:
   m_GameObject: {fileID: 8197334200518151276}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.51, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
