@@ -59,14 +59,6 @@ public class PlaneRenderingSourceComponent : MonoBehaviour
 				(createdCanvas.transform as RectTransform).anchorMax = new Vector2(1, 1);
 				(createdCanvas.transform as RectTransform).anchoredPosition = new Vector2(0, 0);
 			}
-            // Create the debug display
-			GameObject debug_rs = new GameObject($"Render Source: {planeMaster.name}");
-			debug_rs.transform.parent = layoutGroup.transform;
-			RawImage debug_createdCanvas = debug_rs.AddComponent<RawImage>();
-			debug_createdCanvas.texture = planeMaster.OutputRenderTexture;
-			(debug_rs.transform as RectTransform).anchorMin = new Vector2(0, 0);
-			(debug_rs.transform as RectTransform).anchorMax = new Vector2(1, 1);
-			(debug_rs.transform as RectTransform).anchoredPosition = new Vector2(0, 0);
 		}
         // Initialise staged things.
         List<PlaneRenderedComponent> processing = staged;
