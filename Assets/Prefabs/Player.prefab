@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 4927582685766418932}
   - component: {fileID: 2202408601051422151}
   - component: {fileID: 946777472632394345}
+  - component: {fileID: 8990163251468462578}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -495,6 +496,14 @@ MonoBehaviour:
   JumpHitbox: {fileID: 3230438324690645914}
   playerGameObject: {fileID: 1042356348826541699}
   emitHorizontalSpeed: 8
+--- !u!81 &8990163251468462578
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042356348826541699}
+  m_Enabled: 1
 --- !u!1 &2753415108800332482
 GameObject:
   m_ObjectHideFlags: 0

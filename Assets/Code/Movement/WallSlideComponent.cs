@@ -58,6 +58,10 @@ public class WallSlideComponent : MonoBehaviour
 
     private HorizontalMovementComponent horizontalMovement;
 
+    private bool blockLeft = false;
+
+    private bool blockRight = false;
+
     private void SetWallSlideParticles(float velocity)
     {
 	    if (velocity <= -slideSpeedMax)
@@ -92,18 +96,25 @@ public class WallSlideComponent : MonoBehaviour
         {
             // We can only walljump if we are actually falling
             if (!gravityComponent.isFalling)
+            {
+                Debug.Log("Not falling; cannot walljump");
                 return;
+            }
             if (rightCollisionTime + wallJumpSafetyTime > Time.fixedTime)
 			{
 				jumpTime = Time.fixedTime;
 				horizontalMovement.HorizontalVelocity -= wallJumpSpeed;
-                left = true;
+				left = true;
                 // Check if we can immediately perform a wall jump boost
                 if (Input.GetAxis("Horizontal") < -0.2f)
 				{
 					jumpTime = 0;
 					horizontalMovement.HorizontalVelocity -= wallJumpSpeedBoost;
 				}
+                // Reset slide time so we can chain wall jumps
+				rightCollisionTime = 0;
+				rightSlideTime = 0;
+                blockRight = true;
 			}
             else if (leftCollisionTime + wallJumpSafetyTime > Time.fixedTime)
 			{
@@ -116,6 +127,10 @@ public class WallSlideComponent : MonoBehaviour
 					jumpTime = 0;
 					horizontalMovement.HorizontalVelocity += wallJumpSpeedBoost;
 				}
+				// Reset slide time so we can chain wall jumps
+				leftCollisionTime = 0;
+				leftSlideTime = 0;
+                blockLeft = true;
 			}
         };
 	}
@@ -125,15 +140,29 @@ public class WallSlideComponent : MonoBehaviour
 		float moveDirection = Input.GetAxis("Horizontal");
         if (leftHitbox.IsColliding)
         {
-            if (moveDirection < 0)
-                leftSlideTime = Time.fixedTime;
-            leftCollisionTime = Time.fixedTime;
+            if (!blockLeft)
+            {
+                if (moveDirection < 0)
+                    leftSlideTime = Time.fixedTime;
+                leftCollisionTime = Time.fixedTime;
+            }
+        }
+        else
+        {
+            blockLeft = false;
         }
         if (rightHitbox.IsColliding)
         {
-            if (moveDirection > 0)
-                rightSlideTime = Time.fixedTime;
-            rightCollisionTime = Time.fixedTime;
+            if (!blockRight)
+            {
+                if (moveDirection > 0)
+                    rightSlideTime = Time.fixedTime;
+                rightCollisionTime = Time.fixedTime;
+            }
+        }
+        else
+        {
+            blockRight = false;
         }
         // If we recently did a wall jump, then let us get a speed boost when switching direction keys.
         if (jumpTime + wallJumpSpeedBoostTime > Time.fixedTime)
