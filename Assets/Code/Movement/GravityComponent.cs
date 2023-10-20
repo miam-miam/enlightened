@@ -40,6 +40,9 @@ public class GravityComponent : MonoBehaviour
 	[Tooltip("The speed you need for the fall particles to be instantiated.")]
 	public float fallParticleSpeed;
 
+	[Tooltip("The sound effect to play when we splat.")]
+	public AudioSource splatHeavySound;
+
 	public GameObject fallParticlesPrefab;
 
 	/// <summary>
@@ -56,6 +59,7 @@ public class GravityComponent : MonoBehaviour
 				if (isFalling && velocity <= -fallParticleSpeed)
 				{
 					Instantiate(fallParticlesPrefab, transform.position, Quaternion.identity);
+					splatHeavySound?.Play();
 				}
 				isFalling = false;
 				// Teleport to the point of collision to prevent entering the floor
