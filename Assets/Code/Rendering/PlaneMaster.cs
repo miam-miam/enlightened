@@ -44,6 +44,14 @@ public class PlaneMaster : ScriptableObject
 	[NonSerialized]
 	private CustomRenderTexture _output;
 
+    /// <summary>
+    /// We need to maintain references to the materials to prevent them from being GC'd betwene levels?
+    /// I have no idea why this is needed, most likely because custom render textures aren't working within C#
+    /// but within the underlying unity engine code meaning that there are no references maintained between
+    /// levels.
+    /// </summary>
+    private static Queue<Material> materialReferenceList = new Queue<Material>();
+
 	public CustomRenderTexture InputRenderTexture
     {
         get
@@ -112,7 +120,9 @@ public class PlaneMaster : ScriptableObject
                         next.initializationMaterial = new Material(parent.defaultMaterial);
                         break;
                 }
-            }
+			}
+			// We need this between scenes
+            materialReferenceList.Enqueue(next.initializationMaterial);
 			renderRelay.incomingPlane.InitialiseRendering(parent);
 			next.initializationMaterial.SetTexture("_SourceTexture", above);
 			next.initializationMaterial.SetTexture("_TargetTexture", renderRelay.incomingPlane.OutputRenderTexture);

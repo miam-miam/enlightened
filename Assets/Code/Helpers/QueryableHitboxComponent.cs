@@ -23,6 +23,13 @@ using UnityEngine;
 public class QueryableHitboxComponent : MonoBehaviour
 {
 
+	public enum CollisionMode
+	{
+		COLLISION_TRIGGERS = 1 << 0,
+		COLLISION_PHYSICAL = 1 << 1,
+		COLLISION_ALL = COLLISION_TRIGGERS | COLLISION_PHYSICAL,
+	}
+
 	public class ContactInformation
 	{
 		public Collider2D collider;
@@ -75,9 +82,14 @@ public class QueryableHitboxComponent : MonoBehaviour
 
 	public bool skipFrame = false;
 
+	public bool ignoreTriggers = false;
+
 	[Tooltip("What colour do we want this hitbox to be?")]
 	public Color debugColour = Color.red;
 	private bool isColliding = false;
+
+	[Tooltip("How should this hitbox respond to the other collider type?")]
+	public CollisionMode collisionDetectionMode = CollisionMode.COLLISION_ALL;
 
 	private void Start()
 	{
@@ -148,6 +160,8 @@ public class QueryableHitboxComponent : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		if ((collision.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_TRIGGERS) == 0) || (!collision.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_PHYSICAL) == 0))
+			return;
 		onNewCollisionEnter?.Invoke(CalculateContactInformation(collision));
 		// Check if we are still colliding
 		if (!collision.IsTouching(selfCollider))
@@ -163,6 +177,8 @@ public class QueryableHitboxComponent : MonoBehaviour
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
+		if ((collision.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_TRIGGERS) == 0) || (!collision.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_PHYSICAL) == 0))
+			return;
 		_colCount--;
 		isColliding = _colCount > 0;
 		// If we collided this frame, then we haven't actually invoked collision enter yet so
@@ -175,6 +191,8 @@ public class QueryableHitboxComponent : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
+		if ((collision.collider.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_TRIGGERS) == 0) || (!collision.collider.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_PHYSICAL) == 0))
+			return;
 		onNewCollisionEnter?.Invoke(CalculateContactInformation(collision.collider));
 		// Check if we are still colliding
 		if (!collision.collider.IsTouching(selfCollider))
@@ -192,6 +210,8 @@ public class QueryableHitboxComponent : MonoBehaviour
 
 	private void OnCollisionExit2D(Collision2D collision)
 	{
+		if ((collision.collider.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_TRIGGERS) == 0) || (!collision.collider.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_PHYSICAL) == 0))
+			return;
 		_colCount--;
 		isColliding = _colCount > 0;
 		// If we collided this frame, then we haven't actually invoked collision enter yet so

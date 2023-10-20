@@ -189,7 +189,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skipFrame: 0
+  ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0, a: 1}
+  collisionDetectionMode: 2
 --- !u!1 &1042356348826541699
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,14 +242,15 @@ Transform:
   - {fileID: 5224913577585090076}
   - {fileID: 5263441833167667667}
   - {fileID: 6724921613278732796}
-  - {fileID: 5178962374136945682}
   - {fileID: 4620877991890814807}
   - {fileID: 532983702316363566}
   - {fileID: 3508884206362476568}
   - {fileID: 5488446862762404858}
+  - {fileID: 7928367020186310434}
+  - {fileID: 5988970901463229081}
   - {fileID: 1828655698269503354}
   - {fileID: 8328872005266059189}
-  - {fileID: 7928367020186310434}
+  - {fileID: 5178962374136945682}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4103649937577287611
@@ -5602,6 +5605,113 @@ MonoBehaviour:
   part: {fileID: 2918126699842681306}
   paintPrefab: {fileID: 5893167477629331455, guid: 3cb138908e38d74c797073b38f556404, type: 3}
   particlePlane: {fileID: 11400000, guid: a5c6d39acc49af2489c5f5911446716a, type: 2}
+--- !u!1 &3110436303027920093
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5988970901463229081}
+  - component: {fileID: 5539556531556947749}
+  - component: {fileID: 3167525703833057039}
+  - component: {fileID: 7229058352582727146}
+  m_Layer: 0
+  m_Name: LevelTransition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5988970901463229081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110436303027920093}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4359155526668338221}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &5539556531556947749
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110436303027920093}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &3167525703833057039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110436303027920093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa64c066d6fed8438e868bf1b20a295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skipFrame: 0
+  ignoreTriggers: 0
+  debugColour: {r: 0, g: 1, b: 0.5956452, a: 1}
+  collisionDetectionMode: 1
+--- !u!114 &7229058352582727146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110436303027920093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5620e2fce2b99684e828b88fb0622f77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3165605016257194138
 GameObject:
   m_ObjectHideFlags: 0
@@ -5693,7 +5803,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skipFrame: 0
+  ignoreTriggers: 0
   debugColour: {r: 0, g: 1, b: 0.6524255, a: 1}
+  collisionDetectionMode: 2
 --- !u!1 &3845023614105983543
 GameObject:
   m_ObjectHideFlags: 0
@@ -5914,7 +6026,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skipFrame: 0
+  ignoreTriggers: 0
   debugColour: {r: 0, g: 0.07612944, b: 1, a: 1}
+  collisionDetectionMode: 2
 --- !u!1 &5168769745282296661
 GameObject:
   m_ObjectHideFlags: 0
@@ -6104,7 +6218,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skipFrame: 0
+  ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0, a: 1}
+  collisionDetectionMode: 2
 --- !u!1 &5365645803260066379
 GameObject:
   m_ObjectHideFlags: 0
@@ -6231,7 +6347,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skipFrame: 0
+  ignoreTriggers: 0
   debugColour: {r: 0.99020153, g: 0.82330316, b: 0, a: 1}
+  collisionDetectionMode: 2
 --- !u!1 &6929312234625555157
 GameObject:
   m_ObjectHideFlags: 0
@@ -21373,7 +21491,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skipFrame: 0
+  ignoreTriggers: 0
   debugColour: {r: 0.46248156, g: 0, b: 0.49056602, a: 1}
+  collisionDetectionMode: 3
 --- !u!1 &8197334200518151276
 GameObject:
   m_ObjectHideFlags: 0
@@ -21563,7 +21683,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skipFrame: 0
+  ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0.88149357, a: 1}
+  collisionDetectionMode: 2
 --- !u!1 &8575755374705421889
 GameObject:
   m_ObjectHideFlags: 0
@@ -21704,7 +21826,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skipFrame: 0
+  ignoreTriggers: 0
   debugColour: {r: 0, g: 1, b: 0.0004093647, a: 1}
+  collisionDetectionMode: 2
 --- !u!1 &9021928658119649135
 GameObject:
   m_ObjectHideFlags: 0
@@ -21796,4 +21920,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skipFrame: 0
+  ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0, a: 1}
+  collisionDetectionMode: 2
