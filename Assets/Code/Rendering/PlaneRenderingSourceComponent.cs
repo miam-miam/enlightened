@@ -20,6 +20,9 @@ public class PlaneRenderingSourceComponent : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
+
+        
+
         Camera mainCamera = GetComponent<Camera>();
         mainCamera.transform.position = new Vector3(0, 0, -0.5f);
 
