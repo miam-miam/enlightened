@@ -25,12 +25,14 @@ public class PaintEmitterComponent : MonoBehaviour
         var speed = (playerGameObject.transform.position.x - previousXPosition) / Time.fixedDeltaTime;
         if (JumpHitbox.IsColliding && speed >= emitHorizontalSpeed)
         {
-            if (!leftPaintEmitter.isPlaying) leftPaintEmitter.Play();
+            if (!leftPaintEmitter.isPlaying)
+                leftPaintEmitter.Play();
             rightPaintEmitter.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
         else if (JumpHitbox.IsColliding && speed <= -emitHorizontalSpeed)
         {
-            if (!rightPaintEmitter.isPlaying) rightPaintEmitter.Play();
+            if (!rightPaintEmitter.isPlaying)
+                rightPaintEmitter.Play();
             leftPaintEmitter.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         }
         else
