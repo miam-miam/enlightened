@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 namespace Code.Painting
@@ -7,7 +8,6 @@ namespace Code.Painting
     public class BallThrower : MonoBehaviour
     {
         [SerializeField] private String fireKey = "Fire1";
-        [SerializeField] private BallProjection ballProjection;
         [SerializeField] private Transform throwPosition;
 
         public Ball ballPrefab;
@@ -17,10 +17,44 @@ namespace Code.Painting
         public float maxThrust = 10;
         [Tooltip("How much to increase the thrust by second")] public float thrustIncrease = 1;
         private Camera mainCamera;
+        
+        [SerializeField] private LineRenderer line;
+        [SerializeField] private int maxPhysicsFrameIterations = 100;
+    
+        private Scene simulationScene;
+        private PhysicsScene2D physicsScene;
+        private Ball ghostBall;
+
+        private Vector3 lastPos;
+        private Vector3 lastVelocity;
+        
+
+        public void SimulateTrajectory(Vector3 pos, Vector3 velocity)
+        {
+            if (lastPos == pos && lastVelocity == velocity) return;
+            lastPos = pos;
+            lastVelocity = velocity;
+
+            var ghostTransform = ghostBall.transform;
+            ghostTransform.position = pos;
+            ghostBall.Init(velocity, true);
+
+            line.positionCount = maxPhysicsFrameIterations;
+
+            for (var i = 0; i < maxPhysicsFrameIterations; i++) {
+                physicsScene.Simulate(Time.fixedDeltaTime);
+                line.SetPosition(i, ghostTransform.position);
+            }
+        }
 
         private void Start()
         {
             mainCamera = Camera.main;
+            simulationScene = SceneManager.CreateScene("Simulation", new CreateSceneParameters(LocalPhysicsMode.Physics2D));
+            physicsScene = simulationScene.GetPhysicsScene2D();
+            ghostBall = Instantiate(ballPrefab, Vector3.zero, Quaternion.identity);
+            ghostBall.GetComponent<Renderer>().enabled = false;
+            SceneManager.MoveGameObjectToScene(ghostBall.gameObject, simulationScene);
         }
 
         private void Update()
@@ -43,7 +77,7 @@ namespace Code.Painting
                 worldMousePosition.z = position.z;
                 var direction =  worldMousePosition - position;
                 direction.Normalize();
-                ballProjection.SimulateTrajectory(ballPrefab, position, direction * thrust);
+                SimulateTrajectory(position, direction * thrust);
             }
         }
     }

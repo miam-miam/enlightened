@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Code.Painting
@@ -10,6 +11,7 @@ namespace Code.Painting
 
         public void Init(Vector3 velocity, bool isGhost) {
             this.isGhost = isGhost;
+            rb.velocity = Vector2.zero;
             rb.AddForce(velocity, ForceMode2D.Impulse);
         }
 
