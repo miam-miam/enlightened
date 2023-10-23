@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 [CreateAssetMenu(fileName = "PlaneMaster", menuName = "Plane Master", order = 1)]
 public class PlaneMaster : ScriptableObject
@@ -134,6 +135,12 @@ public class PlaneMaster : ScriptableObject
                 next.doubleBuffered = true;
                 next.updateMode = CustomRenderTextureUpdateMode.Realtime;
                 next.updatePeriod = 0;
+                // Reset the texture on scene load
+                SceneManager.sceneLoaded += (scene, mode) =>
+                {
+                    RenderTexture.active = next;
+                    GL.Clear(true, true, Color.clear);
+				};
             }
 
             next.filterMode = FilterMode.Point;

@@ -16,10 +16,12 @@ public class LevelTransition : MonoBehaviour
 	void Start()
     {
 		queryableHitboxComponent = GetComponent<QueryableHitboxComponent>();
+		AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(newLevel);
+		asyncOperation.allowSceneActivation = false;
 		queryableHitboxComponent.onNewCollisionEnter += collision => {
 			if (collision.collider.gameObject.GetComponent<LevelTransitionerComponent>() == null)
 				return;
-			SceneManager.LoadScene(newLevel);
+			asyncOperation.allowSceneActivation = true;
 		};
 	}
 }
