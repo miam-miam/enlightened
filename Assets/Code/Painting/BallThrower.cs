@@ -9,6 +9,7 @@ namespace Code.Painting
     {
         [SerializeField] private String fireKey = "Fire1";
         [SerializeField] private Transform throwPosition;
+        [SerializeField] private float gravity = 9.81f;
 
         public Ball ballPrefab;
         // Using 0 to indicate
@@ -57,6 +58,22 @@ namespace Code.Painting
             SceneManager.MoveGameObjectToScene(ghostBall.gameObject, simulationScene);
         }
 
+        // Calculate Thrust by taking in the world space mouse position and adding an
+        // approximation for the loss in height due to gravity
+        private Vector3 CalculateVelocity(Vector3 mousePosition)
+        {
+            var actualDirection = (mousePosition - throwPosition.position);
+            var actualVelocity = actualDirection.normalized * thrust;
+            
+            // 1/2 * a * t^2 where t = s / v
+            var gravityDisplacement = actualVelocity.x == 0 ? 0 : gravity * Mathf.Pow(actualDirection.x / actualVelocity.x, 2) / 2;
+            
+            var simulatedDirection = actualDirection + new Vector3(0, gravityDisplacement, 0);
+            var simulatedVelocity = simulatedDirection.normalized * thrust;
+            
+            return simulatedVelocity;
+        }
+
         private void Update()
         {
             if (Input.GetButtonDown(fireKey))
@@ -68,16 +85,14 @@ namespace Code.Painting
                 mousePressedAt = 0;
                 thrust = 0;
             }
-
-            if (Input.GetButton(fireKey))
+            else if (Input.GetButton(fireKey))
             {
                 thrust = Math.Min(maxThrust, thrust + thrustIncrease * Time.deltaTime);
-                var position = throwPosition.position;
+                
                 var worldMousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-                worldMousePosition.z = position.z;
-                var direction =  worldMousePosition - position;
-                direction.Normalize();
-                SimulateTrajectory(position, direction * thrust);
+                worldMousePosition.z = throwPosition.position.z;
+                
+                SimulateTrajectory(throwPosition.position, CalculateVelocity(worldMousePosition));
             }
         }
     }

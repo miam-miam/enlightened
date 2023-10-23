@@ -11,8 +11,7 @@ namespace Code.Painting
 
         public void Init(Vector3 velocity, bool isGhost) {
             this.isGhost = isGhost;
-            rb.velocity = Vector2.zero;
-            rb.AddForce(velocity, ForceMode2D.Impulse);
+            rb.velocity = velocity;
         }
 
         public void OnCollisionEnter(Collision col) {
