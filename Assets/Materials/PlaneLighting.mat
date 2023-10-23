@@ -74,7 +74,7 @@ Material:
     - _QueueOffset: 0
     - _ToggleSmoothLighting: 1
     m_Colors:
-    - _BackgroundColour: {r: 0.5372549, g: 0.52156866, b: 0.43529412, a: 1}
+    - _BackgroundColour: {r: 0.5660378, g: 0.5179458, b: 0.39248845, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColourMatrixConstant: {r: 0, g: 0, b: 0, a: 0}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

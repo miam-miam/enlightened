@@ -80,6 +80,8 @@ public class PlaneRenderingSourceComponent : MonoBehaviour
                 (createdCanvas.transform as RectTransform).anchorMin = new Vector2(0, 0);
 				(createdCanvas.transform as RectTransform).anchorMax = new Vector2(1, 1);
 				(createdCanvas.transform as RectTransform).anchoredPosition = new Vector2(0, 0);
+                (createdCanvas.transform as RectTransform).offsetMin = Vector2.zero;
+				(createdCanvas.transform as RectTransform).offsetMax = Vector2.zero;
 			}
 		}
         // Initialise staged things.
