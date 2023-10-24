@@ -30,6 +30,7 @@ public class PlaneRenderingSourceComponent : MonoBehaviour
         {
             Destroy(renderSource.gameObject);
             Destroy(gameObject);
+            Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
             return;
 		}
         else
@@ -40,7 +41,7 @@ public class PlaneRenderingSourceComponent : MonoBehaviour
         initialised = true;
 
 		Camera mainCamera = GetComponent<Camera>();
-        mainCamera.transform.position = new Vector3(0, 0, -0.5f);
+        mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y, -0.5f);
         DontDestroyOnLoad(mainCamera);
 
 		mainCamera.nearClipPlane = 0;

@@ -81,7 +81,17 @@ public class HorizontalMovementComponent : MonoBehaviour
 		{
 			movementMultiplier = Mathf.Max(Mathf.Abs(HorizontalVelocity), 1);
 		}
+		else
+		{
+			movementMultiplier = Mathf.Min(1, 7 / Mathf.Abs(movementMultiplier));
+		}
+		/**
+		 * Horizontal movement acceleration
+		 */
 		HorizontalVelocity += Time.fixedDeltaTime * horizontalAxis * accelerationValue * movementMultiplier;
+		/**
+		 * Friction and air deceleration
+		 */
 		if (!gravityComponent.isFalling)
 		{
 			if (HorizontalVelocity < 0 && horizontalAxis >= 0)
@@ -95,6 +105,24 @@ public class HorizontalMovementComponent : MonoBehaviour
 			{
 				float decellerationSpeed = Mathf.Min(Mathf.Max(Mathf.Sqrt(HorizontalVelocity), 1) * frictionAcceleration * Time.fixedDeltaTime, HorizontalVelocity);
 				HorizontalVelocity -= decellerationSpeed;
+			}
+		}
+		else
+		{
+			if (!gravityComponent.isFalling)
+			{
+				if (HorizontalVelocity < 0 && horizontalAxis > 0)
+				{
+					// Horizontal velocity is negative
+					// Add on either the friction acceleration or take us to 0.
+					float decellerationSpeed = Mathf.Min(Mathf.Max(Mathf.Sqrt(-HorizontalVelocity), 1) * frictionAcceleration * Time.fixedDeltaTime, -HorizontalVelocity);
+					HorizontalVelocity += decellerationSpeed;
+				}
+				else if (HorizontalVelocity > 0 && horizontalAxis < 0)
+				{
+					float decellerationSpeed = Mathf.Min(Mathf.Max(Mathf.Sqrt(HorizontalVelocity), 1) * frictionAcceleration * Time.fixedDeltaTime, HorizontalVelocity);
+					HorizontalVelocity -= decellerationSpeed;
+				}
 			}
 		}
 		if ((currentCollisionDirection & CollisionDirection.Left) != 0)
