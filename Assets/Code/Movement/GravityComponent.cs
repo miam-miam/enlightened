@@ -7,8 +7,11 @@ using UnityEngine.Serialization;
 public class GravityComponent : MonoBehaviour
 {
 
-	[Tooltip("Acceleration due to gravity.")]
+	[Tooltip("Acceleration due to gravity while the player is jumping.")]
 	public float gravitationalConstant = 9f;
+
+	[Tooltip("The gravity applied to the player while falling.")]
+	public float gravityWhileFalling = 14;
 
     [Tooltip("The hitbox that represents our bottom location. Once a collision on this is entered, then we will stop falling.")]
     public QueryableHitboxComponent gravityHitbox;
@@ -122,7 +125,10 @@ public class GravityComponent : MonoBehaviour
 		{
 			if (blockedAbove)
 				velocity = Mathf.Min(0, velocity);
-			velocity -= gravitationalConstant * Time.fixedDeltaTime;
+			if (velocity > 0)
+				velocity -= gravitationalConstant * Time.fixedDeltaTime;
+			else
+				velocity -= gravityWhileFalling * Time.fixedDeltaTime;
 		}
 		transform.position += new Vector3(0, Mathf.Clamp(velocity * Time.fixedDeltaTime, -maxSpeed, maxSpeed));
 	}
