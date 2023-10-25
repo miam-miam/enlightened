@@ -16,6 +16,7 @@ namespace Code.Painting
         private float mousePressedAt = 0;
         private float thrust = 0;
         public float maxThrust = 10;
+        public float initialThrust = 10;
         [Tooltip("How much to increase the thrust by second")] public float thrustIncrease = 1;
         private Camera mainCamera;
         
@@ -55,6 +56,8 @@ namespace Code.Painting
             physicsScene = simulationScene.GetPhysicsScene2D();
             ghostBall = Instantiate(ballPrefab, Vector3.zero, Quaternion.identity);
             ghostBall.GetComponent<Renderer>().enabled = false;
+            // Remove static paint child.
+            Destroy(ghostBall.transform.GetChild(0).gameObject);
             SceneManager.MoveGameObjectToScene(ghostBall.gameObject, simulationScene);
         }
 
@@ -79,11 +82,19 @@ namespace Code.Painting
             if (Input.GetButtonDown(fireKey))
             {
                 mousePressedAt = Time.time;
+                thrust = initialThrust;
             }
             else if (Input.GetButtonUp(fireKey))
             {
+                var ball = Instantiate(ballPrefab, throwPosition.position, Quaternion.identity);
+                var worldMousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                worldMousePosition.z = throwPosition.position.z;
+
+                ball.Init(CalculateVelocity(worldMousePosition), false);
+                
                 mousePressedAt = 0;
                 thrust = 0;
+                line.positionCount = 0;
             }
             else if (Input.GetButton(fireKey))
             {
@@ -93,6 +104,10 @@ namespace Code.Painting
                 worldMousePosition.z = throwPosition.position.z;
                 
                 SimulateTrajectory(throwPosition.position, CalculateVelocity(worldMousePosition));
+            }
+            else
+            {
+                line.positionCount = 0;
             }
         }
     }

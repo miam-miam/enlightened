@@ -10,12 +10,22 @@ public class PaintParticleComponent : MonoBehaviour
     public List<ParticleCollisionEvent> collisionEvents = new();
     public GameObject paintPrefab;
     public PlaneMaster particlePlane;
+    [Tooltip("The amount of time to wait before enabling collisions")] public float collisionTime = 0f;
 
     private int dynamicLevelLayer;
 
     private void Start()
     {
         dynamicLevelLayer = LayerMask.NameToLayer("DynamicLevel");
+        if (collisionTime > 0) StartCoroutine(EnableCollisions());
+    }
+    
+    public IEnumerator EnableCollisions()
+    {
+        var module = part.collision;
+        module.enabled = false;
+        yield return new WaitForSeconds(collisionTime);
+        module.enabled = true;
     }
 
     private void OnParticleCollision(GameObject other)

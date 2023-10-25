@@ -638,9 +638,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireKey: Fire1
   throwPosition: {fileID: 2510484456718938032}
+  gravity: 9.81
   ballPrefab: {fileID: -1604266624195375744, guid: b60738c8d1ab613b5b522e58997c01bc, type: 3}
-  maxThrust: 20
-  thrustIncrease: 20
+  maxThrust: 40
+  initialThrust: 15
+  thrustIncrease: 15
   line: {fileID: 1099197562354749128}
   maxPhysicsFrameIterations: 100
 --- !u!120 &1099197562354749128
@@ -5729,6 +5731,7 @@ MonoBehaviour:
   part: {fileID: 2918126699842681306}
   paintPrefab: {fileID: 5893167477629331455, guid: 3cb138908e38d74c797073b38f556404, type: 3}
   particlePlane: {fileID: 11400000, guid: a5c6d39acc49af2489c5f5911446716a, type: 2}
+  collisionTime: 0
 --- !u!1 &3110436303027920093
 GameObject:
   m_ObjectHideFlags: 0
@@ -11458,6 +11461,7 @@ MonoBehaviour:
   part: {fileID: 5758481295969033824}
   paintPrefab: {fileID: 5893167477629331455, guid: 3cb138908e38d74c797073b38f556404, type: 3}
   particlePlane: {fileID: 11400000, guid: a5c6d39acc49af2489c5f5911446716a, type: 2}
+  collisionTime: 0
 --- !u!1 &7452347579511671613
 GameObject:
   m_ObjectHideFlags: 0
@@ -16571,6 +16575,7 @@ MonoBehaviour:
   part: {fileID: 7857525054565775761}
   paintPrefab: {fileID: 5893167477629331455, guid: 3cb138908e38d74c797073b38f556404, type: 3}
   particlePlane: {fileID: 11400000, guid: a5c6d39acc49af2489c5f5911446716a, type: 2}
+  collisionTime: 0
 --- !u!1 &7848371954272034121
 GameObject:
   m_ObjectHideFlags: 0
@@ -21555,6 +21560,7 @@ MonoBehaviour:
   part: {fileID: 2033554261258165128}
   paintPrefab: {fileID: 5893167477629331455, guid: 3cb138908e38d74c797073b38f556404, type: 3}
   particlePlane: {fileID: 11400000, guid: a5c6d39acc49af2489c5f5911446716a, type: 2}
+  collisionTime: 0
 --- !u!1 &8006022568747462023
 GameObject:
   m_ObjectHideFlags: 0
