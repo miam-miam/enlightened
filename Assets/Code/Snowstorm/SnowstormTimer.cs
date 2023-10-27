@@ -1,10 +1,13 @@
 using Assets.Code.Snowstorm;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SnowstormTimer : MonoBehaviour
 {
+
+	public static SnowstormTimer Instance;
 
 	public static bool isTicking = false;
 
@@ -17,11 +20,24 @@ public class SnowstormTimer : MonoBehaviour
 	[Tooltip("How much time do we have left until the storm arrives?")]
 	public float timeLeft = 300;
 
+	/// <summary>
+	/// Called when the time left until the storm is updated.
+	/// </summary>
+	public event Action<float> onTimeLeftUpdated;
+
 	private int blipsShowing;
 
 	private void Start()
 	{
 		blipsShowing = blips.Length - 1;
+		if (Instance == null)
+			Instance = this;
+	}
+
+	private void OnDestroy()
+	{
+		if (Instance == this)
+			Instance = null;
 	}
 
 	private void Update()
@@ -46,6 +62,7 @@ public class SnowstormTimer : MonoBehaviour
 			}
 			blipsShowing--;
 		}
+		onTimeLeftUpdated?.Invoke(timeLeft);
 	}
 
 	/// <summary>
