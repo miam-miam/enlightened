@@ -1,3 +1,4 @@
 All sounds from freesound.org
 
-Splat.mp4: https://freesound.org/people/yottasounds/sounds/232135/
+Splat.mp3: https://freesound.org/people/yottasounds/sounds/232135/
+Gloop.mp3: https://freesound.org/people/julianmateo_/sounds/637003/
