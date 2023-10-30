@@ -13,16 +13,19 @@ public class CinematicText : MonoBehaviour
 
 	public TextMeshProUGUI minorText;
 
+    private float fadeInTime = 0;
+
     private float fadeTime = 0;
 
 	// Update is called once per frame
 	void Update()
     {
+        float multiplier = Mathf.Clamp01(fadeInTime - fadeTime);
         fadeTime -= Time.deltaTime;
-        majorText.alpha = Mathf.Clamp01(fadeTime);
-		minorText.alpha = Mathf.Clamp01(fadeTime);
+        majorText.alpha = Mathf.Clamp01(fadeTime) * multiplier;
+		minorText.alpha = Mathf.Clamp01(fadeTime) * multiplier;
         foreach (var thing in blackBars)
-            thing.color = new Color(1, 1, 1, Mathf.Clamp01(fadeTime));
+            thing.color = new Color(0, 0, 0, Mathf.Clamp01(fadeTime) * multiplier);
 	}
 
     public void DisplayText(string message, string minorMessage, float time)
@@ -30,6 +33,7 @@ public class CinematicText : MonoBehaviour
         majorText.text = message;
         minorText.text = minorMessage;
         fadeTime = time;
+        fadeInTime = time;
 	}
 
 }
