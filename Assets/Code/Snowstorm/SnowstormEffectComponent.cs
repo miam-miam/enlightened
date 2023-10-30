@@ -41,6 +41,11 @@ public abstract class SnowstormEffectComponent : MonoBehaviour
 
 	private void Update()
 	{
+		// Negative or 0 end time means that it lasts forever.
+		if (endTime <= 0)
+		{
+			endTime = float.MinValue;
+		}
 		if (SnowstormTimer.Instance.timeLeft <= startTime)
 		{
 			if (SnowstormTimer.Instance.timeLeft > endTime)
@@ -50,7 +55,7 @@ public abstract class SnowstormEffectComponent : MonoBehaviour
 					onStart?.Invoke();
 					started = true;
 				}
-				onTick?.Invoke(Mathf.Clamp01((startTime - SnowstormTimer.Instance.timeLeft) / Mathf.Max(fadeInTime, 1)) * Mathf.Clamp01((SnowstormTimer.Instance.timeLeft - endTime) / Mathf.Max(fadeInTime, 1)));
+				onTick?.Invoke(Mathf.Clamp01((startTime - SnowstormTimer.Instance.timeLeft) / Mathf.Max(fadeInTime, 1)) * Mathf.Clamp01((SnowstormTimer.Instance.timeLeft - endTime) / Mathf.Max(fadeOutTime, 1)));
 			}
 			else if (started)
 			{
