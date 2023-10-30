@@ -16,7 +16,7 @@ namespace Code.Painting
 
         public void OnCollisionEnter2D(Collision2D col) {
             if (isGhost) return;
-            Instantiate(explosionPrefab, col.contacts[0].point, Quaternion.FromToRotation(transform.up, col.contacts[0].normal));
+            Instantiate(explosionPrefab, rb.transform.position, Quaternion.FromToRotation(transform.up, col.contacts[0].normal));
             Destroy(gameObject);
         }
     }
