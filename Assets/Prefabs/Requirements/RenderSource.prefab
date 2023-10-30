@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8172011986522308469}
   - component: {fileID: 1765787452909905366}
   - component: {fileID: 25480893936914197}
+  - component: {fileID: 1987324548288523582}
   m_Layer: 5
   m_Name: RenderSource
   m_TagString: Untagged
@@ -83,3 +84,21 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!114 &1987324548288523582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8157604100265944852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8914efac35c3fb449e6789f4e4d9c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTime: 30
+  endTime: 0
+  fadeInTime: 25
+  fadeOutTime: 0
+  shakeChildren: 1
+  strength: 16
