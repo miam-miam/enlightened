@@ -946,10 +946,12 @@ MonoBehaviour:
   gravity: 9.81
   ballPrefab: {fileID: -1604266624195375744, guid: b60738c8d1ab613b5b522e58997c01bc, type: 3}
   maxThrust: 40
-  initialThrust: 15
-  thrustIncrease: 15
+  maxThrustIncrease: 5
+  initialThrust: 25
+  thrustIncrease: 25
   line: {fileID: 1099197562354749128}
   maxPhysicsFrameIterations: 100
+  chargeTime: 0.65
 --- !u!120 &1099197562354749128
 LineRenderer:
   serializedVersion: 2
