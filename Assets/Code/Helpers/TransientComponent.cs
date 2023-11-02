@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public class TransientComponent : MonoBehaviour, ITransientStart
+public class TransientComponent : MonoBehaviour
 {
 
     private static Dictionary<string, GameObject> transientObjects = new Dictionary<string, GameObject>();
@@ -13,16 +13,13 @@ public class TransientComponent : MonoBehaviour, ITransientStart
     [Tooltip("The transient key of this thing. If a transient copy of this item exists, this will be deleted on load and the existing object will be teleported to this location.")]
     public string transientKey;
 
-	public void TransientStart()
-	{
-		transform.position = Vector3.zero;
-	}
-
 	// Start is called before the first frame update
 	void Start()
     {
         if (transientObjects.TryGetValue(transientKey, out var transientObject))
         {
+            if (transientObject == gameObject)
+                return;
             if (transientObject == null)
             {
                 transientObjects[transientKey] = gameObject;
@@ -34,7 +31,14 @@ public class TransientComponent : MonoBehaviour, ITransientStart
 				// Invoke transient start on the transient object if the component has it.
 				foreach (ITransientStart transient in transientObject.transform.GetComponentsInChildren<ITransientStart>(true))
 				{
-					transient.TransientStart();
+                    try
+                    {
+                        transient.TransientStart();
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogException(e);
+                    }
 				}
 				Destroy(gameObject);
             }
@@ -44,6 +48,6 @@ public class TransientComponent : MonoBehaviour, ITransientStart
             transientObjects.Add(transientKey, gameObject);
             DontDestroyOnLoad(gameObject);
 		}
-    }
+	}
 
 }
