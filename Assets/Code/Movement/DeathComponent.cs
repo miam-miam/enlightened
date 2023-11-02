@@ -1,3 +1,4 @@
+using Assets.Code.Helpers;
 using JetBrains.Annotations;
 using System;
 using System.Collections;
@@ -7,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(TransformEventDispatcherComponent))]
 [RequireComponent(typeof(SpriteRenderer))]
-public class DeathComponent : MonoBehaviour
+public class DeathComponent : MonoBehaviour, ITransientStart
 {
 
 	[Tooltip("The hitbox to query to see if we are hitting something that should kill us.")]
@@ -46,8 +47,7 @@ public class DeathComponent : MonoBehaviour
 	/// <summary>
 	/// Called from transient component via reflection
 	/// </summary>
-	[UsedImplicitly]
-	private void TransientStart()
+	public void TransientStart()
 	{
 		currentSpawnPoint = transform.position;
 	}

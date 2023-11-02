@@ -22,7 +22,7 @@ namespace Assets.Code.Snowstorm
 				SnowstormTimer snowstormTimer = collision.collider.transform.parent.GetComponentInChildren<SnowstormTimer>();
 				if (snowstormTimer != null)
 				{
-					snowstormTimer.ShowBlips();
+					snowstormTimer.ShowBlips(10);
 					activated = true;
 				}
 			};
