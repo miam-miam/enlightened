@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Assets.Code.Helpers;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Code.Painting
         [SerializeField] private String fireKey = "Fire1";
         [SerializeField] private Transform throwPosition;
         [SerializeField] private float gravity = 9.81f;
+        private const String SceneName = "Simulation";
 
         public Ball ballPrefab;
         // Using 0 to indicate
@@ -75,14 +77,28 @@ namespace Code.Painting
 
         public void TransientStart()
         {
-            simulationScene = SceneManager.CreateScene("Simulation", new CreateSceneParameters(LocalPhysicsMode.Physics2D));
-            physicsScene = simulationScene.GetPhysicsScene2D();
-            ghostBall = Instantiate(ballPrefab, Vector3.zero, Quaternion.identity);
-            ghostBall.GetComponent<Renderer>().enabled = false;
-            gravityScale = ghostBall.GetComponent<Rigidbody2D>().gravityScale;
-            // Remove static paint child.
-            Destroy(ghostBall.transform.GetChild(0).gameObject);
-            SceneManager.MoveGameObjectToScene(ghostBall.gameObject, simulationScene);
+            var scene = SceneManager.GetSceneByName(SceneName);
+            if (scene.IsValid())
+            {
+                simulationScene = scene;
+                physicsScene = simulationScene.GetPhysicsScene2D();
+                ghostBall = null;
+                foreach (var obj in simulationScene.GetRootGameObjects())      
+                {
+                    if (ghostBall != null || !obj.TryGetComponent(out ghostBall)) Destroy(obj);
+                }
+            }
+            else
+            {
+                simulationScene = SceneManager.CreateScene("Simulation", new CreateSceneParameters(LocalPhysicsMode.Physics2D));
+                physicsScene = simulationScene.GetPhysicsScene2D();
+                ghostBall = Instantiate(ballPrefab, Vector3.zero, Quaternion.identity);
+                ghostBall.GetComponent<Renderer>().enabled = false;
+                gravityScale = ghostBall.GetComponent<Rigidbody2D>().gravityScale;
+                // Remove static paint child.
+                Destroy(ghostBall.transform.GetChild(0).gameObject);
+                SceneManager.MoveGameObjectToScene(ghostBall.gameObject, simulationScene);
+            }
         }
 
         // Calculate Thrust by taking in the world space mouse position and adding an
