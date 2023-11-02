@@ -1,4 +1,5 @@
 using System;
+using Assets.Code.Helpers;
 using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,8 +7,8 @@ using UnityEngine.Serialization;
 
 namespace Code.Painting
 {
-    public class BallThrower : MonoBehaviour
-    {
+    public class BallThrower : MonoBehaviour, ITransientStart
+	{
         [SerializeField] private String fireKey = "Fire1";
         [SerializeField] private Transform throwPosition;
         [SerializeField] private float gravity = 9.81f;
@@ -72,8 +73,7 @@ namespace Code.Painting
             TransientStart();
         }
 
-        [UsedImplicitly]
-        private void TransientStart()
+        public void TransientStart()
         {
             simulationScene = SceneManager.CreateScene("Simulation", new CreateSceneParameters(LocalPhysicsMode.Physics2D));
             physicsScene = simulationScene.GetPhysicsScene2D();

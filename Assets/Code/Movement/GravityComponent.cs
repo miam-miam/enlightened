@@ -72,7 +72,10 @@ public class GravityComponent : MonoBehaviour
 				if (collisionContact.normal.y > 0)
 				{
 					Debug.Log("<color='blue'>[Gravity]: Collusion point was below the transform, pushing us up.</color>");
-					transform.position = new Vector3(transform.position.x, collisionContact.point.y - floorPoint.transform.localPosition.y, transform.position.z);
+					// Why are we adding on -x of the normal?
+					// It made sense in my head
+					// \ becomes / and we want to move up
+					transform.position = new Vector3(transform.position.x, collisionContact.point.y - floorPoint.transform.localPosition.y - (collisionContact.normal.x * 0.9f), transform.position.z);
 				}
 				else
 				{
