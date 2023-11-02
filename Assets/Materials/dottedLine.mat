@@ -122,8 +122,8 @@ Material:
     - _ZWrite: 1
     - _separation: 0.4
     - _speed: 3
-    - heigth: 0.8
-    - width: 0.8
+    - heigth: 0.6
+    - width: 0.6
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

@@ -20,6 +20,7 @@ MonoBehaviour:
   - incomingPlane: {fileID: 11400000, guid: 861bb6ab4cb5d1d4099dab48fc98d10a, type: 2}
     drawMode: 0
     overrideMaterial: {fileID: 2100000, guid: 420e4f230db7fe945958244074a9a4ee, type: 2}
+    dontClear: 0
   colourMatrix:
     e00: 1
     e01: 0

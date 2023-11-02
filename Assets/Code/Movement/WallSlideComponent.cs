@@ -137,6 +137,9 @@ public class WallSlideComponent : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+
+		if (SnowstormTimer.Instance.timeLeft < 0)
+			return;
 		float moveDirection = Input.GetAxis("Horizontal");
         if (leftHitbox.IsColliding)
         {

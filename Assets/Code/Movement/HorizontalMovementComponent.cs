@@ -75,6 +75,8 @@ public class HorizontalMovementComponent : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+		if (SnowstormTimer.Instance.timeLeft < 0)
+			return;
 		float horizontalAxis = Input.GetAxis(horizontalMovementKeyAxis);
 		float movementMultiplier = 1;
 		if (Mathf.Sign(horizontalAxis) != Mathf.Sign(HorizontalVelocity))
