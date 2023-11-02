@@ -36,6 +36,8 @@ public class JumpableComponent : MonoBehaviour
 	//test
 	private void Update()
 	{
+		if (SnowstormTimer.Instance.timeLeft < 0)
+			return;
 		if (Input.GetButtonDown(jumpKey))
 			jumpKeyPressedAt = Time.time;
 		// Not attempting to jump

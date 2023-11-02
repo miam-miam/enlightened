@@ -1,4 +1,5 @@
 using Assets.Code.Helpers;
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -63,10 +64,12 @@ public class QueryableHitboxComponent : MonoBehaviour
 	/// </summary>
 	public event Action<ContactInformation> onNewCollisionEnter;
 
+#nullable enable
 	/// <summary>
 	/// Called when this collider ends colliding with something.
 	/// </summary>
-	public event Action<ContactInformation> onCollisionExit;
+	public event Action<ContactInformation?>? onCollisionExit;
+#nullable restore
 
 	private bool collidedThisFrame = false;
 	private int colliderCount = 0;
@@ -94,6 +97,16 @@ public class QueryableHitboxComponent : MonoBehaviour
 	private void Start()
 	{
 		selfCollider = GetComponent<Collider2D>();
+	}
+
+	/// <summary>
+	/// Called from transient component via reflection.
+	/// Level changed, so we need to clear all our collisions.
+	/// </summary>
+	[UsedImplicitly]
+	private void TransientStart()
+	{
+		ResetHitboxDispatcher();
 	}
 
 	/// <summary>
@@ -230,6 +243,8 @@ public class QueryableHitboxComponent : MonoBehaviour
 
 	private ContactInformation CalculateContactInformation(Collider2D collider)
 	{
+		if (!collider.gameObject.activeInHierarchy)
+			return null;
 		var info = CalculateContactInformation(collider, transform.position);
 		Debug.DrawLine(info.point, info.point + info.normal, debugColour);
 		return info;
@@ -292,6 +307,11 @@ public class QueryableHitboxComponent : MonoBehaviour
 	/// </summary>
 	public void ResetHitboxDispatcher()
 	{
+		// If we dispatched a collision enter event, send the associated collision exit event.
+		if (_colCount > 0 && !collidedThisFrame)
+		{
+			onCollisionExit?.Invoke(null);
+		}
 		collidedThisFrame = false;
 		colliderCount = 0;
 		skipFrame = true;

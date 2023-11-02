@@ -1,7 +1,9 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(TransformEventDispatcherComponent))]
 [RequireComponent(typeof(SpriteRenderer))]
@@ -39,6 +41,15 @@ public class DeathComponent : MonoBehaviour
 				Kill();
 			}
 		};
+	}
+
+	/// <summary>
+	/// Called from transient component via reflection
+	/// </summary>
+	[UsedImplicitly]
+	private void TransientStart()
+	{
+		currentSpawnPoint = transform.position;
 	}
 
 	public void Kill()
