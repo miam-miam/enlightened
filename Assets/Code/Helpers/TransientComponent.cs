@@ -31,8 +31,8 @@ public class TransientComponent : MonoBehaviour, ITransientStart
             else
             {
                 transientObject.transform.position = new Vector3(transform.position.x, transform.position.y, transientObject.transform.position.z);
-                // Invoke transient start on the transient object if the component has it.
-                foreach (ITransientStart transient in transientObject.GetComponentsInChildren<ITransientStart>(true))
+				// Invoke transient start on the transient object if the component has it.
+				foreach (ITransientStart transient in transientObject.transform.GetComponentsInChildren<ITransientStart>(true))
 				{
 					transient.TransientStart();
 				}
