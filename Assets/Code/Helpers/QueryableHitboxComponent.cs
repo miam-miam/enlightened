@@ -106,7 +106,6 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 	public void TransientStart()
 	{
 		ResetHitboxDispatcher();
-		transform.parent.position = Vector3.zero;
 	}
 
 	/// <summary>
