@@ -29,22 +29,37 @@ public class SnowstormTimer : MonoBehaviour
 		if (!isTicking)
 			return;
 		timeLeft -= Time.deltaTime;
-		while (blips.Length * (timeLeft / maxTime) < blipsShowing)
+		int blipsWanted = (int)Math.Ceiling(blips.Length * (timeLeft / maxTime));
+		if (blipsWanted == 1)
 		{
-			int i = 1;
-			foreach (SnowstormBlip blip in blips)
+			// Start flashing the blip
+			if (blipsShowing > 1)
 			{
-				if (i > blipsShowing)
-				{
-					blip.EndBlip();
-				}
-				else
-				{
-					blip.TemporarillyShowBlip();
-				}
-				i++;
+				for (int i = blips.Length - 1; i >= 1; i--)
+					blips[i].EndBlip();
+				blips[0].ShowBadness();
+				blipsShowing = 1;
 			}
-			blipsShowing--;
+		}
+		else
+		{
+			while (blipsWanted < blipsShowing)
+			{
+				int i = 1;
+				foreach (SnowstormBlip blip in blips)
+				{
+					if (i > blipsShowing)
+					{
+						blip.EndBlip();
+					}
+					else
+					{
+						blip.TemporarillyShowBlip(5);
+					}
+					i++;
+				}
+				blipsShowing--;
+			}
 		}
 	}
 
@@ -53,12 +68,12 @@ public class SnowstormTimer : MonoBehaviour
 	/// decreasing which can be used to show to the player that these
 	/// are relevant to the storm.
 	/// </summary>
-	public void ShowBlips()
+	public void ShowBlips(float time)
     {
 		isTicking = true;
 		foreach (SnowstormBlip blip in blips)
 		{
-			blip.TemporarillyShowBlip();
+			blip.TemporarillyShowBlip(time);
 		}
     }
 

@@ -26,11 +26,18 @@ namespace Assets.Code.Snowstorm
 			}
 		}
 
-		public void TemporarillyShowBlip()
+		public void ShowBadness()
 		{
 			if (isHidden)
 				return;
-			StartCoroutine(TemporarillyShowBlipAnimation());
+			StartCoroutine(AhShit());
+		}
+
+		public void TemporarillyShowBlip(float time)
+		{
+			if (isHidden)
+				return;
+			StartCoroutine(TemporarillyShowBlipAnimation(time));
 		}
 
 		public void EndBlip()
@@ -57,15 +64,15 @@ namespace Assets.Code.Snowstorm
 			}
 		}
 
-		private IEnumerator TemporarillyShowBlipAnimation()
+		private IEnumerator TemporarillyShowBlipAnimation(float timeFor)
 		{
 			if (isHidden)
 				yield break;
-			float time = 5;
+			float time = timeFor;
 			while (time > 0)
 			{
 				time -= Time.deltaTime;
-				float value = Mathf.Clamp01(5 - time) * Mathf.Clamp01(time);
+				float value = Mathf.Clamp01(timeFor - time) * Mathf.Clamp01(time);
 				foreach (SpriteRenderer image in images)
 				{
 					image.color = new Color(image.color.r, image.color.b, image.color.g, value);
@@ -73,6 +80,40 @@ namespace Assets.Code.Snowstorm
 				yield return new WaitForEndOfFrame();
 				if (isHidden)
 					yield break;
+			}
+		}
+
+		private IEnumerator AhShit()
+		{
+			if (isHidden)
+				yield break;
+			float time = 1;
+			while (time > 0)
+			{
+				time -= Time.deltaTime;
+				float value = Mathf.Clamp01(time);
+				foreach (SpriteRenderer image in images)
+				{
+					image.color = new Color(image.color.r, image.color.b, image.color.g, 1 - value);
+				}
+				yield return new WaitForEndOfFrame();
+				if (isHidden)
+					yield break;
+			}
+			while (!isHidden)
+			{
+				foreach (SpriteRenderer image in images)
+				{
+					image.color = new Color(1, 1, 1, 1);
+				}
+				yield return new WaitForSeconds(0.5f);
+				if (isHidden)
+					yield break;
+				foreach (SpriteRenderer image in images)
+				{
+					image.color = new Color(1, 0, 0, 1);
+				}
+				yield return new WaitForSeconds(0.5f);
 			}
 		}
 

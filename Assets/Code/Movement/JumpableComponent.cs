@@ -19,7 +19,7 @@ public class JumpableComponent : MonoBehaviour
 	[Tooltip("How many seconds after pressing the jump key should we count a jump if the user is in the air.")]
 	public float jumpKeyStickiness = 0.2f;
 
-	private float jumpKeyPressedAt = 0;
+	private float jumpKeyPressedAt = float.MinValue;
 
 	private GravityComponent gravityComponent;
 
