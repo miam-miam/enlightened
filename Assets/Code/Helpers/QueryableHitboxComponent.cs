@@ -21,7 +21,7 @@ using UnityEngine;
 /// example being used to determine if we can jump or not.
 /// </summary>
 [RequireComponent(typeof(Collider2D))]
-public class QueryableHitboxComponent : MonoBehaviour
+public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 {
 
 	public enum CollisionMode
@@ -103,10 +103,10 @@ public class QueryableHitboxComponent : MonoBehaviour
 	/// Called from transient component via reflection.
 	/// Level changed, so we need to clear all our collisions.
 	/// </summary>
-	[UsedImplicitly]
-	private void TransientStart()
+	public void TransientStart()
 	{
 		ResetHitboxDispatcher();
+		transform.parent.position = Vector3.zero;
 	}
 
 	/// <summary>
