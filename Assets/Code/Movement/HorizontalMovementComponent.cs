@@ -28,6 +28,9 @@ public class HorizontalMovementComponent : MonoBehaviour
 	[Tooltip("Deceleration due to friction.")]
 	public float frictionAcceleration;
 
+	[Tooltip("Sound that plays as the player moves.")]
+	public AudioSource movementSound;
+
 	private GravityComponent gravityComponent;
 
 	/// <summary>
@@ -108,24 +111,11 @@ public class HorizontalMovementComponent : MonoBehaviour
 				float decellerationSpeed = Mathf.Min(Mathf.Max(Mathf.Sqrt(HorizontalVelocity), 1) * frictionAcceleration * Time.fixedDeltaTime, HorizontalVelocity);
 				HorizontalVelocity -= decellerationSpeed;
 			}
+			movementSound.volume = 0.8f * Mathf.Clamp01(movementSound.volume + 4 * Time.deltaTime * Mathf.Sign(Mathf.Abs(HorizontalVelocity) - movementSound.volume));
 		}
 		else
 		{
-			if (!gravityComponent.isFalling)
-			{
-				if (HorizontalVelocity < 0 && horizontalAxis > 0)
-				{
-					// Horizontal velocity is negative
-					// Add on either the friction acceleration or take us to 0.
-					float decellerationSpeed = Mathf.Min(Mathf.Max(Mathf.Sqrt(-HorizontalVelocity), 1) * frictionAcceleration * Time.fixedDeltaTime, -HorizontalVelocity);
-					HorizontalVelocity += decellerationSpeed;
-				}
-				else if (HorizontalVelocity > 0 && horizontalAxis < 0)
-				{
-					float decellerationSpeed = Mathf.Min(Mathf.Max(Mathf.Sqrt(HorizontalVelocity), 1) * frictionAcceleration * Time.fixedDeltaTime, HorizontalVelocity);
-					HorizontalVelocity -= decellerationSpeed;
-				}
-			}
+			movementSound.volume = 0.8f * Mathf.Clamp01(movementSound.volume + -4 * Time.deltaTime);
 		}
 		if ((currentCollisionDirection & CollisionDirection.Left) != 0)
 		{
