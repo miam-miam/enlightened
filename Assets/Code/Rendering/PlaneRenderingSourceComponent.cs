@@ -31,6 +31,11 @@ public class PlaneRenderingSourceComponent : MonoBehaviour
             Destroy(renderSource.gameObject);
             Destroy(gameObject);
             Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, Camera.main.transform.position.z);
+            float newSize = GetComponent<Camera>().orthographicSize;
+            foreach (Camera camera in Camera.main.GetComponentsInChildren<Camera>())
+            {
+                camera.orthographicSize = newSize;
+            }
             return;
 		}
         else
