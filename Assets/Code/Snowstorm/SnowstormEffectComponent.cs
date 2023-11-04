@@ -46,6 +46,17 @@ public abstract class SnowstormEffectComponent : MonoBehaviour
 		{
 			endTime = float.MinValue;
 		}
+		if (SnowstormTimer.Instance == null)
+		{
+			onTick?.Invoke(1);
+			if (!started)
+			{
+				started = true;
+				onStart?.Invoke();
+			}
+			
+			return;
+		}
 		if (SnowstormTimer.Instance.timeLeft <= startTime)
 		{
 			if (SnowstormTimer.Instance.timeLeft > endTime)
@@ -62,6 +73,12 @@ public abstract class SnowstormEffectComponent : MonoBehaviour
 				started = false;
 				onEnd?.Invoke();
 			}
+		}
+		else if (started)
+		{
+			onTick.Invoke(0);
+			onEnd?.Invoke();
+			started = false;
 		}
 	}
 
