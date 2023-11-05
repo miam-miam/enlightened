@@ -11,6 +11,11 @@ using UnityEngine.SceneManagement;
 public class PlaneMaster : ScriptableObject
 {
 
+    /// <summary>
+    /// List of all currently active render textures
+    /// </summary>
+    public static List<CustomRenderTexture> activeRenderTextures = new List<CustomRenderTexture>();
+
     [Tooltip("The name of the plane to use.")]
     public string planeName;
 
@@ -83,7 +88,8 @@ public class PlaneMaster : ScriptableObject
             return;
 		renderingInitialised = true;
 		_input = new CustomRenderTexture(ResolutionController.Width, ResolutionController.Height, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
-        _input.filterMode = FilterMode.Point;
+        activeRenderTextures.Add(_input);
+		_input.filterMode = FilterMode.Point;
         _input.Create();
 		// We need this to prevent the artifacts
 		Debug.Log($"Created input render texture for the {planeName} plane.");
@@ -98,6 +104,8 @@ public class PlaneMaster : ScriptableObject
         {
             next = new CustomRenderTexture(ResolutionController.Width, ResolutionController.Height, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
 			next.Create();
+
+			activeRenderTextures.Add(next);
 
 			// We need this to prevent the artifacts
 			if (renderRelay.overrideMaterial != null)
