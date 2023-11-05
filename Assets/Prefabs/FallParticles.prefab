@@ -116,7 +116,7 @@ ParticleSystem:
   m_GameObject: {fileID: 2859128182762336543}
   serializedVersion: 8
   lengthInSec: 0.4
-  simulationSpeed: 1
+  simulationSpeed: 2
   stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
@@ -1054,7 +1054,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 5
+        scalar: 20
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -4926,3 +4926,4 @@ MonoBehaviour:
   part: {fileID: 3719012515424248923}
   paintPrefab: {fileID: 5893167477629331455, guid: 3cb138908e38d74c797073b38f556404, type: 3}
   particlePlane: {fileID: 11400000, guid: a5c6d39acc49af2489c5f5911446716a, type: 2}
+  collisionTime: 0

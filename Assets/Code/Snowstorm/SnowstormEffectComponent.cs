@@ -30,12 +30,14 @@ public abstract class SnowstormEffectComponent : MonoBehaviour
 	/// Invoked every frame that the effect is active for.
 	/// The value passed is a value between 0 and 1 representing the fade time.
 	/// </summary>
-	public event Action<float> onTick;
+	public event Action<float, bool> onTick;
 
 	/// <summary>
 	/// Invoked when the time expires and the effect is no longer playing.
 	/// </summary>
 	public event Action onEnd;
+
+	private bool realStarted = false;
 
 	private bool started = false;
 
@@ -48,10 +50,11 @@ public abstract class SnowstormEffectComponent : MonoBehaviour
 		}
 		if (SnowstormTimer.Instance == null)
 		{
-			onTick?.Invoke(1);
+			onTick?.Invoke(1, false);
 			if (!started)
 			{
 				started = true;
+				realStarted = false;
 				onStart?.Invoke();
 			}
 			
@@ -65,8 +68,9 @@ public abstract class SnowstormEffectComponent : MonoBehaviour
 				{
 					onStart?.Invoke();
 					started = true;
+					realStarted = true;
 				}
-				onTick?.Invoke(Mathf.Clamp01((startTime - SnowstormTimer.Instance.timeLeft) / Mathf.Max(fadeInTime, 1)) * Mathf.Clamp01((SnowstormTimer.Instance.timeLeft - endTime) / Mathf.Max(fadeOutTime, 1)));
+				onTick?.Invoke(Mathf.Clamp01((startTime - SnowstormTimer.Instance.timeLeft) / Mathf.Max(fadeInTime, 1)) * Mathf.Clamp01((SnowstormTimer.Instance.timeLeft - endTime) / Mathf.Max(fadeOutTime, 1)), true);
 			}
 			else if (started)
 			{
@@ -76,7 +80,7 @@ public abstract class SnowstormEffectComponent : MonoBehaviour
 		}
 		else if (started)
 		{
-			onTick.Invoke(0);
+			onTick.Invoke(0, realStarted);
 			onEnd?.Invoke();
 			started = false;
 		}

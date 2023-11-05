@@ -18,7 +18,7 @@ public class LightningEffect : SnowstormEffectComponent
     {
         audioSource = GetComponent<AudioSource>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
-		onTick += intensity =>
+		onTick += (intensity, real) =>
         {
             if (Random.Range(0f, 30f) < intensity)
             {
