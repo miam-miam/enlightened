@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +14,26 @@ namespace Assets.Code.UserInterface
 
 		public void QuitGame()
 		{
-			Application.Quit();
+			StartCoroutine(QuitAnimation());
 		}
 
 		public void ChangeScene(string scene)
 		{
+			StartCoroutine(SceneChangeAnimation(scene));
+		}
+
+		public IEnumerator SceneChangeAnimation(string scene)
+		{
+			FadeToBlack.FadeOut(2, 2);
+			yield return new WaitForSeconds(2);
 			SceneManager.LoadScene(scene);
+		}
+
+		public IEnumerator QuitAnimation()
+		{
+			FadeToBlack.FadeOut(2, 2);
+			yield return new WaitForSeconds(2);
+			Application.Quit();
 		}
 
 	}
