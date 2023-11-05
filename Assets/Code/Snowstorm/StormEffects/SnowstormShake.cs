@@ -17,6 +17,8 @@ public class SnowstormShake : SnowstormEffectComponent
         Vector3 initialPosition = transform.position;
         onTick += (intensity, real) =>
         {
+            if (!real)
+                return;
             if (!shakeChildren)
             {
                 Vector3 desiredPosition = initialPosition + new Vector3(Random.Range(-intensity, intensity), Random.Range(-intensity, intensity), 0) * strength;
