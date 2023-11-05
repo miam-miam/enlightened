@@ -12837,6 +12837,10 @@ PrefabInstance:
       propertyPath: renderSource
       value: 
       objectReference: {fileID: 383991139}
+    - target: {fileID: 3798167372971514572, guid: 08d120be26985d24c88a64e3219e1474, type: 3}
+      propertyPath: renderIfFake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4984661232940042621, guid: 08d120be26985d24c88a64e3219e1474, type: 3}
       propertyPath: orthographic size
       value: 5

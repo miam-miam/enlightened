@@ -18,7 +18,8 @@ public class DeathComponent : MonoBehaviour, ITransientStart
 
 	[Tooltip("The gravity component of the player, used to set velocity to 0")]
 	public GravityComponent gravityComponent;
-	
+
+	public static event Action<Vector3> onGlobalDeath;
 
     /// <summary>
     /// The spawn point of the player
@@ -54,7 +55,22 @@ public class DeathComponent : MonoBehaviour, ITransientStart
 
 	public void Kill()
 	{
-		onDeath?.Invoke(transform.position);
+		try
+		{
+			onDeath?.Invoke(transform.position);
+		}
+		catch (Exception e)
+		{
+			Debug.LogError(e);
+		}
+		try
+		{
+			onGlobalDeath?.Invoke(transform.position);
+		}
+		catch (Exception e)
+		{
+			Debug.LogError(e);
+		}
 		Debug.Log("<color='red'>The player has died, resetting their position!</color>");
 		GetComponent<TransformEventDispatcherComponent>().DispatchTransformResetEvent();
 		Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);

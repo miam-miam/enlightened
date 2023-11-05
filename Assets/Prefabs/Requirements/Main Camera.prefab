@@ -111,12 +111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf219ae3cc05db74bbb925753ab4cccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 120
+  startTime: 60
   endTime: 0
-  fadeInTime: 90
+  fadeInTime: 50
   fadeOutTime: 0
   shaderIntensityProperties:
   - Intensity
+  renderIfFake: 1
 --- !u!1 &3409782937249299346
 GameObject:
   m_ObjectHideFlags: 0
@@ -233,6 +234,7 @@ MonoBehaviour:
   fadeInTime: 10
   fadeOutTime: 0
   shaderIntensityProperties: []
+  renderIfFake: 1
 --- !u!1 &6154990266253886806
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,9 +493,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dbe044a9639e4b4f92f342d47b24ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startTime: 90
+  startTime: 40
   endTime: 0
-  fadeInTime: 120
+  fadeInTime: 30
   fadeOutTime: 0
 --- !u!82 &2595290499189108044
 AudioSource:

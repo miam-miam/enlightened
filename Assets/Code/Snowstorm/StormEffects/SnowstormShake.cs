@@ -15,7 +15,7 @@ public class SnowstormShake : SnowstormEffectComponent
     void Start()
     {
         Vector3 initialPosition = transform.position;
-        onTick += intensity =>
+        onTick += (intensity, real) =>
         {
             if (!shakeChildren)
             {
