@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightningPlane
   m_EditorClassIdentifier: 
   planeName: Lightning
-  planeLayer: 200
+  planeLayer: 0
   backdrop: {r: 0, g: 0, b: 0, a: 0}
   drawToScreen: 1
   renderRelays:
