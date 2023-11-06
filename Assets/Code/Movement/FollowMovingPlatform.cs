@@ -8,6 +8,8 @@ public class FollowMovingPlatform : MonoBehaviour
     [Tooltip("The hitbox that represents our bottom location. Once a collision on this is entered, then we will stop falling.")]
     public QueryableHitboxComponent gravityHitbox;
 
+    public PaintSourceComponent paintSourceComponent;
+
     private MoveAlongLine platform;
     // Start is called before the first frame update
     void Start()
@@ -38,7 +40,9 @@ public class FollowMovingPlatform : MonoBehaviour
     {
         if (platform != null)
         {
-            transform.position += platform.GetPositionDelta();
+            var delta = platform.GetPositionDelta();
+            transform.position += delta;
+            paintSourceComponent.UpdateLastPositionBy(delta);
         }
     }
 }
