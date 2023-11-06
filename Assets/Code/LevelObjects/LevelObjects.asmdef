@@ -1,13 +1,8 @@
 {
-    "name": "Movement",
+    "name": "LevelObjects",
     "rootNamespace": "",
     "references": [
-        "GUID:6840c5a1b68c5d449836c471000da753",
-        "GUID:1403122cb208846419a8ed937a830a47",
-        "GUID:3d30c56be5bf986459412b28d5400dc0",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:d4b08876753078346be8ebf3508225e6",
-        "GUID:5472b9135811f3bfa8351a52dd42687a"
+        "GUID:6840c5a1b68c5d449836c471000da753"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
