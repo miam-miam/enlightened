@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8721387027338768715}
   - component: {fileID: 7284727330831653204}
   - component: {fileID: 8810074590475942467}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Circle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 1998986619649544673}
   - component: {fileID: 4458126768892317700}
   - component: {fileID: 7109364589876394880}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopPaint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 8372055393288145849}
   - component: {fileID: 5610628738982315559}
   - component: {fileID: 1271201170931199924}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SlideRightHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 7258734020333469310}
   - component: {fileID: 67505311259280915}
   - component: {fileID: 2403697945590342801}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Circle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,7 +406,7 @@ GameObject:
   - component: {fileID: 8058885771519543654}
   - component: {fileID: 4312125829307992078}
   - component: {fileID: 176127540661802561}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Circle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,7 +525,8 @@ GameObject:
   - component: {fileID: 4001652536009248622}
   - component: {fileID: 153962947984991669}
   - component: {fileID: -773211546463736565}
-  m_Layer: 0
+  - component: {fileID: 2970841947153530239}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,6 +800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintHitbox: {fileID: 2509075548497406449}
+  paintDistance: 0.15
 --- !u!114 &946777472632394345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1208,6 +1210,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 096c84ac84ee1ea44b06107d60eda16a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2970841947153530239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042356348826541699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caae8969e1e85afc3b23c483dd5dc23d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravityHitbox: {fileID: 6636323789845924023}
 --- !u!1 &1640522387377921395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1219,7 +1234,7 @@ GameObject:
   - component: {fileID: 4230081903201767176}
   - component: {fileID: 1127563543272995475}
   - component: {fileID: 7157195082259530444}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blip4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1319,7 +1334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4257272751494824955}
   - component: {fileID: 8726896751105267001}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: StormTimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1381,7 +1396,7 @@ GameObject:
   - component: {fileID: 2987578840123320163}
   - component: {fileID: 8435898274780039027}
   - component: {fileID: 319237582857845298}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Circle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1479,7 +1494,7 @@ GameObject:
   - component: {fileID: 6012761260058673953}
   - component: {fileID: 6584612323540707227}
   - component: {fileID: 2046007199042335791}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blip5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1580,7 +1595,7 @@ GameObject:
   - component: {fileID: 3144581027996298122}
   - component: {fileID: 3418240645109255876}
   - component: {fileID: 2684825521816780559}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Circle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1680,7 +1695,7 @@ GameObject:
   - component: {fileID: 6910273522238625488}
   - component: {fileID: 6005870351954684571}
   - component: {fileID: 5876752365062427476}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightPaintEmitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6663,7 +6678,7 @@ GameObject:
   - component: {fileID: 8723458634441947968}
   - component: {fileID: 5090305755410349380}
   - component: {fileID: 7732143124937216742}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Circle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6762,7 +6777,7 @@ GameObject:
   - component: {fileID: 5539556531556947749}
   - component: {fileID: 3167525703833057039}
   - component: {fileID: 7229058352582727146}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LevelTransition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6868,7 +6883,7 @@ GameObject:
   - component: {fileID: 4620877991890814807}
   - component: {fileID: 4738658841500961030}
   - component: {fileID: 6505566376800646663}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TopHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6962,7 +6977,7 @@ GameObject:
   - component: {fileID: 8907020294834520701}
   - component: {fileID: 6251962441674300796}
   - component: {fileID: 9092068552659975423}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Circle (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7060,7 +7075,7 @@ GameObject:
   - component: {fileID: 3327670793806980752}
   - component: {fileID: 2153094283067745662}
   - component: {fileID: 1929975705056966978}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RightPaint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7156,7 +7171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5178962374136945682}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FeetPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7189,7 +7204,7 @@ GameObject:
   - component: {fileID: 8981750086003244256}
   - component: {fileID: 3418217184874854606}
   - component: {fileID: 1683058422091830957}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Circle (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7285,7 +7300,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4980779847327158833}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7321,7 +7336,7 @@ GameObject:
   - component: {fileID: 6724921613278732796}
   - component: {fileID: 102161569743928564}
   - component: {fileID: 5341209848537517616}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SideCollisionHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7415,7 +7430,7 @@ GameObject:
   - component: {fileID: 6384635426678888213}
   - component: {fileID: 8188859585789493579}
   - component: {fileID: 2791959853217878564}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blip3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7519,7 +7534,7 @@ GameObject:
   - component: {fileID: 8591697934516573785}
   - component: {fileID: 8784337071480426554}
   - component: {fileID: 3421903345063105878}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DeathEmitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12402,7 +12417,7 @@ GameObject:
   - component: {fileID: 1811105520268786622}
   - component: {fileID: 249254502806783238}
   - component: {fileID: 3758350899172753902}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Circle (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12507,7 +12522,7 @@ GameObject:
   - component: {fileID: 1018335259577608919}
   - component: {fileID: 1376855446347498602}
   - component: {fileID: 3584745153436924796}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blip2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12608,7 +12623,7 @@ GameObject:
   - component: {fileID: 655113236051522409}
   - component: {fileID: 8386186512310434089}
   - component: {fileID: 4916346045203871739}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BottomPaint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12706,7 +12721,7 @@ GameObject:
   - component: {fileID: 7928367020186310434}
   - component: {fileID: 4060416238797002487}
   - component: {fileID: 906097443598137469}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Failsafe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12798,7 +12813,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8328872005266059189}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PaintEmitters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12836,7 +12851,7 @@ GameObject:
   - component: {fileID: 5488446862762404858}
   - component: {fileID: 8907564840603187417}
   - component: {fileID: 2509075548497406449}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PaintHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12873,7 +12888,7 @@ BoxCollider2D:
     m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 767
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -12932,7 +12947,7 @@ GameObject:
   - component: {fileID: 7673331064946176234}
   - component: {fileID: 5513476311754268304}
   - component: {fileID: 7851238850570995767}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LeftPaintEmitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17915,7 +17930,7 @@ GameObject:
   - component: {fileID: 5444588803985380047}
   - component: {fileID: 2963187771966235814}
   - component: {fileID: 3652303809468294495}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blip1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18016,7 +18031,7 @@ GameObject:
   - component: {fileID: 7675608021125066147}
   - component: {fileID: 8778217023028150587}
   - component: {fileID: 6431585642118761198}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LeftPaint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18112,7 +18127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2510484456718938032}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ThrowPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18147,7 +18162,7 @@ GameObject:
   - component: {fileID: 7935535650030158383}
   - component: {fileID: 1373307297850808119}
   - component: {fileID: 9002607465046193154}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SlideLeftPaintEmitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23132,7 +23147,7 @@ GameObject:
   - component: {fileID: 7711462027320273340}
   - component: {fileID: 910210906406037496}
   - component: {fileID: 8944445754351174519}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SlideRightPaintEmitter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28115,7 +28130,7 @@ GameObject:
   - component: {fileID: 3508884206362476568}
   - component: {fileID: 211211107165643942}
   - component: {fileID: 158330336569513973}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DeathHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28209,7 +28224,7 @@ GameObject:
   - component: {fileID: 532983702316363566}
   - component: {fileID: 1172865702442655148}
   - component: {fileID: 4671677871073607598}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28307,7 +28322,7 @@ GameObject:
   - component: {fileID: 9012989524945997262}
   - component: {fileID: 5327903681327570671}
   - component: {fileID: 7664249192764431213}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blip6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28408,7 +28423,7 @@ GameObject:
   - component: {fileID: 5661057778938659716}
   - component: {fileID: 6389038696661186917}
   - component: {fileID: 6636323789845924023}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GravityHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28501,7 +28516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1828655698269503354}
   - component: {fileID: 2832833490679812866}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: StaticPaint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28551,7 +28566,7 @@ GameObject:
   - component: {fileID: 5263441833167667667}
   - component: {fileID: 8755944822093243886}
   - component: {fileID: 3230438324690645914}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: JumpHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28644,7 +28659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5949120818460135294}
   - component: {fileID: 8429378377945121699}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28733,7 +28748,7 @@ GameObject:
   - component: {fileID: 5224913577585090076}
   - component: {fileID: 1286434490526289937}
   - component: {fileID: 3316340741717035639}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SlideLeftHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28827,7 +28842,7 @@ GameObject:
   - component: {fileID: 772261306630723404}
   - component: {fileID: 4216126591946391621}
   - component: {fileID: 1269152582011003074}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blip0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
