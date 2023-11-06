@@ -800,7 +800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   paintHitbox: {fileID: 2509075548497406449}
-  paintDistance: 0.15
+  paintOffset: {x: 0, y: 0.12}
+  paintDistance: 0.1
 --- !u!114 &946777472632394345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1223,6 +1224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityHitbox: {fileID: 6636323789845924023}
+  paintSourceComponent: {fileID: 2202408601051422151}
 --- !u!1 &1640522387377921395
 GameObject:
   m_ObjectHideFlags: 0

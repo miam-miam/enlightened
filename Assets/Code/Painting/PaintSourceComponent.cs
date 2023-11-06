@@ -9,6 +9,9 @@ public class PaintSourceComponent : MonoBehaviour
 	[Tooltip("The hitbox that should be used to determine whether or not we should paint a surface. Anything colliding with this hitbox will be painted.")]
     public QueryableHitboxComponent paintHitbox;
 
+    [Tooltip("Offset the paint spawning by this amount.")]
+    public Vector2 paintOffset = new(0, 0.25f);
+    
     [Tooltip("How far in square magnitude should the player go to paint again.")]
     public float paintDistance;
     
@@ -24,6 +27,7 @@ public class PaintSourceComponent : MonoBehaviour
 			var obj = collisionContact.collider.GetComponent<Paintable>();
 			if (obj != null)
 			{
+				collisionContact.point += paintOffset;
 				obj.onPaint(collisionContact);
 				paintable = obj;
 				lastPaintPosition = transform.position;
@@ -40,5 +44,10 @@ public class PaintSourceComponent : MonoBehaviour
 			lastPaintPosition = transform.position;
 			paintable.onPaint(new QueryableHitboxComponent.ContactInformation(null, positionOffset + (Vector2) lastPaintPosition, new Vector2()));
 		}
+	}
+
+	public void UpdateLastPositionBy(Vector3 offset)
+	{
+		lastPaintPosition += offset;
 	}
 }
