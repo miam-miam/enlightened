@@ -27,6 +27,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7c67cf542829e3b4fb7ec5648bd1d188, type: 2}
   - {fileID: 11400000, guid: 861bb6ab4cb5d1d4099dab48fc98d10a, type: 2}
   - {fileID: 11400000, guid: b9d354786a7ca0d4a909fa6fa815b734, type: 2}
+  - {fileID: 11400000, guid: 0b94e6520809a9fcb87ced5131c921a4, type: 2}
+  - {fileID: 11400000, guid: 6d874318d290e5f91b1fea8274ffd9b0, type: 2}
   multiplicativeMaterial: {fileID: -876546973899608171, guid: 3d414488ae420ad4f8354f4102731d0e, type: 3}
   defaultMaterial: {fileID: -876546973899608171, guid: bc782c549bc5b3b4981df89ef6954958, type: 3}
   additiveMaterial: {fileID: -876546973899608171, guid: 3fe532f46e5cba141a60e9965cf2eb9a, type: 3}
