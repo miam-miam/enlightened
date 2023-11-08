@@ -48,7 +48,7 @@ public class DeathComponent : MonoBehaviour, ITransientStart
 	/// <summary>
 	/// Called from transient component via reflection
 	/// </summary>
-	public void TransientStart()
+	public void TransientStart(bool calledAgain)
 	{
 		currentSpawnPoint = transform.position;
 	}

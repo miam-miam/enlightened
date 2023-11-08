@@ -103,9 +103,9 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 	/// Called from transient component via reflection.
 	/// Level changed, so we need to clear all our collisions.
 	/// </summary>
-	public void TransientStart()
+	public void TransientStart(bool calledAgain)
 	{
-		ResetHitboxDispatcher();
+		if (!calledAgain) ResetHitboxDispatcher();
 	}
 
 	/// <summary>
