@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Code.Helpers;
 using UnityEngine;
 
-public class PaintParticleComponent : MonoBehaviour
+public class PaintParticleComponent : MonoBehaviour, ITransientStart
 {
     
     public ParticleSystem part;
@@ -54,5 +55,13 @@ public class PaintParticleComponent : MonoBehaviour
             point.z = particlePlane.AssignedZ;
             Instantiate(paintPrefab, point, Quaternion.identity);
         } 
+    }
+
+    public void TransientStart(bool calledAgain)
+    {
+        if (!calledAgain)
+        {
+            part.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace Assets.Code.Helpers
 	public interface ITransientStart
 	{
 
-		public void TransientStart();
+		public void TransientStart(bool calledAgain);
 
 	}
 }
