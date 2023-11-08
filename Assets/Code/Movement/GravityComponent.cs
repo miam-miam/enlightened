@@ -56,7 +56,14 @@ public class GravityComponent : MonoBehaviour
 	private void Start()
 	{
 		isFalling = !gravityHitbox.IsColliding;
-		gravityHitbox.onCollisionEnter += collisionContact => {
+		gravityHitbox.onCollisionEnter += collisionContact =>
+		{
+			// Prevent jumping on a death provider e.g. spike.
+			if (collisionContact.collider.GetComponent<DeathProvider>() != null)
+			{
+				return;
+			}
+			
 			if (collisionContact.normal.y != 0)
 			{
 				if (isFalling && velocity <= -fallParticleSpeed)

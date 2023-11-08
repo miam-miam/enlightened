@@ -33,7 +33,7 @@ public class TransientComponent : MonoBehaviour
 				{
                     try
                     {
-                        transient.TransientStart();
+                        transient.TransientStart(false);
                     }
                     catch (Exception e)
                     {

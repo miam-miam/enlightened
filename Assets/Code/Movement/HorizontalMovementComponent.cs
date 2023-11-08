@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Code.Helpers;
 using UnityEngine;
 
 public class HorizontalMovementComponent : MonoBehaviour
@@ -134,5 +135,4 @@ public class HorizontalMovementComponent : MonoBehaviour
 		Debug.DrawLine(transform.position, transform.position + new Vector3(-maxSpeed, 0, -1), horizontalCollisionHitbox.IsColliding ? Color.magenta : Color.black, Time.fixedDeltaTime, false);
 		Debug.DrawLine(transform.position, transform.position + new Vector3(maxSpeed, 0, -1), horizontalCollisionHitbox.IsColliding ? Color.magenta : Color.black, Time.fixedDeltaTime, false);
 	}
-
 }
