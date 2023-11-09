@@ -72,11 +72,12 @@ namespace Code.Painting
         private void Start()
         {
             mainCamera = Camera.main;
-            TransientStart();
+            TransientStart(false);
         }
 
-        public void TransientStart()
+        public void TransientStart(bool calledAgain)
         {
+            if (calledAgain) return;
             var scene = SceneManager.GetSceneByName(SceneName);
             if (scene.IsValid())
             {

@@ -12,16 +12,45 @@ public class LevelTransition : MonoBehaviour
 	[Tooltip("The name of the level to change to when we hit this trigger.")]
 	public string newLevel;
 
+	private static Dictionary<string, AsyncOperation> loadedLevels = new();
+
+	[Tooltip("The name of the next entrypoint from which the player should be spawned in from.")]
+	public string newEntryPoint;
+
+	private string currentLevelName;
+
 	// Start is called before the first frame update
 	void Start()
-    {
+	{
 		queryableHitboxComponent = GetComponent<QueryableHitboxComponent>();
-		AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(newLevel);
-		asyncOperation.allowSceneActivation = false;
-		queryableHitboxComponent.onNewCollisionEnter += collision => {
-			if (collision.collider.gameObject.GetComponent<LevelTransitionerComponent>() == null)
+		AsyncOperation asyncOperation;
+		if (!loadedLevels.ContainsKey(newLevel))
+		{
+			asyncOperation = SceneManager.LoadSceneAsync(newLevel);
+			asyncOperation.allowSceneActivation = false;
+			loadedLevels.Add(newLevel, asyncOperation);
+		}
+		else
+		{
+			asyncOperation = loadedLevels[newLevel];
+		}
+		
+		StartCoroutine(ActivateCollisions(asyncOperation));
+	}
+
+	public IEnumerator ActivateCollisions(AsyncOperation asyncOperation)
+	{
+		// Wait a fixed update to ensure that the player entered the trigger and didn't just spawn there.
+		yield return new WaitForFixedUpdate();
+		queryableHitboxComponent.onNewCollisionEnter += collision =>
+		{
+			var component = collision.collider.gameObject.GetComponent<LevelTransitionerComponent>();
+			if (component == null)
 				return;
 			asyncOperation.allowSceneActivation = true;
+			loadedLevels.Clear();
+			component.entryPoint = newEntryPoint;
+			component.ResetStaticPaint();
 		};
 	}
 }
