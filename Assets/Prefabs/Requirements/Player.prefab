@@ -1368,8 +1368,8 @@ MonoBehaviour:
   - {fileID: 7157195082259530444}
   - {fileID: 2046007199042335791}
   - {fileID: 7664249192764431213}
-  maxTime: 120
-  timeLeft: 120
+  maxTime: 180
+  timeLeft: 180
 --- !u!1 &1726665237091698663
 GameObject:
   m_ObjectHideFlags: 0

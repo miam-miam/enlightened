@@ -71566,7 +71566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3971949369751512707, guid: 878e28459ccddfa49afdf62cdb1aeb88, type: 3}
       propertyPath: newLevel
-      value: tutorial_09
+      value: hard_03
       objectReference: {fileID: 0}
     - target: {fileID: 5810639485607805988, guid: 878e28459ccddfa49afdf62cdb1aeb88, type: 3}
       propertyPath: m_Name
