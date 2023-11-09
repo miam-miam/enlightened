@@ -19,10 +19,26 @@ public class LevelTransition : MonoBehaviour
 
 	private string currentLevelName;
 
+	private AsyncOperation dontGcMe;
+
 	// Start is called before the first frame update
 	void Start()
 	{
 		queryableHitboxComponent = GetComponent<QueryableHitboxComponent>();
+		if (FindObjectsOfType<LevelTransition>().Length > 1)
+		{
+			queryableHitboxComponent.onNewCollisionEnter += collision =>
+			{
+				var component = collision.collider.gameObject.GetComponent<LevelTransitionerComponent>();
+				if (component == null)
+					return;
+				SceneManager.LoadScene(newLevel);
+				loadedLevels.Clear();
+				component.entryPoint = newEntryPoint;
+				component.ResetStaticPaint();
+			};
+			return;
+		}
 		AsyncOperation asyncOperation;
 		if (!loadedLevels.ContainsKey(newLevel))
 		{
@@ -47,7 +63,11 @@ public class LevelTransition : MonoBehaviour
 			var component = collision.collider.gameObject.GetComponent<LevelTransitionerComponent>();
 			if (component == null)
 				return;
+			foreach (var otherLoad in loadedLevels)
+				otherLoad.Value.priority = -10000;
 			asyncOperation.allowSceneActivation = true;
+			asyncOperation.priority = 100;
+			dontGcMe = asyncOperation;
 			loadedLevels.Clear();
 			component.entryPoint = newEntryPoint;
 			component.ResetStaticPaint();
