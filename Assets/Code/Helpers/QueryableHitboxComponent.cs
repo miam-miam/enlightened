@@ -77,6 +77,7 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 	// A really stupid way of doing dynamic arrays
 	private List<ContactInformation> collidersTouchedThisFrame = new List<ContactInformation>(16);
 
+	[SerializeField]
 	private ContactInformation[] debugContactInfo;
 
 	private Collider2D selfCollider;
@@ -89,6 +90,8 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 
 	[Tooltip("What colour do we want this hitbox to be?")]
 	public Color debugColour = Color.red;
+
+	[SerializeField]
 	private bool isColliding = false;
 
 	[Tooltip("How should this hitbox respond to the other collider type?")]
