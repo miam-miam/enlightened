@@ -54,6 +54,15 @@ namespace Assets.Code.Snowstorm
 			StartCoroutine(BlipOutAnimation());
 		}
 
+		public void HideInstantly()
+		{
+			isHidden = true;
+			foreach (SpriteRenderer image in images)
+			{
+				image.color = new Color(image.color.r, image.color.b, image.color.g, 0);
+			}
+		}
+
 		private IEnumerator BlipOutAnimation()
 		{
 			isHidden = true;

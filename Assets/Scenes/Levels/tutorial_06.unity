@@ -27414,14 +27414,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 607817902652514067, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
-      propertyPath: wallStickTime
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 607817902652514067, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
-      propertyPath: wallJumpSafetyTime
-      value: 0.6
-      objectReference: {fileID: 0}
     - target: {fileID: 1042356348826541699, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
       propertyPath: m_Name
       value: Player
@@ -27465,10 +27457,6 @@ PrefabInstance:
     - target: {fileID: 4359155526668338221, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5398377782410342557, guid: cd6ff0116974c80498c34cbffb49eb64, type: 3}
-      propertyPath: wallJumpAnchorTime
-      value: 0.45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

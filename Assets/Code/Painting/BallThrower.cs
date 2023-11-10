@@ -126,7 +126,9 @@ namespace Code.Painting
 
         private void Update()
         {
-            if (Input.GetButtonDown(fireKey))
+			if (SnowstormTimer.Instance.timeLeft < 0 || CampfireZone.blockingPlayerMovement)
+				return;
+			if (Input.GetButtonDown(fireKey))
             {
                 mousePressedAt = Time.time;
                 thrust = initialThrust;

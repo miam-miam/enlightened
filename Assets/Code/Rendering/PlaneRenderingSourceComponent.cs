@@ -21,7 +21,7 @@ public class PlaneRenderingSourceComponent : MonoBehaviour
 
     private static Canvas renderSourceInUse;
 
-	private static PlaneMasterController planeMasterController;
+	public static PlaneMasterController planeMasterController;
 
 	// Start is called before the first frame update
 	void Start()

@@ -36,7 +36,7 @@ public class JumpableComponent : MonoBehaviour
 	//test
 	private void Update()
 	{
-		if (SnowstormTimer.Instance.timeLeft < 0)
+		if (SnowstormTimer.Instance.timeLeft < 0 || CampfireZone.blockingPlayerMovement)
 			return;
 		if (Input.GetButtonDown(jumpKey))
 			jumpKeyPressedAt = Time.time;

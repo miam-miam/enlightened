@@ -27,7 +27,11 @@ public class CollectableItem : MonoBehaviour
 			StartCoroutine(PickupAnimation());
 			applyEffect?.Invoke(tracker);
 		};
+		SetEffect();
 	}
+
+	public virtual void SetEffect()
+	{ }
 
 	public IEnumerator PickupAnimation()
 	{

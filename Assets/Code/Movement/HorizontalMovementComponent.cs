@@ -89,7 +89,7 @@ public class HorizontalMovementComponent : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (SnowstormTimer.Instance.timeLeft < 0)
+		if (SnowstormTimer.Instance.timeLeft < 0 || CampfireZone.blockingPlayerMovement)
 			return;
 		if (anchoredToTheWallAt + wallJumpAnchorTime > Time.time)
 			return;

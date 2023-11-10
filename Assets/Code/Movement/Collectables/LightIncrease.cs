@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace Assets.Code.Movement.Collectables
 {
-	internal class LightIncrease
+	internal class LightIncrease : CollectableItem
 	{
+
+		public override void SetEffect()
+		{
+			applyEffect += thing =>
+			{
+				thing.lightTransform.localScale *= 2;
+			};
+		}
+
 	}
 }
