@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(GravityComponent))]
 public class JumpableComponent : MonoBehaviour
 {
+	private InputActions inputActions;
 
     [Tooltip("The input key that will be used to determine whether or not we are capable of jumping or not.")]
     public string jumpKey;
@@ -31,6 +32,8 @@ public class JumpableComponent : MonoBehaviour
 	private void Start()
 	{
 		gravityComponent = GetComponent<GravityComponent>();
+		inputActions = new InputActions();
+		inputActions.Player.Jump.Enable();
 	}
 
 	//test
@@ -38,7 +41,7 @@ public class JumpableComponent : MonoBehaviour
 	{
 		if (SnowstormTimer.Instance.timeLeft < 0 || CampfireZone.blockingPlayerMovement)
 			return;
-		if (Input.GetButtonDown(jumpKey))
+		if (inputActions.Player.Jump.WasPressedThisFrame())
 			jumpKeyPressedAt = Time.time;
 		// Not attempting to jump
 		if (jumpKeyPressedAt + jumpKeyStickiness < Time.time || !jumpHitbox.IsColliding)

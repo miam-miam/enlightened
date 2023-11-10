@@ -13,6 +13,8 @@ public class HorizontalMovementComponent : MonoBehaviour
 		Left = 1 << 0,
 		Right = 1 << 1,
 	}
+	
+	private InputActions inputActions;
 
     [Tooltip("The name of the keys to query for horizontal movement requests.")]
     public string horizontalMovementKeyAxis;
@@ -49,6 +51,9 @@ public class HorizontalMovementComponent : MonoBehaviour
 
 	private void Start()
 	{
+		inputActions = new InputActions();
+		inputActions.Player.Move.Enable();
+		
 		gravityComponent = GetComponent<GravityComponent>();
 		GetComponent<JumpableComponent>().onJumped += () =>
 		{
@@ -96,7 +101,7 @@ public class HorizontalMovementComponent : MonoBehaviour
 		}
 		if (anchoredToTheWallAt + wallJumpAnchorTime > Time.time)
 			return;
-		float horizontalAxis = Input.GetAxis(horizontalMovementKeyAxis);
+		float horizontalAxis = inputActions.Player.Move.ReadValue<float>();
 		float movementMultiplier = 1;
 		if (Mathf.Sign(horizontalAxis) != Mathf.Sign(HorizontalVelocity))
 		{
