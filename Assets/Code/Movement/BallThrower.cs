@@ -9,8 +9,8 @@ using UnityEngine.Serialization;
 namespace Code.Painting
 {
     public class BallThrower : MonoBehaviour, ITransientStart
-	{
-        [SerializeField] private String fireKey = "Fire1";
+    {
+        private InputActions inputActions;
         [SerializeField] private Transform throwPosition;
         [SerializeField] private float gravity = 9.81f;
         private const String SceneName = "Simulation";
@@ -71,6 +71,8 @@ namespace Code.Painting
 
         private void Start()
         {
+            inputActions = new InputActions();
+            inputActions.Player.Fire.Enable();
             mainCamera = Camera.main;
             TransientStart(false);
         }
@@ -126,18 +128,18 @@ namespace Code.Painting
 
         private void Update()
         {
-			if (SnowstormTimer.Instance.timeLeft < 0 || CampfireZone.blockingPlayerMovement)
-				return;
-			if (Input.GetButtonDown(fireKey))
+            if (SnowstormTimer.Instance.timeLeft < 0 || CampfireZone.blockingPlayerMovement)
+                return;
+            if (inputActions.Player.Fire.WasPressedThisFrame())
             {
                 mousePressedAt = Time.time;
                 thrust = initialThrust;
             }
-            else if (Input.GetButtonUp(fireKey) && CanShoot())
+            else if (inputActions.Player.Fire.WasReleasedThisFrame() && CanShoot())
             {
                 ThrowBall();
             }
-            else if (Input.GetButton(fireKey))
+            else if (inputActions.Player.Fire.IsPressed())
             {
                 thrust = Math.Min(maxThrust, thrust + thrustIncrease * Time.deltaTime);
                 
