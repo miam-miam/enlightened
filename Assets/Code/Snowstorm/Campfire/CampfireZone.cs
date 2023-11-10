@@ -107,8 +107,6 @@ public class CampfireZone : MonoBehaviour
 		yield return new WaitForSeconds(3);
 		// Reset the snowstorm timer
 		SnowstormTimer.Instance.timeLeft = SnowstormTimer.Instance.maxTime;
-		// Let the player move
-		blockingPlayerMovement = false;
 		// Fade the planes back in
 		while (currentFade < 1)
 		{
@@ -126,6 +124,8 @@ public class CampfireZone : MonoBehaviour
 				ht.color = new Color(ht.color.r, ht.color.g, ht.color.b, 1 - currentFade);
 			yield return new WaitForEndOfFrame();
 		}
+		// Let the player move
+		blockingPlayerMovement = false;
 		//Re-enable the snowstorm timer
 		SnowstormTimer.isTicking = true;
 		// Disable the failsafe
