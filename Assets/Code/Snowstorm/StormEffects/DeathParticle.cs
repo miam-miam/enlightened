@@ -12,5 +12,9 @@ public class DeathParticle : SnowstormEffectComponent
 		{
 			GetComponent<ParticleSystem>().Play();
 		};
+		onEnd += () =>
+		{
+			GetComponent<ParticleSystem>().Stop();
+		};
 	}
 }

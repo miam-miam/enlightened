@@ -33,6 +33,9 @@ public class WallSlideComponent : MonoBehaviour
     [Tooltip("The time in which after leaving the wall, we will still be able to walljump.")]
     public float wallJumpSafetyTime;
 
+    [Tooltip("Time that you get stuck on the wall for")]
+    public float wallStickTime = 1;
+
     public ParticleSystem rightWallSlideParticles;
 
     public ParticleSystem leftWallSlideParticles;
@@ -48,6 +51,9 @@ public class WallSlideComponent : MonoBehaviour
     private float leftCollisionTime;
 
     private float rightCollisionTime;
+
+    private float stickinessStart = float.NegativeInfinity;
+	private bool sticking = false;
 
     // Track the jump time to give a speed impulse if we switch movement directions immediately after jumping
     private float jumpTime;
@@ -83,9 +89,13 @@ public class WallSlideComponent : MonoBehaviour
 	{
         gravityComponent = GetComponent<GravityComponent>();
         gravityComponent.interceptGravity += velocity =>
-        {
-            float moveDirection = Input.GetAxis("Horizontal");
-            if (!(rightHitbox.IsColliding && moveDirection > 0) && !(leftHitbox.IsColliding && moveDirection < 0))
+		{
+			float moveDirection = Input.GetAxis("Horizontal");
+			if ((stickinessStart + wallStickTime > Time.time) && moveDirection != 0)
+            {
+                return 0;
+            }
+            if (!(rightHitbox.IsColliding && moveDirection != 0) && !(leftHitbox.IsColliding && moveDirection != 0))
                 return null;
             float newVelocity = velocity - slideAcceleration * Time.fixedDeltaTime;
             SetWallSlideParticles(newVelocity);
@@ -148,7 +158,13 @@ public class WallSlideComponent : MonoBehaviour
                 if (moveDirection < 0)
                     leftSlideTime = Time.fixedTime;
                 leftCollisionTime = Time.fixedTime;
-            }
+				horizontalMovement.anchoredToTheWallAt = stickinessStart;
+				if (!sticking && gravityComponent.isFalling)
+				{
+					stickinessStart = Time.time;
+					sticking = true;
+				}
+			}
         }
         else
         {
@@ -161,14 +177,26 @@ public class WallSlideComponent : MonoBehaviour
                 if (moveDirection > 0)
                     rightSlideTime = Time.fixedTime;
                 rightCollisionTime = Time.fixedTime;
-            }
-        }
+				horizontalMovement.anchoredToTheWallAt = stickinessStart;
+				if (!sticking && gravityComponent.isFalling)
+				{
+					stickinessStart = Time.time;
+					sticking = true;
+				}
+			}
+		}
         else
         {
             blockRight = false;
         }
-        // If we recently did a wall jump, then let us get a speed boost when switching direction keys.
-        if (jumpTime + wallJumpSpeedBoostTime > Time.fixedTime)
+        if ((!leftHitbox.IsColliding && !rightHitbox.IsColliding) || !gravityComponent.isFalling)
+        {
+            sticking = false;
+            stickinessStart = float.NegativeInfinity;
+            horizontalMovement.anchoredToTheWallAt = float.NegativeInfinity;
+		}
+		// If we recently did a wall jump, then let us get a speed boost when switching direction keys.
+		if (jumpTime + wallJumpSpeedBoostTime > Time.fixedTime)
         {
             if (left && Input.GetAxis("Horizontal") < -0.2f)
             {

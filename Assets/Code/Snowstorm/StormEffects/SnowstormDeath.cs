@@ -12,6 +12,10 @@ public class SnowstormDeath : SnowstormEffectComponent
         {
             StartCoroutine(Die());
         };
+        onEnd += () =>
+		{
+			GetComponent<SpriteRenderer>().material.SetFloat("_StartTime", float.PositiveInfinity);
+		};
     }
 
     private IEnumerator Die()

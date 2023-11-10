@@ -29,6 +29,12 @@ public class HorizontalMovementComponent : MonoBehaviour
 	[Tooltip("Deceleration due to friction.")]
 	public float frictionAcceleration;
 
+	[Tooltip("The time that we were anchored to the wall at due to wall slide, disables dropping off the wall")]
+	internal float anchoredToTheWallAt = float.NegativeInfinity;
+
+	[Tooltip("After performing a wall slide, how long should we stick to the wall for even when pressing the other directional key?")]
+	public float wallJumpAnchorTime = 1;
+
 	[Tooltip("Sound that plays as the player moves.")]
 	public AudioSource movementSound;
 
@@ -44,6 +50,10 @@ public class HorizontalMovementComponent : MonoBehaviour
 	private void Start()
 	{
 		gravityComponent = GetComponent<GravityComponent>();
+		GetComponent<JumpableComponent>().onJumped += () =>
+		{
+			anchoredToTheWallAt = float.NegativeInfinity;
+		};
 		horizontalCollisionHitbox.onCollisionEnter += collisionContact => {
 			// If the collision point has the same horizontal level as us, then that means that we collided
 			// into a wall, rather than into a floor / ceiling and in this case we should terminate our horizontal velocity.
@@ -79,7 +89,12 @@ public class HorizontalMovementComponent : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (SnowstormTimer.Instance.timeLeft < 0)
+		if (SnowstormTimer.Instance.timeLeft < 0 || CampfireZone.blockingPlayerMovement)
+		{
+			movementSound.volume = 0;
+			return;
+		}
+		if (anchoredToTheWallAt + wallJumpAnchorTime > Time.time)
 			return;
 		float horizontalAxis = Input.GetAxis(horizontalMovementKeyAxis);
 		float movementMultiplier = 1;

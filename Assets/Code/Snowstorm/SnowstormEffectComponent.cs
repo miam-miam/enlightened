@@ -80,7 +80,7 @@ public abstract class SnowstormEffectComponent : MonoBehaviour
 		}
 		else if (started)
 		{
-			onTick.Invoke(0, realStarted);
+			onTick?.Invoke(0, realStarted);
 			onEnd?.Invoke();
 			started = false;
 		}

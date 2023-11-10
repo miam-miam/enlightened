@@ -9,48 +9,42 @@ using UnityEngine;
 public class CollectableItem : MonoBehaviour
 {
 
-    [Tooltip("The text hints attached to this item.")]
-    public TextMeshProUGUI[] textMeshes;
+	private bool pickedUp = false;
 
-    private bool fadeingIn = false;
-
-	private Action<QueryableHitboxComponent.ContactInformation> fadeIn;
-
-	private Action<QueryableHitboxComponent.ContactInformation> fadeOut;
+	public event Action<CollectableTracker> applyEffect;
 
 	// Start is called before the first frame update
 	void Start()
     {
-        foreach (var thing in textMeshes)
-            thing.color = new Color(thing.color.r, thing.color.g, thing.color.b, 0);
-		fadeIn = collisionDetails =>
+		GetComponent<QueryableHitboxComponent>().onNewCollisionEnter += collisionDetails =>
 		{
+			if (pickedUp)
+				return;
 			CollectableTracker tracker;
 			if ((tracker = collisionDetails.collider.GetComponentInParent<CollectableTracker>()) == null)
 				return;
-			fadeingIn = true;
+			pickedUp = true;
+			StartCoroutine(PickupAnimation());
+			applyEffect?.Invoke(tracker);
 		};
-		GetComponent<QueryableHitboxComponent>().onNewCollisionEnter += fadeIn;
-		fadeOut = collisionDetails =>
+		SetEffect();
+	}
+
+	public virtual void SetEffect()
+	{ }
+
+	public IEnumerator PickupAnimation()
+	{
+		SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+		float currentScale = 1;
+		while (currentScale < 3)
 		{
-			CollectableTracker tracker;
-			if ((tracker = collisionDetails.collider.GetComponentInParent<CollectableTracker>()) == null)
-				return;
-			fadeingIn = false;
-		};
-		GetComponent<QueryableHitboxComponent>().onCollisionExit += fadeOut;
-	}
-
-	private void OnDestroy()
-	{
-		GetComponent<QueryableHitboxComponent>().onNewCollisionEnter -= fadeIn;
-		GetComponent<QueryableHitboxComponent>().onCollisionExit -= fadeOut;
-	}
-
-	private void Update()
-	{
-		foreach (var thing in textMeshes)
-			thing.color = new Color(thing.color.r, thing.color.g, thing.color.b, Mathf.Clamp01(thing.color.a + Time.deltaTime * (fadeingIn ? 1 : -1)));
+			currentScale += Time.deltaTime * 6;
+			transform.localScale = new Vector3(currentScale, currentScale, 1);
+			foreach (var spriteRenderer in spriteRenderers)
+				spriteRenderer.color = new Color(1, 1, 1, 1 - ((currentScale - 1) / 2));
+			yield return new WaitForEndOfFrame();
+		}
 	}
 
 }
