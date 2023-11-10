@@ -9,6 +9,8 @@ using UnityEngine;
 public class WallSlideComponent : MonoBehaviour
 {
 
+	private InputActions inputActions;
+
     [Tooltip("The hitbox to use for determining if we are sliding on a wall to our right.")]
     public QueryableHitboxComponent rightHitbox;
 
@@ -87,10 +89,13 @@ public class WallSlideComponent : MonoBehaviour
 
 	private void Start()
 	{
+		inputActions = new InputActions();
+		inputActions.Player.Move.Enable();
+		
         gravityComponent = GetComponent<GravityComponent>();
         gravityComponent.interceptGravity += velocity =>
 		{
-			float moveDirection = Input.GetAxis("Horizontal");
+			float moveDirection = inputActions.Player.Move.ReadValue<float>();
 			if ((stickinessStart + wallStickTime > Time.time) && moveDirection != 0)
             {
                 return 0;
@@ -110,13 +115,15 @@ public class WallSlideComponent : MonoBehaviour
                 Debug.Log("Not falling; cannot walljump");
                 return;
             }
+
+            var horizontalAxis = inputActions.Player.Move.ReadValue<float>();
             if (rightCollisionTime + wallJumpSafetyTime > Time.fixedTime)
 			{
 				jumpTime = Time.fixedTime;
 				horizontalMovement.HorizontalVelocity -= wallJumpSpeed;
 				left = true;
                 // Check if we can immediately perform a wall jump boost
-                if (Input.GetAxis("Horizontal") < -0.2f)
+                if (horizontalAxis < -0.2f)
 				{
 					jumpTime = 0;
 					horizontalMovement.HorizontalVelocity -= wallJumpSpeedBoost;
@@ -132,7 +139,7 @@ public class WallSlideComponent : MonoBehaviour
 				horizontalMovement.HorizontalVelocity += wallJumpSpeed;
                 left = false;
 				// Check if we can immediately perform a wall jump boost
-				if (Input.GetAxis("Horizontal") > 0.2f)
+				if (horizontalAxis > 0.2f)
 				{
 					jumpTime = 0;
 					horizontalMovement.HorizontalVelocity += wallJumpSpeedBoost;
@@ -150,7 +157,7 @@ public class WallSlideComponent : MonoBehaviour
 
 		if (SnowstormTimer.Instance.timeLeft < 0)
 			return;
-		float moveDirection = Input.GetAxis("Horizontal");
+		float moveDirection = inputActions.Player.Move.ReadValue<float>();
         if (leftHitbox.IsColliding)
         {
             if (!blockLeft)
@@ -198,12 +205,12 @@ public class WallSlideComponent : MonoBehaviour
 		// If we recently did a wall jump, then let us get a speed boost when switching direction keys.
 		if (jumpTime + wallJumpSpeedBoostTime > Time.fixedTime)
         {
-            if (left && Input.GetAxis("Horizontal") < -0.2f)
+            if (left && moveDirection < -0.2f)
             {
                 jumpTime = 0;
                 horizontalMovement.HorizontalVelocity -= wallJumpSpeedBoost;
 			}
-            else if (!left && Input.GetAxis("Horizontal") > 0.2f)
+            else if (!left && moveDirection > 0.2f)
             {
                 jumpTime = 0;
 				horizontalMovement.HorizontalVelocity += wallJumpSpeedBoost;
