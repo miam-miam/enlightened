@@ -1,9 +1,7 @@
 {
-    "name": "Helpers",
+    "name": "Death Provider Assembly",
     "rootNamespace": "",
-    "references": [
-        "GUID:e04d32faec2947d71a2dd9e72ba82b67"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

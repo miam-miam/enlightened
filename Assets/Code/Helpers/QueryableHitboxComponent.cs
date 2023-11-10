@@ -31,6 +31,9 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 		COLLISION_ALL = COLLISION_TRIGGERS | COLLISION_PHYSICAL,
 	}
 
+	[Tooltip("Set this to true if you would like to ignore collisions with death components.")]
+	public bool ignoreDeath = false;
+
 	public class ContactInformation
 	{
 		public Collider2D collider;
@@ -175,6 +178,10 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
+		if (ignoreDeath && collision.GetComponent<DeathProvider>() != null)
+		{
+			return;
+		}
 		if ((collision.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_TRIGGERS) == 0) || (!collision.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_PHYSICAL) == 0))
 			return;
 		onNewCollisionEnter?.Invoke(CalculateContactInformation(collision));
@@ -192,6 +199,10 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 
 	private void OnTriggerExit2D(Collider2D collision)
 	{
+		if (ignoreDeath && collision.GetComponent<DeathProvider>() != null)
+		{
+			return;
+		}
 		if ((collision.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_TRIGGERS) == 0) || (!collision.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_PHYSICAL) == 0))
 			return;
 		_colCount--;
@@ -206,6 +217,10 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
+		if (ignoreDeath && collision.collider.GetComponent<DeathProvider>() != null)
+		{
+			return;
+		}
 		if ((collision.collider.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_TRIGGERS) == 0) || (!collision.collider.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_PHYSICAL) == 0))
 			return;
 		onNewCollisionEnter?.Invoke(CalculateContactInformation(collision.collider));
@@ -225,6 +240,10 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 
 	private void OnCollisionExit2D(Collision2D collision)
 	{
+		if (ignoreDeath && collision.collider.GetComponent<DeathProvider>() != null)
+		{
+			return;
+		}
 		if ((collision.collider.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_TRIGGERS) == 0) || (!collision.collider.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_PHYSICAL) == 0))
 			return;
 		_colCount--;
@@ -239,6 +258,10 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 
 	private void OnCollisionStay2D(Collision2D collision)
 	{
+		if (ignoreDeath && collision.collider.GetComponent<DeathProvider>() != null)
+		{
+			return;
+		}
 		// Draw debug information
 		_ = CalculateContactInformation(collision.collider);
 	}
