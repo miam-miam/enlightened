@@ -193,6 +193,7 @@ public class WallSlideComponent : MonoBehaviour
         {
             sticking = false;
             stickinessStart = float.NegativeInfinity;
+            horizontalMovement.anchoredToTheWallAt = float.NegativeInfinity;
 		}
 		// If we recently did a wall jump, then let us get a speed boost when switching direction keys.
 		if (jumpTime + wallJumpSpeedBoostTime > Time.fixedTime)

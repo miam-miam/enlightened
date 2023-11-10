@@ -90,7 +90,10 @@ public class HorizontalMovementComponent : MonoBehaviour
 	private void FixedUpdate()
 	{
 		if (SnowstormTimer.Instance.timeLeft < 0 || CampfireZone.blockingPlayerMovement)
+		{
+			movementSound.volume = 0;
 			return;
+		}
 		if (anchoredToTheWallAt + wallJumpAnchorTime > Time.time)
 			return;
 		float horizontalAxis = Input.GetAxis(horizontalMovementKeyAxis);
