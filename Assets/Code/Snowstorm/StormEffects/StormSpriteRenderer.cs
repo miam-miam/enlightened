@@ -25,5 +25,11 @@ public class StormSpriteRenderer : SnowstormEffectComponent
 			foreach (string shaderProp in shaderIntensityProperties)
 				spriteRenderer.material.SetFloat(shaderProp, power);
 		};
+		onEnd += () =>
+		{
+			spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0);
+			foreach (string shaderProp in shaderIntensityProperties)
+				spriteRenderer.material.SetFloat(shaderProp, 0);
+		};
     }
 }

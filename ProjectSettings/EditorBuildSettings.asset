@@ -6,11 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Levels/rw_00.unity
-    guid: f89f2f70884aad542a84a0e79095b159
+    path: Assets/Scenes/Levels/tutorial_06.unity
+    guid: 7aa9b6055e92f6340bdf224b344747de
   - enabled: 1
     path: Assets/Scenes/Introduction.unity
     guid: 56af73f2ea5b9c64da7c3f2c24f8c3b6
+  - enabled: 1
+    path: Assets/Scenes/Levels/rw_00.unity
+    guid: f89f2f70884aad542a84a0e79095b159
   - enabled: 1
     path: Assets/Scenes/Levels/tutorial_00.unity
     guid: 66f85f73bb976904c96a9d7cc8aac97e
@@ -29,9 +32,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/tutorial_05_gate.unity
     guid: 66fbf19d868fc854f8495c2af68089e0
-  - enabled: 1
-    path: Assets/Scenes/Levels/tutorial_06.unity
-    guid: 7aa9b6055e92f6340bdf224b344747de
   - enabled: 1
     path: Assets/Scenes/Levels/hard_1.unity
     guid: 515e44385ed3d544cbf0abebb7543d1d

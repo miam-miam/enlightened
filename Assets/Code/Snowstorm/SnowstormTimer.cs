@@ -3,13 +3,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SnowstormTimer : MonoBehaviour
 {
 
+	public static string LastMajorCheckpoint = "tutorial_00";
+
 	public static SnowstormTimer Instance;
 
 	public static bool isTicking = false;
+
+	public static int timesDied = 0;
 
 	[Tooltip("The blips for the snowstorm timers.")]
 	public SnowstormBlip[] blips;
@@ -44,8 +49,22 @@ public class SnowstormTimer : MonoBehaviour
 	{
 		if (!isTicking)
 			return;
+		if (timeLeft < -2 && Input.GetButtonDown("Jump"))
+		{
+			// Restart the game.
+			StartCoroutine(RestartGame());
+		}
 		timeLeft -= Time.deltaTime;
 		int blipsWanted = (int)Math.Ceiling(blips.Length * (timeLeft / maxTime));
+		if (blipsWanted > blipsShowing)
+		{
+			foreach (SnowstormBlip blip in blips)
+			{
+				blip.TerminateBadness();
+				blip.TemporarillyShowBlip(5);
+			}
+			blipsShowing = blips.Length;
+		}
 		if (blipsWanted == 1)
 		{
 			// Start flashing the blip
@@ -61,7 +80,7 @@ public class SnowstormTimer : MonoBehaviour
 		{
 			while (blipsWanted < blipsShowing)
 			{
-				int i = 1;
+				int i = 2;
 				foreach (SnowstormBlip blip in blips)
 				{
 					if (i > blipsShowing)
@@ -77,6 +96,18 @@ public class SnowstormTimer : MonoBehaviour
 				blipsShowing--;
 			}
 		}
+		onTimeLeftUpdated?.Invoke(timeLeft);
+	}
+
+	private IEnumerator RestartGame()
+	{
+		FadeToBlack.FadeOut(2, 2);
+		yield return new WaitForSeconds(2);
+		SceneManager.LoadScene(LastMajorCheckpoint);
+		timesDied++;
+		// Reset the storm timer
+		maxTime = 180 + 43 * Mathf.Log(timesDied + 1);
+		timeLeft = maxTime;
 		onTimeLeftUpdated?.Invoke(timeLeft);
 	}
 

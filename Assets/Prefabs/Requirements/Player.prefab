@@ -289,6 +289,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &852100836925925200
 GameObject:
@@ -675,6 +676,7 @@ MonoBehaviour:
   wallJumpSpeedBoost: 15
   wallJumpSpeedBoostTime: 0.15
   wallJumpSafetyTime: 0.2
+  wallStickTime: 0.15
   rightWallSlideParticles: {fileID: 2033554261258165128}
   leftWallSlideParticles: {fileID: 7857525054565775761}
 --- !u!114 &5398377782410342557
@@ -1199,6 +1201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48be56146e68f2643b8a1bda536661cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightTransform: {fileID: 0}
 --- !u!114 &-773211546463736565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6861,6 +6864,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0, g: 1, b: 0.5956452, a: 1}
+  isColliding: 0
   collisionDetectionMode: 1
 --- !u!114 &7229058352582727146
 MonoBehaviour:
@@ -6969,6 +6973,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0, g: 1, b: 0.6524255, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &3199348652091407774
 GameObject:
@@ -7422,6 +7427,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0, g: 0.07612944, b: 1, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &4315917731236985182
 GameObject:
@@ -12807,6 +12813,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &5365645803260066379
 GameObject:
@@ -12937,6 +12944,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0.99020153, g: 0.82330316, b: 0, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &6929312234625555157
 GameObject:
@@ -28216,6 +28224,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0.46248156, g: 0, b: 0.49056602, a: 1}
+  isColliding: 0
   collisionDetectionMode: 3
 --- !u!1 &8197334200518151276
 GameObject:
@@ -28509,6 +28518,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0.88149357, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &8575755374705421889
 GameObject:
@@ -28652,6 +28662,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0, g: 1, b: 0.0004093647, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &8758212671982131708
 GameObject:
@@ -28834,6 +28845,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &9041568589504173420
 GameObject:
