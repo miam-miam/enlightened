@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8810074590475942467}
   m_Layer: 9
   m_Name: Circle (5)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 7109364589876394880}
   m_Layer: 9
   m_Name: TopPaint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 1271201170931199924}
   m_Layer: 9
   m_Name: SlideRightHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -289,6 +289,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &852100836925925200
 GameObject:
@@ -408,7 +409,7 @@ GameObject:
   - component: {fileID: 176127540661802561}
   m_Layer: 9
   m_Name: Circle (5)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -674,7 +675,8 @@ MonoBehaviour:
   wallJumpSpeed: 5
   wallJumpSpeedBoost: 15
   wallJumpSpeedBoostTime: 0.15
-  wallJumpSafetyTime: 0.2
+  wallJumpSafetyTime: 0.6
+  wallStickTime: 0.2
   rightWallSlideParticles: {fileID: 2033554261258165128}
   leftWallSlideParticles: {fileID: 7857525054565775761}
 --- !u!114 &5398377782410342557
@@ -694,6 +696,7 @@ MonoBehaviour:
   horizontalCollisionHitbox: {fileID: 5341209848537517616}
   playerRigidbody: {fileID: 2225496441936467365}
   frictionAcceleration: 35
+  wallJumpAnchorTime: 0.45
   movementSound: {fileID: 4001652536009248622}
 --- !u!114 &3515219926211658155
 MonoBehaviour:
@@ -1199,6 +1202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48be56146e68f2643b8a1bda536661cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightTransform: {fileID: 532983702316363566}
 --- !u!114 &-773211546463736565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1238,7 +1242,7 @@ GameObject:
   - component: {fileID: 7157195082259530444}
   m_Layer: 9
   m_Name: Blip4
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1338,7 +1342,7 @@ GameObject:
   - component: {fileID: 8726896751105267001}
   m_Layer: 9
   m_Name: StormTimer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1400,7 +1404,7 @@ GameObject:
   - component: {fileID: 319237582857845298}
   m_Layer: 9
   m_Name: Circle (5)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1498,7 +1502,7 @@ GameObject:
   - component: {fileID: 2046007199042335791}
   m_Layer: 9
   m_Name: Blip5
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1599,7 +1603,7 @@ GameObject:
   - component: {fileID: 2684825521816780559}
   m_Layer: 9
   m_Name: Circle (5)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1699,7 +1703,7 @@ GameObject:
   - component: {fileID: 5876752365062427476}
   m_Layer: 9
   m_Name: RightPaintEmitter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6682,7 +6686,7 @@ GameObject:
   - component: {fileID: 7732143124937216742}
   m_Layer: 9
   m_Name: Circle (5)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6781,7 +6785,7 @@ GameObject:
   - component: {fileID: 7229058352582727146}
   m_Layer: 9
   m_Name: LevelTransition
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6861,6 +6865,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0, g: 1, b: 0.5956452, a: 1}
+  isColliding: 0
   collisionDetectionMode: 1
 --- !u!114 &7229058352582727146
 MonoBehaviour:
@@ -6889,7 +6894,7 @@ GameObject:
   - component: {fileID: 6505566376800646663}
   m_Layer: 9
   m_Name: TopHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6969,6 +6974,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0, g: 1, b: 0.6524255, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &3199348652091407774
 GameObject:
@@ -6983,7 +6989,7 @@ GameObject:
   - component: {fileID: 9092068552659975423}
   m_Layer: 9
   m_Name: Circle (6)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7081,7 +7087,7 @@ GameObject:
   - component: {fileID: 1929975705056966978}
   m_Layer: 9
   m_Name: RightPaint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7177,7 +7183,7 @@ GameObject:
   - component: {fileID: 5178962374136945682}
   m_Layer: 9
   m_Name: FeetPoint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7210,7 +7216,7 @@ GameObject:
   - component: {fileID: 1683058422091830957}
   m_Layer: 9
   m_Name: Circle (5)
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7306,7 +7312,7 @@ GameObject:
   - component: {fileID: 4980779847327158833}
   m_Layer: 9
   m_Name: Eyes
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7342,7 +7348,7 @@ GameObject:
   - component: {fileID: 5341209848537517616}
   m_Layer: 9
   m_Name: SideCollisionHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7422,6 +7428,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0, g: 0.07612944, b: 1, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &4315917731236985182
 GameObject:
@@ -7436,7 +7443,7 @@ GameObject:
   - component: {fileID: 2791959853217878564}
   m_Layer: 9
   m_Name: Blip3
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7540,7 +7547,7 @@ GameObject:
   - component: {fileID: 3421903345063105878}
   m_Layer: 9
   m_Name: DeathEmitter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12528,7 +12535,7 @@ GameObject:
   - component: {fileID: 3584745153436924796}
   m_Layer: 9
   m_Name: Blip2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12629,7 +12636,7 @@ GameObject:
   - component: {fileID: 4916346045203871739}
   m_Layer: 9
   m_Name: BottomPaint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12727,7 +12734,7 @@ GameObject:
   - component: {fileID: 906097443598137469}
   m_Layer: 9
   m_Name: Failsafe
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12807,6 +12814,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &5365645803260066379
 GameObject:
@@ -12819,7 +12827,7 @@ GameObject:
   - component: {fileID: 8328872005266059189}
   m_Layer: 9
   m_Name: PaintEmitters
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12857,7 +12865,7 @@ GameObject:
   - component: {fileID: 2509075548497406449}
   m_Layer: 9
   m_Name: PaintHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12937,6 +12945,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0.99020153, g: 0.82330316, b: 0, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &6929312234625555157
 GameObject:
@@ -12953,7 +12962,7 @@ GameObject:
   - component: {fileID: 7851238850570995767}
   m_Layer: 9
   m_Name: LeftPaintEmitter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17936,7 +17945,7 @@ GameObject:
   - component: {fileID: 3652303809468294495}
   m_Layer: 9
   m_Name: Blip1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18037,7 +18046,7 @@ GameObject:
   - component: {fileID: 6431585642118761198}
   m_Layer: 9
   m_Name: LeftPaint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18133,7 +18142,7 @@ GameObject:
   - component: {fileID: 2510484456718938032}
   m_Layer: 9
   m_Name: ThrowPoint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18168,7 +18177,7 @@ GameObject:
   - component: {fileID: 9002607465046193154}
   m_Layer: 9
   m_Name: SlideLeftPaintEmitter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23153,7 +23162,7 @@ GameObject:
   - component: {fileID: 8944445754351174519}
   m_Layer: 9
   m_Name: SlideRightPaintEmitter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28136,7 +28145,7 @@ GameObject:
   - component: {fileID: 158330336569513973}
   m_Layer: 9
   m_Name: DeathHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28216,6 +28225,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0.46248156, g: 0, b: 0.49056602, a: 1}
+  isColliding: 0
   collisionDetectionMode: 3
 --- !u!1 &8197334200518151276
 GameObject:
@@ -28230,7 +28240,7 @@ GameObject:
   - component: {fileID: 4671677871073607598}
   m_Layer: 9
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28328,7 +28338,7 @@ GameObject:
   - component: {fileID: 7664249192764431213}
   m_Layer: 9
   m_Name: Blip6
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28429,7 +28439,7 @@ GameObject:
   - component: {fileID: 6636323789845924023}
   m_Layer: 9
   m_Name: GravityHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28509,6 +28519,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0.88149357, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &8575755374705421889
 GameObject:
@@ -28522,7 +28533,7 @@ GameObject:
   - component: {fileID: 2832833490679812866}
   m_Layer: 9
   m_Name: StaticPaint
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28572,7 +28583,7 @@ GameObject:
   - component: {fileID: 3230438324690645914}
   m_Layer: 9
   m_Name: JumpHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28652,6 +28663,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0, g: 1, b: 0.0004093647, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &8758212671982131708
 GameObject:
@@ -28754,7 +28766,7 @@ GameObject:
   - component: {fileID: 3316340741717035639}
   m_Layer: 9
   m_Name: SlideLeftHitbox
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28834,6 +28846,7 @@ MonoBehaviour:
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0, a: 1}
+  isColliding: 0
   collisionDetectionMode: 2
 --- !u!1 &9041568589504173420
 GameObject:
@@ -28848,7 +28861,7 @@ GameObject:
   - component: {fileID: 1269152582011003074}
   m_Layer: 9
   m_Name: Blip0
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

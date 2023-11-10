@@ -31,10 +31,23 @@ public class PlaneMaster : ScriptableObject
     [Tooltip("How should other planes be drawn on top of this plane?")]
     public PlaneRenderRelay[] renderRelays;
 
+    [SerializeField]
     [Tooltip("The colour matrix of this plane.")]
-    public Matrix4x4 colourMatrix = Matrix4x4.identity;
+    private Matrix4x4 colourMatrix = Matrix4x4.identity;
 
-    [Tooltip("The constant part of the colouring for this colour matrix.")]
+    // We need this because we don't want to update the scriptable object dynamically
+    private Matrix4x4 dynamicColourMatrix;
+
+    public Matrix4x4 ColourMatrix
+    {
+        get => dynamicColourMatrix;
+        set {
+			dynamicColourMatrix = value;
+			_output.material?.SetMatrix("_ColourMatrix", dynamicColourMatrix);
+		}
+    }
+
+	[Tooltip("The constant part of the colouring for this colour matrix.")]
     public Color colourConstantPart = new Color(0, 0, 0, 0);
 
 	/// <summary>
@@ -84,9 +97,10 @@ public class PlaneMaster : ScriptableObject
 
     internal void InitialiseRendering(PlaneMasterController parent)
     {
-        if (renderingInitialised)
+		if (renderingInitialised)
             return;
 		renderingInitialised = true;
+        dynamicColourMatrix = colourMatrix;
 		_input = new CustomRenderTexture(ResolutionController.Width, ResolutionController.Height, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Default);
         activeRenderTextures.Add(_input);
 		_input.filterMode = FilterMode.Point;
@@ -135,7 +149,7 @@ public class PlaneMaster : ScriptableObject
 			renderRelay.incomingPlane.InitialiseRendering(parent);
 			next.initializationMaterial.SetTexture("_SourceTexture", above);
 			next.initializationMaterial.SetTexture("_TargetTexture", renderRelay.incomingPlane.OutputRenderTexture);
-            next.initializationMaterial.SetMatrix("_ColourMatrix", colourMatrix);
+            next.initializationMaterial.SetMatrix("_ColourMatrix", dynamicColourMatrix);
             next.initializationMaterial.SetVector("_ColourMatrixConstant", colourConstantPart);
 
             if (renderRelay.dontClear)
