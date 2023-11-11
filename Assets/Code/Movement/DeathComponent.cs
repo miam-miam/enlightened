@@ -25,20 +25,22 @@ public class DeathComponent : MonoBehaviour, ITransientStart
     /// The spawn point of the player
     /// </summary>
     public Vector3 currentSpawnPoint;
-	private SpriteRenderer spriteRenderer;
+	[Tooltip("All sprite renderers that should be deactivated during the death animation.")]
+    public SpriteRenderer[] toDeactivate;
 
 	/// <summary>
 	/// Invoked when the player dies.
 	/// </summary>
 	public event Action<Vector3> onDeath;
 
+	public bool invulnerable = false;
+
 	private void Start()
 	{
-		spriteRenderer = GetComponent<SpriteRenderer>();
 		currentSpawnPoint = transform.position;
 		deathHitbox.onNewCollisionEnter += collidedThing =>
 		{
-			if (collidedThing.collider.gameObject.GetComponent<DeathProvider>() != null)
+			if (!invulnerable && collidedThing.collider.gameObject.GetComponent<DeathProvider>() != null)
 			{
 				Kill();
 			}
@@ -81,10 +83,22 @@ public class DeathComponent : MonoBehaviour, ITransientStart
 
 	public IEnumerator DeathAnimation()
 	{
+		invulnerable = true;
 		FadeToBlack.FadeOut(0.15f, 0.3f);
-		spriteRenderer.enabled = false;
+
+		foreach (var sprite in toDeactivate)
+		{
+			sprite.enabled = false;
+		}
+		
 		yield return new WaitForSeconds(0.15f);
-		spriteRenderer.enabled = true;
+		invulnerable = false;
+		
+		foreach (var sprite in toDeactivate)
+		{
+			sprite.enabled = true;
+		}
+		
 		GetComponent<TransformEventDispatcherComponent>().DispatchTransformResetEvent();
 		transform.position = new Vector3(currentSpawnPoint.x, currentSpawnPoint.y, transform.position.z);
 	}

@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class FollowMovingPlatform : MonoBehaviour
 {
@@ -12,14 +12,14 @@ public class FollowMovingPlatform : MonoBehaviour
     public PaintSourceComponent paintSourceComponent;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 		Vector3? requestedDelta = null;
 		foreach (Collider2D collider in gravityHitbox.CollidingWith)
         {
 			if (collider.GetComponentInParent<MoveAlongLine>() is MoveAlongLine platform)
 			{
-				requestedDelta = platform.GetPositionDelta();
+				requestedDelta = platform.GetPositionDelta(Time.fixedDeltaTime);
 				break;
 			}
 		}
