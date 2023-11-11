@@ -34,6 +34,14 @@ public class PaintSourceComponent : MonoBehaviour
 				positionOffset = collisionContact.point - (Vector2) transform.position;
 			}
 		};
+
+		paintHitbox.onCollisionExit += collisionContact =>
+		{
+			if (collisionContact?.collider != null && collisionContact.collider.GetComponent<Paintable>() != null)
+			{
+				paintable = null;
+			}
+		};
 	}
 
 	private void Update()

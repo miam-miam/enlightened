@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa64c066d6fed8438e868bf1b20a295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreDeath: 1
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0, a: 1}
@@ -953,7 +954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33aebe2fe41ef6f12ae4e5547b13a224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireKey: Fire1
   throwPosition: {fileID: 2510484456718938032}
   gravity: 9.81
   ballPrefab: {fileID: -1604266624195375744, guid: b60738c8d1ab613b5b522e58997c01bc, type: 3}
@@ -6905,6 +6905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa64c066d6fed8438e868bf1b20a295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreDeath: 0
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0, g: 1, b: 0.5956452, a: 1}
@@ -7014,6 +7015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa64c066d6fed8438e868bf1b20a295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreDeath: 0
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0, g: 1, b: 0.6524255, a: 1}
@@ -7468,6 +7470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa64c066d6fed8438e868bf1b20a295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreDeath: 1
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0, g: 0.07612944, b: 1, a: 1}
@@ -12854,6 +12857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa64c066d6fed8438e868bf1b20a295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreDeath: 0
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0, a: 1}
@@ -12985,6 +12989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa64c066d6fed8438e868bf1b20a295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreDeath: 0
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0.99020153, g: 0.82330316, b: 0, a: 1}
@@ -28265,6 +28270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa64c066d6fed8438e868bf1b20a295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreDeath: 0
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0.46248156, g: 0, b: 0.49056602, a: 1}
@@ -28559,6 +28565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa64c066d6fed8438e868bf1b20a295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreDeath: 1
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0.88149357, a: 1}
@@ -28703,6 +28710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa64c066d6fed8438e868bf1b20a295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreDeath: 1
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 0, g: 1, b: 0.0004093647, a: 1}
@@ -28886,6 +28894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa64c066d6fed8438e868bf1b20a295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignoreDeath: 1
   skipFrame: 0
   ignoreTriggers: 0
   debugColour: {r: 1, g: 0, b: 0, a: 1}
