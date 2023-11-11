@@ -17,8 +17,6 @@ namespace Assets.Code.Level
 		{
 			GetComponent<QueryableHitboxComponent>().onCollisionEnter += thing =>
 			{
-				if (thing.collider.tag != "Player")
-					return;
 				Transform current = thing.collider.transform;
 				while (current.parent != null)
 					current = current.parent;

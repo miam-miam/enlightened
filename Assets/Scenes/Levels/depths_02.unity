@@ -11675,7 +11675,7 @@ PrefabInstance:
       propertyPath: m_text
       value: '
 
-        Tip: You can climb vertical surfaces by repeatedly wall-jumping
+        Tip: You can climb vertical surfaces by repeatedly wall -jumping
         against them.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
