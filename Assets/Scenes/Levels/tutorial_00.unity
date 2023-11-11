@@ -58411,6 +58411,101 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8207840669338056708, guid: c9263462050863d40bf64109280d40e7, type: 3}
   m_PrefabInstance: {fileID: 1209541590}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1384782654
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 324574937891544682, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 324574937891544682, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 324574937891544682, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 324574937891544682, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 324574937891544682, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 324574937891544682, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 324574937891544682, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 324574937891544682, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 324574937891544682, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 324574937891544682, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100374403275811196, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: m_Size.y
+      value: 3.177281
+      objectReference: {fileID: 0}
+    - target: {fileID: 1100374403275811196, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.0886405
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311511797840564126, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: smallMessage
+      value: Act 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4311511797840564126, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: titleMessage
+      value: The Abyss
+      objectReference: {fileID: 0}
+    - target: {fileID: 8264032815707985346, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      propertyPath: m_Name
+      value: TextTrigger (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4311511797840564126, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8264032815707985346, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1384782656}
+  m_SourcePrefab: {fileID: 100100000, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+--- !u!1 &1384782655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8264032815707985346, guid: 6efdd0f81e618ba4798b40b59b699900, type: 3}
+  m_PrefabInstance: {fileID: 1384782654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1384782656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384782655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b672645da8ebf74409410629e45480a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newPalette: {fileID: 2800000, guid: 94792fc9cfe89dd42b8eed9de07b8f72, type: 3}
 --- !u!4 &1384861131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8207840669338056708, guid: c9263462050863d40bf64109280d40e7, type: 3}
@@ -88418,3 +88513,4 @@ SceneRoots:
   - {fileID: 1517155688091438048}
   - {fileID: 1012689246}
   - {fileID: 624881931}
+  - {fileID: 1384782654}

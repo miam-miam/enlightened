@@ -23,7 +23,9 @@ public class CollectableItem : MonoBehaviour
 			CollectableTracker tracker;
 			if ((tracker = collisionDetails.collider.GetComponentInParent<CollectableTracker>()) == null)
 				return;
-			GetComponent<AudioSource>()?.Play();
+			AudioSource audio = GetComponent<AudioSource>();
+			if (audio != null)
+				audio.Play();
 			pickedUp = true;
 			StartCoroutine(PickupAnimation());
 			applyEffect?.Invoke(tracker);
