@@ -7,6 +7,8 @@ public class CollectableTracker : MonoBehaviour
 
 	public Transform lightTransform;
 
+	public static bool hasUnlockedPaintGun = false;
+
 	// Not enough time to do this properly
 	private void Update()
 	{
