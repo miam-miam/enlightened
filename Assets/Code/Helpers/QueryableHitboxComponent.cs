@@ -51,6 +51,8 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 
 	private int _colCount = 0;
 
+	public List<Collider2D> CollidingWith { get; } = new List<Collider2D>();
+
 	public bool IsColliding {
 		// Support for quick query
 		get => isColliding || collidedThisFrame;
@@ -72,6 +74,11 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 	/// Called when this collider ends colliding with something.
 	/// </summary>
 	public event Action<ContactInformation?>? onCollisionExit;
+
+	/// <summary>
+	/// Called when this collider ends colliding with anything.
+	/// </summary>
+	public event Action<ContactInformation?>? onNewCollisionExit;
 #nullable restore
 
 	private bool collidedThisFrame = false;
@@ -184,6 +191,7 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 		}
 		if ((collision.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_TRIGGERS) == 0) || (!collision.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_PHYSICAL) == 0))
 			return;
+		CollidingWith.Add(collision);
 		onNewCollisionEnter?.Invoke(CalculateContactInformation(collision));
 		// Check if we are still colliding
 		if (!collision.IsTouching(selfCollider))
@@ -207,12 +215,14 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 			return;
 		_colCount--;
 		isColliding = _colCount > 0;
+		CollidingWith.Remove(collision);
 		// If we collided this frame, then we haven't actually invoked collision enter yet so
 		// we can just wait on that.
 		if (!isColliding && !collidedThisFrame)
 		{
 			onCollisionExit?.Invoke(CalculateContactInformation(collision));
 		}
+		onNewCollisionExit?.Invoke(CalculateContactInformation(collision));
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
@@ -223,6 +233,7 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 		}
 		if ((collision.collider.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_TRIGGERS) == 0) || (!collision.collider.isTrigger && (collisionDetectionMode & CollisionMode.COLLISION_PHYSICAL) == 0))
 			return;
+		CollidingWith.Add(collision.collider);
 		onNewCollisionEnter?.Invoke(CalculateContactInformation(collision.collider));
 		// Check if we are still colliding
 		if (!collision.collider.IsTouching(selfCollider))
@@ -248,12 +259,14 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 			return;
 		_colCount--;
 		isColliding = _colCount > 0;
+		CollidingWith.Remove(collision.collider);
 		// If we collided this frame, then we haven't actually invoked collision enter yet so
 		// we can just wait on that.
 		if (!isColliding && !collidedThisFrame)
 		{
 			onCollisionExit?.Invoke(CalculateContactInformation(collision.collider));
 		}
+		onNewCollisionExit?.Invoke(CalculateContactInformation(collision.collider));
 	}
 
 	private void OnCollisionStay2D(Collision2D collision)
@@ -336,6 +349,7 @@ public class QueryableHitboxComponent : MonoBehaviour, ITransientStart
 		if (_colCount > 0 && !collidedThisFrame)
 		{
 			onCollisionExit?.Invoke(null);
+			onNewCollisionExit?.Invoke(null);
 		}
 		collidedThisFrame = false;
 		colliderCount = 0;
