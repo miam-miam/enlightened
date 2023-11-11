@@ -4,12 +4,25 @@ using UnityEngine;
 
 public class MoveAlongLine : MonoBehaviour
 {
+
+    public enum LineMode
+    {
+        REVERSE,
+        REPEAT,
+    }
+
     public LineRenderer lineToFollow;
 
     [Tooltip("Add a target to activate the movement once the target is activated.")]
     public Target target;
 
-    private Vector3[] positions;
+    [Tooltip("Behaviour for how the movement should act.")]
+    public LineMode movementMode = LineMode.REVERSE;
+
+    [Tooltip("How much should we offset ourselves by between 2p oints")]
+    public float startOffset;
+
+	private Vector3[] positions;
 
     private int index = 0;
 
@@ -21,9 +34,12 @@ public class MoveAlongLine : MonoBehaviour
     {
         positions = new Vector3[lineToFollow.positionCount];
         lineToFollow.GetPositions(positions);
-        transform.position = new Vector3(positions[0].x, positions[0].y, transform.position.z);
+        Vector3 startPosition = positions[(int)Mathf.Floor(startOffset) % positions.Length];
+		Vector3 endPosition = positions[(int)Mathf.Ceil(startOffset) % positions.Length];
+        transform.position = startPosition * (1 - (startOffset % 1)) + endPosition * (startOffset % 1);
+        index = (int)Mathf.Ceil(startOffset);
 
-        if (target != null)
+		if (target != null)
         {
             activated = false;
             target.onActivate += () =>
@@ -48,7 +64,21 @@ public class MoveAlongLine : MonoBehaviour
 
         if ((Vector2)transform.position == (Vector2)positions[index])
         {
-            index = (index + 1) % positions.Length;
+            switch (movementMode)
+            {
+                case LineMode.REVERSE:
+                    index = (index + 1) % positions.Length;
+                    break;
+                case LineMode.REPEAT:
+					index = (index + 1) % positions.Length;
+                    // Teleport back to the start
+                    if (index == 0)
+                    {
+                        transform.position = new Vector3(positions[0].x, positions[0].y, transform.position.z);
+                        index = 1 % positions.Length;
+                    }
+					break;
+            }
         }
     }
 
