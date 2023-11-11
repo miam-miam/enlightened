@@ -128,6 +128,8 @@ namespace Code.Painting
 
         private void Update()
         {
+            if (!CollectableTracker.hasUnlockedPaintGun)
+                return;
             if (SnowstormTimer.Instance.timeLeft < 0 || CampfireZone.blockingPlayerMovement)
                 return;
             if (inputActions.Player.Fire.WasPressedThisFrame())
