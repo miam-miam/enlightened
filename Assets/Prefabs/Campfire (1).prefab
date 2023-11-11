@@ -14671,6 +14671,9 @@ GameObject:
   - component: {fileID: 7560097736757037836}
   - component: {fileID: 3319120092841298688}
   - component: {fileID: 3069406760023063643}
+  - component: {fileID: 6702758983810740678}
+  - component: {fileID: 5248661400239593579}
+  - component: {fileID: 6428252310049251659}
   m_Layer: 0
   m_Name: Campfire (1)
   m_TagString: Untagged
@@ -14762,3 +14765,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plane: {fileID: 11400000, guid: 950b80698e873b94d88fb9924cea5b23, type: 2}
+--- !u!114 &6702758983810740678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857984057912179665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5f6a9f150ff31469cf7642bb415f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hintText:
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!61 &5248661400239593579
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857984057912179665}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0884614, y: 4.878642}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 1}
+    newSize: {x: 2, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 9.199466, y: 10.757284}
+  m_EdgeRadius: 0
+--- !u!114 &6428252310049251659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5857984057912179665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa64c066d6fed8438e868bf1b20a295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignoreDeath: 0
+  skipFrame: 0
+  ignoreTriggers: 0
+  debugColour: {r: 1, g: 0, b: 0, a: 1}
+  isColliding: 0
+  collisionDetectionMode: 2
