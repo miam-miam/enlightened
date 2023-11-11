@@ -813,7 +813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paintHitbox: {fileID: 2509075548497406449}
   paintOffset: {x: 0, y: 0.12}
-  paintDistance: 0.1
+  paintDistance: 0.08
 --- !u!114 &946777472632394345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1237,8 +1237,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravityHitbox: {fileID: 3230438324690645914}
   paintSourceComponent: {fileID: 2202408601051422151}
-  gravityComponent: {fileID: 6110317398582877353}
-  disableGravity: 0
 --- !u!114 &6832777659399836522
 MonoBehaviour:
   m_ObjectHideFlags: 0
