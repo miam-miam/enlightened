@@ -2,6 +2,7 @@ using Assets.Code.GlobalEvents;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class MoveAlongLine : MonoBehaviour
@@ -107,7 +108,7 @@ public class MoveAlongLine : MonoBehaviour
         }
     }
 
-    public Vector3 GetPositionDelta()
+    public Vector3 GetPositionDelta(float deltaTime)
     {
         if (!activated)
         {
@@ -116,7 +117,13 @@ public class MoveAlongLine : MonoBehaviour
         var targetPosition = new Vector3(positions[index].x, positions[index].y, transform.position.z); 
         var newPosition = Vector3.MoveTowards(transform.position,
             targetPosition,
-            speed * Time.deltaTime);
+            speed * deltaTime);
         return newPosition - transform.position;
     }
+
+    public Vector3 GetPositionDelta()
+    {
+        return GetPositionDelta(Time.deltaTime);
+    }
+    
 }

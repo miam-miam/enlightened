@@ -44,7 +44,7 @@ public class PaintSourceComponent : MonoBehaviour
 		};
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 		var dist = (lastPaintPosition - transform.position).sqrMagnitude;
 		if (dist > paintDistance && paintable != null)

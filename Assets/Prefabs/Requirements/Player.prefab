@@ -780,6 +780,13 @@ MonoBehaviour:
   deathParticlesPrefab: {fileID: 2360325960087269591, guid: 83ed5214cbddbca10a0602322aa80d0c, type: 3}
   gravityComponent: {fileID: 6110317398582877353}
   currentSpawnPoint: {x: 0, y: 0, z: 0}
+  toDeactivate:
+  - {fileID: 249254502806783238}
+  - {fileID: 67505311259280915}
+  - {fileID: 8429378377945121699}
+  - {fileID: 4103649937577287611}
+  - {fileID: 1172865702442655148}
+  invulnerable: 0
 --- !u!114 &4927582685766418932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -806,7 +813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paintHitbox: {fileID: 2509075548497406449}
   paintOffset: {x: 0, y: 0.12}
-  paintDistance: 0.1
+  paintDistance: 0.08
 --- !u!114 &946777472632394345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1228,7 +1235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caae8969e1e85afc3b23c483dd5dc23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityHitbox: {fileID: 6636323789845924023}
+  gravityHitbox: {fileID: 3230438324690645914}
   paintSourceComponent: {fileID: 2202408601051422151}
 --- !u!114 &6832777659399836522
 MonoBehaviour:
