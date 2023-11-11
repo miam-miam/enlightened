@@ -1,3 +1,5 @@
+using Assets.Code.GlobalEvents;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -20,8 +22,11 @@ public class MoveAlongLine : MonoBehaviour
     [Tooltip("Behaviour for how the movement should act.")]
     public LineMode movementMode = LineMode.REVERSE;
 
-    [Tooltip("How much should we offset ourselves by between 2p oints")]
+    [Tooltip("How much should we offset ourselves by between 2 points")]
     public float startOffset;
+
+    [Tooltip("Should we reset when the player dies?")]
+    public bool resetOnPlayerDeath = false;
 
 	private Vector3[] positions;
 
@@ -29,7 +34,9 @@ public class MoveAlongLine : MonoBehaviour
 
     private bool activated = true;
 
-    public float speed = 3f;
+	Action<Vector3> function = null;
+
+	public float speed = 3f;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +44,8 @@ public class MoveAlongLine : MonoBehaviour
         lineToFollow.GetPositions(positions);
         Vector3 startPosition = positions[(int)Mathf.Floor(startOffset) % positions.Length];
 		Vector3 endPosition = positions[(int)Mathf.Ceil(startOffset) % positions.Length];
-        transform.position = startPosition * (1 - (startOffset % 1)) + endPosition * (startOffset % 1);
+        Vector3 desiredPosition = startPosition * (1 - (startOffset % 1)) + endPosition * (startOffset % 1);
+		transform.position = new Vector3(desiredPosition.x, desiredPosition.y, transform.position.z);
         index = (int)Mathf.Ceil(startOffset);
 
 		if (target != null)
@@ -48,10 +56,27 @@ public class MoveAlongLine : MonoBehaviour
                 activated = true;
             };
         }
+
+        if (resetOnPlayerDeath)
+        {
+            function = position => {
+				Vector3 startPosition = positions[(int)Mathf.Floor(startOffset) % positions.Length];
+				Vector3 endPosition = positions[(int)Mathf.Ceil(startOffset) % positions.Length];
+				transform.position = new Vector3(desiredPosition.x, desiredPosition.y, transform.position.z);
+				index = (int)Mathf.Ceil(startOffset);
+			};
+            GlobalEvents.onPlayerDeath.OnRaised += function;
+
+		}
     }
 
-    // Update is called once per frame
-    void Update()
+	private void OnDestroy()
+	{
+		GlobalEvents.onPlayerDeath.OnRaised -= function;
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         if (!activated)
         {
