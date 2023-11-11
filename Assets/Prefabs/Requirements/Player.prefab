@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8810074590475942467}
   m_Layer: 9
   m_Name: Circle (5)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 7109364589876394880}
   m_Layer: 9
   m_Name: TopPaint
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 1271201170931199924}
   m_Layer: 9
   m_Name: SlideRightHitbox
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -410,7 +410,7 @@ GameObject:
   - component: {fileID: 176127540661802561}
   m_Layer: 9
   m_Name: Circle (5)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1292,7 +1292,7 @@ GameObject:
   - component: {fileID: 7157195082259530444}
   m_Layer: 9
   m_Name: Blip4
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1392,7 +1392,7 @@ GameObject:
   - component: {fileID: 8726896751105267001}
   m_Layer: 9
   m_Name: StormTimer
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1454,7 +1454,7 @@ GameObject:
   - component: {fileID: 319237582857845298}
   m_Layer: 9
   m_Name: Circle (5)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1552,7 +1552,7 @@ GameObject:
   - component: {fileID: 2046007199042335791}
   m_Layer: 9
   m_Name: Blip5
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1653,7 +1653,7 @@ GameObject:
   - component: {fileID: 2684825521816780559}
   m_Layer: 9
   m_Name: Circle (5)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1753,7 +1753,7 @@ GameObject:
   - component: {fileID: 5876752365062427476}
   m_Layer: 9
   m_Name: RightPaintEmitter
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6736,7 +6736,7 @@ GameObject:
   - component: {fileID: 7732143124937216742}
   m_Layer: 9
   m_Name: Circle (5)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6835,7 +6835,7 @@ GameObject:
   - component: {fileID: 7229058352582727146}
   m_Layer: 9
   m_Name: LevelTransition
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6945,7 +6945,7 @@ GameObject:
   - component: {fileID: 6505566376800646663}
   m_Layer: 9
   m_Name: TopHitbox
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7041,7 +7041,7 @@ GameObject:
   - component: {fileID: 9092068552659975423}
   m_Layer: 9
   m_Name: Circle (6)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7139,7 +7139,7 @@ GameObject:
   - component: {fileID: 1929975705056966978}
   m_Layer: 9
   m_Name: RightPaint
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7235,7 +7235,7 @@ GameObject:
   - component: {fileID: 5178962374136945682}
   m_Layer: 9
   m_Name: FeetPoint
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7364,7 +7364,7 @@ GameObject:
   - component: {fileID: 4980779847327158833}
   m_Layer: 9
   m_Name: Eyes
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7400,7 +7400,7 @@ GameObject:
   - component: {fileID: 5341209848537517616}
   m_Layer: 9
   m_Name: SideCollisionHitbox
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7496,7 +7496,7 @@ GameObject:
   - component: {fileID: 2791959853217878564}
   m_Layer: 9
   m_Name: Blip3
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7600,7 +7600,7 @@ GameObject:
   - component: {fileID: 3421903345063105878}
   m_Layer: 9
   m_Name: DeathEmitter
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12588,7 +12588,7 @@ GameObject:
   - component: {fileID: 3584745153436924796}
   m_Layer: 9
   m_Name: Blip2
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12689,7 +12689,7 @@ GameObject:
   - component: {fileID: 4916346045203871739}
   m_Layer: 9
   m_Name: BottomPaint
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12787,7 +12787,7 @@ GameObject:
   - component: {fileID: 906097443598137469}
   m_Layer: 9
   m_Name: Failsafe
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12881,7 +12881,7 @@ GameObject:
   - component: {fileID: 8328872005266059189}
   m_Layer: 9
   m_Name: PaintEmitters
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12919,7 +12919,7 @@ GameObject:
   - component: {fileID: 2509075548497406449}
   m_Layer: 9
   m_Name: PaintHitbox
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13017,7 +13017,7 @@ GameObject:
   - component: {fileID: 7851238850570995767}
   m_Layer: 9
   m_Name: LeftPaintEmitter
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18000,7 +18000,7 @@ GameObject:
   - component: {fileID: 3652303809468294495}
   m_Layer: 9
   m_Name: Blip1
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18101,7 +18101,7 @@ GameObject:
   - component: {fileID: 6431585642118761198}
   m_Layer: 9
   m_Name: LeftPaint
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18197,7 +18197,7 @@ GameObject:
   - component: {fileID: 2510484456718938032}
   m_Layer: 9
   m_Name: ThrowPoint
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18232,7 +18232,7 @@ GameObject:
   - component: {fileID: 9002607465046193154}
   m_Layer: 9
   m_Name: SlideLeftPaintEmitter
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23217,7 +23217,7 @@ GameObject:
   - component: {fileID: 8944445754351174519}
   m_Layer: 9
   m_Name: SlideRightPaintEmitter
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28200,7 +28200,7 @@ GameObject:
   - component: {fileID: 158330336569513973}
   m_Layer: 9
   m_Name: DeathHitbox
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28296,7 +28296,7 @@ GameObject:
   - component: {fileID: 4671677871073607598}
   m_Layer: 9
   m_Name: Circle
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28394,7 +28394,7 @@ GameObject:
   - component: {fileID: 7664249192764431213}
   m_Layer: 9
   m_Name: Blip6
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28495,7 +28495,7 @@ GameObject:
   - component: {fileID: 6636323789845924023}
   m_Layer: 9
   m_Name: GravityHitbox
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28590,7 +28590,7 @@ GameObject:
   - component: {fileID: 2832833490679812866}
   m_Layer: 9
   m_Name: StaticPaint
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28640,7 +28640,7 @@ GameObject:
   - component: {fileID: 3230438324690645914}
   m_Layer: 9
   m_Name: JumpHitbox
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28824,7 +28824,7 @@ GameObject:
   - component: {fileID: 3316340741717035639}
   m_Layer: 9
   m_Name: SlideLeftHitbox
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28920,7 +28920,7 @@ GameObject:
   - component: {fileID: 1269152582011003074}
   m_Layer: 9
   m_Name: Blip0
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
