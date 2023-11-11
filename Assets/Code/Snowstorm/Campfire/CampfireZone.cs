@@ -26,8 +26,6 @@ public class CampfireZone : MonoBehaviour
 			// Don't trigger if we already saved here, you need to find a different checkpoint fool!
 			if (SnowstormTimer.LastMajorCheckpoint == SceneManager.GetActiveScene().name)
 				return;
-			if (details.collider.tag != "Player")
-				return;
 			triggered = true;
 			StartCoroutine(SleepAnimation());
 		};
