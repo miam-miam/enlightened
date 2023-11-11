@@ -25,7 +25,7 @@ public class LevelTransition : MonoBehaviour
 	void Start()
 	{
 		queryableHitboxComponent = GetComponent<QueryableHitboxComponent>();
-		if (FindObjectsOfType<LevelTransition>().Length > 1)
+		if (!Application.isEditor || FindObjectsOfType<LevelTransition>().Length > 1)
 		{
 			queryableHitboxComponent.onNewCollisionEnter += collision =>
 			{

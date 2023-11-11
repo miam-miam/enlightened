@@ -1,3 +1,4 @@
+using Assets.Code.GlobalEvents;
 using Assets.Code.Helpers;
 using JetBrains.Annotations;
 using System;
@@ -19,18 +20,11 @@ public class DeathComponent : MonoBehaviour, ITransientStart
 	[Tooltip("The gravity component of the player, used to set velocity to 0")]
 	public GravityComponent gravityComponent;
 
-	public static event Action<Vector3> onGlobalDeath;
-
     /// <summary>
     /// The spawn point of the player
     /// </summary>
     public Vector3 currentSpawnPoint;
 	private SpriteRenderer spriteRenderer;
-
-	/// <summary>
-	/// Invoked when the player dies.
-	/// </summary>
-	public event Action<Vector3> onDeath;
 
 	private void Start()
 	{
@@ -57,7 +51,7 @@ public class DeathComponent : MonoBehaviour, ITransientStart
 	{
 		try
 		{
-			onDeath?.Invoke(transform.position);
+			GlobalEvents.onPlayerDeath.Raise(transform.position);
 		}
 		catch (Exception e)
 		{
@@ -65,7 +59,7 @@ public class DeathComponent : MonoBehaviour, ITransientStart
 		}
 		try
 		{
-			onGlobalDeath?.Invoke(transform.position);
+			GlobalEvents.onPlayerDeath.Raise(transform.position);
 		}
 		catch (Exception e)
 		{
