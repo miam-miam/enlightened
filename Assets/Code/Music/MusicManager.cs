@@ -67,6 +67,7 @@ public class MusicManager : MonoBehaviour
 			{
 				playingDrone = Instantiate(dronePrefab);
 				playingDrone.clip = intenseMusic;
+				playingDrone.volume = 0.7f;
 				playingDrone.Play();
 				DontDestroyOnLoad(playingDrone);
 				isDroneMusic = true;
