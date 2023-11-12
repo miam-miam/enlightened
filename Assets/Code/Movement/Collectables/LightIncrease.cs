@@ -21,7 +21,8 @@ namespace Assets.Code.Movement.Collectables
 
 		public IEnumerator LightAnimation(CollectableTracker thing)
 		{
-			float lightSizeAmount = 4 / Mathf.Sqrt(thing.lightTransform.localScale.x);
+			float lightSize = 2;
+			float lightSizeAmount = lightSize / Mathf.Sqrt(thing.lightTransform.localScale.x);
 			// Since multiplication is commutative, this animation can be played on top of itself multiple times.
 			thing.lightTransform.localScale *= lightSizeAmount;
 			double logScale = Math.Pow(1 / lightSizeAmount, 1d/900);
