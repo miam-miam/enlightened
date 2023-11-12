@@ -4856,14 +4856,41 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Enlightened
+  m_text: '<size=170>Enlightened</size>
 
 
-    All sounds from freesound.org
+
+    <b>Sound</b>
 
 
-    All the rest made
-    by miam-miam100 and PowerfulBacon'
+    drone Space wind
+    scifi by ztitchez licensed under Attribution 4.0
+
+
+    Countdown by Alexander
+    Nakarada | https://creatorchords.com
+
+    Music promoted by https://www.chosic.com/free-music/all/
+
+    Creative
+    Commons CC BY 4.0
+
+    https://creativecommons.org/licenses/by/4.0/
+
+
+    All
+    other sounds from freesound.org are licensed under CC0.
+
+
+
+    <b>Everything
+    Else</b>
+
+
+    miam-miam100 \uf57f
+
+
+    PowerfulBacon \uf584'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc3a2c6f9967b4c4bbeb9d547c9839ec, type: 2}
   m_sharedMaterial: {fileID: -6024038452452824524, guid: dc3a2c6f9967b4c4bbeb9d547c9839ec, type: 2}
