@@ -23,8 +23,8 @@ namespace Assets.Code.Level
 
 		public IEnumerator EndTheGame(GameObject thingToKill)
 		{
-			FadeToBlack.FadeOut(20, 5);
-			yield return new WaitForSeconds(20);
+			FadeToBlack.FadeOut(10, 5);
+			yield return new WaitForSeconds(10);
 			SceneManager.LoadScene("Credits");
 			Transform t = thingToKill.transform;
 			while (t.parent != null)
