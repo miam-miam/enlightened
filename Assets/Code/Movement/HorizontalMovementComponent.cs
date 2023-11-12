@@ -132,11 +132,11 @@ public class HorizontalMovementComponent : MonoBehaviour
 				float decellerationSpeed = Mathf.Min(Mathf.Max(Mathf.Sqrt(HorizontalVelocity), 1) * frictionAcceleration * Time.fixedDeltaTime, HorizontalVelocity);
 				HorizontalVelocity -= decellerationSpeed;
 			}
-			movementSound.volume = 0.8f * Mathf.Clamp01(movementSound.volume + 4 * Time.deltaTime * Mathf.Sign(Mathf.Abs(HorizontalVelocity) - movementSound.volume));
+			movementSound.volume = 0.8f * Mathf.Clamp01((movementSound.volume / 0.8f) + 4 * Time.deltaTime * Math.Sign((Mathf.Abs(HorizontalVelocity) > 0.1f ? Mathf.Abs(HorizontalVelocity) : 0) - movementSound.volume));
 		}
 		else
 		{
-			movementSound.volume = 0.8f * Mathf.Clamp01(movementSound.volume + -4 * Time.deltaTime);
+			movementSound.volume = 0.8f * Mathf.Clamp01((movementSound.volume / 0.8f) + -4 * Time.deltaTime);
 		}
 		if ((currentCollisionDirection & CollisionDirection.Left) != 0)
 		{

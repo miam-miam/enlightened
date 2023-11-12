@@ -10,6 +10,8 @@ public class GlobalEvent
 
 	public void Raise()
 	{
+		if (OnRaised == null)
+			return;
 		foreach (var delegateFunction in OnRaised.GetInvocationList())
 		{
 			try
@@ -32,6 +34,8 @@ public class GlobalEvent<T>
 
     public void Raise(T value)
     {
+		if (OnRaised == null)
+			return;
 		foreach (var delegateFunction in OnRaised.GetInvocationList())
 		{
 			try
@@ -54,6 +58,8 @@ public class GlobalEvent<T1, T2>
 
 	public void Raise(T1 v1, T2 v2)
 	{
+		if (OnRaised == null)
+			return;
 		foreach (var delegateFunction in OnRaised.GetInvocationList())
 		{
 			try
@@ -76,6 +82,8 @@ public class GlobalEvent<T1, T2, T3>
 
 	public void Raise(T1 v1, T2 v2, T3 v3)
 	{
+		if (OnRaised == null)
+			return;
 		foreach (var delegateFunction in OnRaised.GetInvocationList())
 		{
 			try
