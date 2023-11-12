@@ -15,7 +15,7 @@ namespace Assets.Code.Movement.Collectables
 		{
 			applyEffect += thing =>
 			{
-				StartCoroutine(LightAnimation(thing));
+				thing.StartCoroutine(LightAnimation(thing));
 			};
 		}
 
