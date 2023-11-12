@@ -24,6 +24,8 @@ public class JumpableComponent : MonoBehaviour
 
 	private GravityComponent gravityComponent;
 
+	public AudioSource audioSource;
+	
 	/// <summary>
 	/// Invoked when the player successfully jumps.
 	/// </summary>
@@ -49,6 +51,7 @@ public class JumpableComponent : MonoBehaviour
 		// Perform the jump
 		gravityComponent.velocity = jumpVelocity;
 		jumpKeyPressedAt = 0;
+		audioSource.Play();
 		onJumped?.Invoke();
 	}
 

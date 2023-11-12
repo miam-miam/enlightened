@@ -4926,4 +4926,4 @@ MonoBehaviour:
   part: {fileID: 927865168017077376}
   paintPrefab: {fileID: 5893167477629331455, guid: 3cb138908e38d74c797073b38f556404, type: 3}
   particlePlane: {fileID: 11400000, guid: a5c6d39acc49af2489c5f5911446716a, type: 2}
-  collisionTime: 0.2
+  collisionTime: 0
