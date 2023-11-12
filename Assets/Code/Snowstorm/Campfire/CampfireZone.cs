@@ -15,6 +15,8 @@ public class CampfireZone : MonoBehaviour
 
 	public static bool blockingPlayerMovement = false;
 
+	public AudioSource blipPowerup;
+
 	private bool triggered = false;
 
 	private void Start()
@@ -98,6 +100,7 @@ public class CampfireZone : MonoBehaviour
 		{
 			blip.TerminateBadness();
 			blip.TemporarillyShowBlip(SnowstormTimer.Instance.blips.Length - i + 3);
+			blipPowerup.Play();
 			yield return new WaitForSeconds(1);
 			i++;
 		}
