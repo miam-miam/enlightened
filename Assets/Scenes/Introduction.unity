@@ -15808,7 +15808,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A game by miam-miam100 and PowerfulBacon
+  m_text: A game by miam-miam and PowerfulBacon
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc3a2c6f9967b4c4bbeb9d547c9839ec, type: 2}
   m_sharedMaterial: {fileID: -6024038452452824524, guid: dc3a2c6f9967b4c4bbeb9d547c9839ec, type: 2}
