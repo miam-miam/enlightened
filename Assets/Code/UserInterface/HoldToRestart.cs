@@ -39,12 +39,12 @@ public class HoldToRestart : MonoBehaviour
         {
             heldTime = Mathf.Max(0, heldTime - Time.deltaTime);
         }
-        if (heldTime > 5)
+        if (heldTime > 3)
         {
             StartCoroutine(Finish());
             return;
         }
-        restartingImage.fillAmount = heldTime / 5f;
+        restartingImage.fillAmount = heldTime / 3f;
         restartingImage.color = new Color(1, 1, 1, Mathf.Min(1, heldTime / 0.5f));
         restartingText.color = new Color(1, 1, 1, Mathf.Min(1, heldTime / 0.5f));
         backgroundImage.color = new Color(0, 0, 0, Mathf.Min(1, heldTime / 0.5f));
