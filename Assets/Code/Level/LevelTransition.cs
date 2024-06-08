@@ -21,6 +21,20 @@ public class LevelTransition : MonoBehaviour
 
 	private AsyncOperation dontGcMe;
 
+	[RuntimeInitializeOnLoadMethod]
+	static void ResetEditor()
+	{
+		if (!Application.isEditor)
+			return;
+        SceneManager.activeSceneChanged += (oldscene, newscene) =>
+        {
+            if (newscene.name == "Introduction")
+            {
+				loadedLevels.Clear();
+            }
+        };
+    }
+
 	// Start is called before the first frame update
 	void Start()
 	{
